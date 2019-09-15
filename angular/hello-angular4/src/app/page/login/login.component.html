@@ -1,0 +1,50 @@
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active" *ngIf="this.result">{{this.result.title}}</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                  <!-- Tabs Titles -->
+              
+                  <!-- Icon -->
+                  <div class="fadeIn first">
+                    <img src="assets/img/logo.png" id="icon" alt="User Icon" />
+                  </div>
+                  <!-- Login Form -->
+                  <p *ngIf="this.result">
+                      <span [ngClass]="'error'" *ngIf="!this.result.status">{{this.result.message}}</span>
+                      <span [ngClass]="'success'" *ngIf="this.result.status">{{this.result.message}}</span>
+                  </p>
+                  <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
+                    <input type="text" id="login" formControlName="email" class="fadeIn second" name="login" placeholder="Email">
+                    <input type="password" id="password" formControlName="password" class="fadeIn third" name="login" placeholder="Password">
+                    <input type="submit" [disabled]="!loginForm.valid" class="fadeIn fourth" value="Log In">
+                  </form>
+              
+                  <!-- Remind Passowrd -->
+                  <div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
+                  </div>
+              
+                </div>
+              </div>           
+        </div>
+        
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
