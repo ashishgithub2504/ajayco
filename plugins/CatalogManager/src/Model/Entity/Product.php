@@ -69,6 +69,7 @@ class Product extends Entity
         'meta_keyword' => true,
         'meta_description' => true,
         'status' => true,
+        'enquirystatus' => true,
         'sort_order' => true,
         'created' => true,
         'modified' => true,
@@ -87,9 +88,9 @@ class Product extends Entity
     {
         return Router::url('/webroot/img/uploads/products/', true);
     }
-    protected function _getPrice() {
-        return '₹'. $this;
-    }
+    // protected function _getPrice() {
+    //     return $this->price;
+    // }
 
     protected function _getTimthumb() {
         return Router::url('/timthumb.php?src=',true);

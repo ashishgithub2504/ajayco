@@ -74,7 +74,7 @@ class ProductsController extends AppController
             $product = $this->Products->newEntity();
         }
         if ($this->request->is(['post', 'patch', 'put'])) {
-
+            
             $product = $this->Products->patchEntity($product, $this->request->getData());
             //pr($product->errors());die;
             if ($this->Products->save($product)) {

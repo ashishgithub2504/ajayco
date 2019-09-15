@@ -52,7 +52,7 @@
                                         <td><?= $this->Number->format($i) ?>.</td>
                                         <td><?= h($product->title) ?></td>
                                         <td><?= h($product->model) ?></td>
-                                        <td><?= $this->Number->format($product->price) ?></td>
+                                        <td><? //= $this->Number->format($product->price) ?></td>
                                         <td><?= $this->Number->format($product->quantity) ?></td>
                                         <td><?= $this->Number->format($product->minimum_quantity) ?></td>
                                         <td>

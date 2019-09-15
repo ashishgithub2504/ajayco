@@ -122,6 +122,13 @@ use Cake\Core\Configure;
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <?php echo $this->Form->control('enquirystatus', ['type' => 'select', 'class' => 'form-control', 'options' => [1 => "Enquiry Now", 0 => "Add to Cart"], 'label' => ['text' => "Product Button Status"]]); ?>
+                                
+                            </div><!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <?php echo $this->Form->input('bestselling', ['label' => 'Best Selling Product','type' => 'checkbox']); ?>
 
                             </div><!-- /.form-group -->

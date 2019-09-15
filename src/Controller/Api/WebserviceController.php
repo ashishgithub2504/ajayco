@@ -43,6 +43,7 @@ class WebserviceController extends AppController {
                 'description',
                 'image',
                 'bestselling',
+                'enquirystatus',
             ]],['order' => ['sort_order','desc']]
         )
         ->toArray();
@@ -63,6 +64,7 @@ class WebserviceController extends AppController {
             'short_description',
             'description',
             'image',
+            'enquirystatus',
 
         ]],['order' => ['id','desc']])->toArray();
         // print_r($products); die;
@@ -223,6 +225,7 @@ class WebserviceController extends AppController {
                 'description',
                 'image',
                 'bestselling',
+                'enquirystatus',
             ]
         ],['order' => ['sort_order','desc']]
         )
@@ -249,6 +252,7 @@ class WebserviceController extends AppController {
                 'description',
                 'image',
                 'bestselling',
+                'enquirystatus',
             ]
         ],['order' => ['sort_order','desc']]
         )
@@ -288,6 +292,7 @@ class WebserviceController extends AppController {
                 'description',
                 'image',
                 'bestselling',
+                'enquirystatus',
                 'status',
         ])->where([
             'slug' => $this->request->data['slug'],
