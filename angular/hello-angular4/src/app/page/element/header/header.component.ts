@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   categories:any;
   cartItem : [];
   userinfo : any;
-  
+  status: boolean = false;
   ngOnInit() {
     this.isLoggedIn$ = this.WebserviceService.isLoggedIn; // {2}
     console.log(this.isLoggedIn$);

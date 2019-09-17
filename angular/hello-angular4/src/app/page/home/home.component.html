@@ -181,10 +181,10 @@
                             <h2 class="product-name"><a href="#">{{lproduct.title}}</a></h2>
                             <div class="product-btns">
                                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="primary-btn add-to-cart" *ngIf="lproduct.enquirystatus; else addtocart" (click)="addtocart(lproduct)">
+                                <button class="primary-btn add-to-cart" *ngIf="lproduct.enquirystatus; else addcart" (click)="addtocart(lproduct)">
                                     <i class="fa fa-ioxhost"></i> Enquiry Now
                                 </button>
-                                <ng-template #addtocart>
+                                <ng-template #addcart>
                                     <button class="primary-btn add-to-cart" (click)="addtocart(lproduct)">
                                             <i class="fa fa-shopping-cart"></i> Add to Cart
                                     </button>

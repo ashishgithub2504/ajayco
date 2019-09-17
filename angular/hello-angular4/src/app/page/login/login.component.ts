@@ -19,15 +19,17 @@ export class LoginComponent implements OnInit {
     private _eventEmiter: EventemitterService,
     public WebserviceService: WebserviceService) { }
   
+  result: any = [];
+  userinfo: any;
   // @Output() dataStr = new EventEmitter(); 
   counter :any = '0';
   ngOnInit() {
     // this.dataStr.emit(this.counter);
     this._eventEmiter.sendMessage('5');
+    this.result.title = 'Login';
   }
-  result: any = [];
-  userinfo: any;
   onSubmit() {
+    
      this.result = this.WebserviceService.login(this.loginForm.value);
      console.log(this.result);
     // .subscribe((data) => {

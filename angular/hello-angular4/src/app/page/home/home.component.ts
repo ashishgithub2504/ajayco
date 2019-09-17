@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer } from '@angular/core';
+import { Component, OnInit,Renderer,ElementRef } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from '../../services/webservice.service';
 //import { $ } from 'protractor';
@@ -9,9 +9,11 @@ import { WebserviceService } from '../../services/webservice.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private renderer:Renderer, private dynamicScriptLoader: DynamicScriptLoaderService,
-              private WebserviceService : WebserviceService) { }
+  private element: any;
+  constructor(private renderer:Renderer,private el: ElementRef, private dynamicScriptLoader: DynamicScriptLoaderService,
+              private WebserviceService : WebserviceService) { 
+     this.element = el.nativeElement;
+  }
   profile : any;
   ngOnInit() {
     this.WebserviceService.home().subscribe((data) => {
@@ -27,11 +29,11 @@ export class HomeComponent implements OnInit {
 		    }).catch(error => console.log(error));   
   }
   
-  addtocart(pid) {
+  addtocart(pid) { 
+    console.log('add to cart here');
     var oldItems = JSON.parse(localStorage.getItem('CART')) || [];
     oldItems.push(pid);
     localStorage.setItem('CART', JSON.stringify(oldItems));
-    this.renderer.setElementClass(event.target,"opened",true);
-    //$('.header-cart').addClass('open');
+    
   }
 }

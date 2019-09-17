@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.isLoading$ = this.WebserviceService.isLoading;
+    document.getElementById('cartdropdown').classList.add('open');
   }
   setDataStr() {
     console.log("called event");

@@ -20,7 +20,8 @@ import { EventemitterService } from '../app/services/eventemitter.service';
 import { RegisterComponent } from './page/register/register.component';
 import { ProductComponent } from './page/product/product.component';
 import { CartComponent } from './page/cart/cart.component';
-import { CheckoutComponent } from './page/checkout/checkout.component'
+import { CheckoutComponent } from './page/checkout/checkout.component';
+import { ModelComponent } from './page/model/model.component'
 
 const appRoutes: Routes = [
   { path : '', component: HomeComponent, pathMatch: 'full' },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'product/:id', component:ProductComponent},
   { path: 'cart', component:CartComponent },
   { path: 'checkout', component:CheckoutComponent },
+  { path: 'model', component:ModelComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     ProductComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,

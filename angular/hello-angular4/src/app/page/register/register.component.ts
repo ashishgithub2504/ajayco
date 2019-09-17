@@ -16,10 +16,11 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('',Validators.required),
   });
   constructor(public WebserviceService: WebserviceService, private router: Router) { }
-
-  ngOnInit() {
-  }
   result: any = [];
+  ngOnInit() {
+    this.result.title = 'Login';
+  }
+  
   onSubmit() {
     this.WebserviceService.signup(this.signupForm.value)
     .subscribe((data) => {
