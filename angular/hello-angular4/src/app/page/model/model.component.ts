@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 @Component({
   selector: 'app-model',
   templateUrl: './model.component.html',
@@ -7,22 +8,18 @@ import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModelComponent implements OnInit {
   closeResult: string;
+  signupForm = new FormGroup({
+    first_name: new FormControl('',Validators.required),
+    mobile: new FormControl('',Validators.required),
+    email: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required),
+  });
   constructor(private modalService: NgbModal) { }
-
+  
   ngOnInit() {
   }
-  open(content) {
-    console.log(content);
-    this.modalService.open(content);
-  }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
+  onSubmit() {
   }
+  
 }

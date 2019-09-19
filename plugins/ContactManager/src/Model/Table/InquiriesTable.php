@@ -59,11 +59,11 @@ class InquiriesTable extends Table
                 ->requirePresence('first_name', 'create')
                 ->notEmpty('first_name', 'Please enter your first name here.');
 
-        $validator
-                ->scalar('last_name')
-                ->maxLength('last_name', 50, 'Last name must be maximum 50 character long.')
-                ->requirePresence('last_name', 'create')
-                ->notEmpty('last_name', 'Please enter your last name here.');
+        // $validator
+        //         ->scalar('last_name')
+        //         ->maxLength('last_name', 50, 'Last name must be maximum 50 character long.')
+        //         ->requirePresence('last_name', 'create')
+        //         ->notEmpty('last_name', 'Please enter your last name here.');
 
         $validator
                 ->email('email')
@@ -93,7 +93,7 @@ class InquiriesTable extends Table
     }
 
     public function afterSave(Event $event, EntityInterface $entity) {
-        $this->getMailer('Manu')->send('contactUs', [$entity]);
+        // $this->getMailer('Manu')->send('contactUs', [$entity]);
     }
 
 }

@@ -121,6 +121,14 @@
     asNavFor: '#product-main-view',
   });
 
+  // $(document).on("click", ".enqury-now", function () {
+  //   var myBookId = $(this).attr('id');
+  //   $(".modal-body #product_id").val( myBookId );
+  //   // As pointed out in comments, 
+  //   // it is unnecessary to have to manually call the modal.
+  //   // $('#addBookDialog').modal('show');
+  // });
+
   // PRODUCT ZOOM
   // $('#product-main-view .product-view').zoom();
 

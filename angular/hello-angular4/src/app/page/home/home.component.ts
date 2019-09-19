@@ -1,7 +1,8 @@
 import { Component, OnInit,Renderer,ElementRef } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from '../../services/webservice.service';
-//import { $ } from 'protractor';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
+// import { $ } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,22 @@ import { WebserviceService } from '../../services/webservice.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  product_id : number = 0;
+  display: string = 'none';
+
+  enquiryForm = new FormGroup({
+    product_id: new FormControl('',Validators.required),
+    first_name: new FormControl('',Validators.required),
+    mobile: new FormControl('',Validators.required),
+    email: new FormControl('',Validators.required),
+    message: new FormControl('',Validators.required),
+  });
   private element: any;
   constructor(private renderer:Renderer,private el: ElementRef, private dynamicScriptLoader: DynamicScriptLoaderService,
               private WebserviceService : WebserviceService) { 
      this.element = el.nativeElement;
   }
+  result: any = [];
   profile : any;
   ngOnInit() {
     this.WebserviceService.home().subscribe((data) => {
@@ -36,4 +48,23 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('CART', JSON.stringify(oldItems));
     
   }
+
+  onSubmit() {
+    console.log(this.enquiryForm.value.product_id);
+    this.WebserviceService.enquiry(this.enquiryForm.value)
+    .subscribe((data) => {
+      this.result = data;
+      console.log(this.result);
+      if(this.result.status == true) {
+        alert(this.result.message);
+      } else {
+        alert(this.result.message);
+      }     
+    });
+  }
+
+  openModel(pid) {
+    this.enquiryForm.controls['product_id'].setValue(pid);
+  }
+
 }

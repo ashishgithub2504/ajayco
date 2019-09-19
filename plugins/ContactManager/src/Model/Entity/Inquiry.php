@@ -31,6 +31,7 @@ class Inquiry extends Entity
     protected $_accessible = [
         'first_name' => true,
         'last_name' => true,
+        'product_id' => true,
         'email' => true,
         'mobile' => true,
         'message' => true,

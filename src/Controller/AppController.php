@@ -95,7 +95,7 @@ class AppController extends Controller
                         'key' => 'Auth.Admin',
                     ],
                 ]);
-                $this->Auth->allow(['signup','productdetails' ,'forgot', 'login', 'passwordreset', 'verifyaccount','index','staticpage','getcategories','getproducts']);
+                $this->Auth->allow(['signup','productdetails' ,'forgot', 'login', 'passwordreset', 'verifyaccount','index','staticpage','getcategories','getproducts','enquiry']);
                 //$this->viewBuilder()->setTheme('PriorityTheme');
                 break;
             case 'admin':

@@ -181,7 +181,12 @@
                             <h2 class="product-name"><a href="#">{{lproduct.title}}</a></h2>
                             <div class="product-btns">
                                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="primary-btn add-to-cart" *ngIf="lproduct.enquirystatus; else addcart" (click)="addtocart(lproduct)">
+                                <button class="primary-btn enqury-now"
+                                    *ngIf="lproduct.enquirystatus; else addcart"
+                                    data-toggle="modal"
+                                    data-id="{{lproduct.id}}"
+                                    data-target="#enquiry"
+                                    (click)="openModel(lproduct.id)">
                                     <i class="fa fa-ioxhost"></i> Enquiry Now
                                 </button>
                                 <ng-template #addcart>
@@ -260,3 +265,41 @@
     <!-- /container -->
 </div>
 <!-- /section -->
+
+<!-- Enquiry form here -->
+<div class="modal" tabindex="-1" role="dialog" id="enquiry">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content flex-grow-1">
+        <div class="modal-header">
+          <h3 class="modal-title">Enquiry Form!</h3>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
+              <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
+            <div class="form-group">
+                <input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
+            </div>
+            <div class="form-group">
+                <input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+            </div>
+            <div class="form-group">
+                    <input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="message" formControlName="message" ></textarea>
+            </div>    
+            <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Signup">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            data-dismiss="modal"
+            class="mx-auto btn btn-secondary"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

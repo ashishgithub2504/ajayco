@@ -13,7 +13,7 @@ import { DynamicScriptLoaderService } from './dynamic-script-loader.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WebserviceService } from '../app/services/webservice.service';
 import { ShopComponent } from './page/shop/shop.component';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './page/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventemitterService } from '../app/services/eventemitter.service';
@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     ),
   ],
   providers: [DynamicScriptLoaderService,EventemitterService,
-    NgbModalConfig, NgbModal,
+    NgbModal,
     WebserviceService],
   bootstrap: [AppComponent]
 })
