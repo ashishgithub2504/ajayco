@@ -25,6 +25,12 @@
                     <td><?= h($inquiry->mobile) ?></td>
                 </tr>
                 <tr>
+                    <th scope="row"><?= __('Product Name') ?></th>
+                    <td>
+                        <?= $this->Html->link(h($inquiry->Products['title']),['controller' => 'Products','action'=>'view',$inquiry->Products['id'], 'plugin' => 'CatalogManager' ]) ?>
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row"><?= __('Email') ?></th>
                     <td><a href="mailto:<?= h($inquiry->email) ?>"><?= h($inquiry->email) ?></a></td>
                 </tr>

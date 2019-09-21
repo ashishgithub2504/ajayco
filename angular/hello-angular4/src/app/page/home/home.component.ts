@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   }
   result: any = [];
   profile : any;
+  public name:any = 'Add to cart';
   ngOnInit() {
     this.WebserviceService.home().subscribe((data) => {
       this.profile = data;
@@ -42,11 +43,13 @@ export class HomeComponent implements OnInit {
   }
   
   addtocart(pid) { 
-    console.log('add to cart here');
+    this.name = 'Added';
     var oldItems = JSON.parse(localStorage.getItem('CART')) || [];
     oldItems.push(pid);
     localStorage.setItem('CART', JSON.stringify(oldItems));
-    
+    setTimeout(()=> {
+      this.name = 'Add to cart';
+    }, 1500);
   }
 
   onSubmit() {

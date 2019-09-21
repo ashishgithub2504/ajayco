@@ -9,7 +9,7 @@
             <div id="home-slick" *ngIf="this.profile; else bannerloader">
                 <!-- banner -->
                 <div class="banner banner-1" *ngFor="let banner of this.profile.banner_images">
-                        <img src="{{this.profile.full_path}}{{banner.image}}" alt="">
+                        <img src="{{this.profile.timthumb_path}}{{this.profile.full_path}}{{banner.image}}&w=870&h=485" alt="">
                 </div>
                 <!-- /banner -->
             </div>
@@ -122,7 +122,7 @@
                                 <div class="product-btns">
                                     <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                                     <button class="primary-btn add-to-cart" (click)="addtocart(product)">
-                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        <i class="fa fa-shopping-cart"></i> {{this.name}}
                                     </button>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                                 </button>
                                 <ng-template #addcart>
                                     <button class="primary-btn add-to-cart" (click)="addtocart(lproduct)">
-                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                            <i class="fa fa-shopping-cart"></i> {{this.name}}
                                     </button>
                                 </ng-template>
                             </div>
@@ -241,9 +241,19 @@
                         <h2 class="product-name"><a href="#">{{lproduct.title}}</a></h2>
                         <div class="product-btns">
                             <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                            <button class="primary-btn add-to-cart" (click)="addtocart(lproduct)">
-                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                            <button class="primary-btn enqury-now"
+                                *ngIf="lproduct.enquirystatus; else addcart"
+                                data-toggle="modal"
+                                data-id="{{lproduct.id}}"
+                                data-target="#enquiry"
+                                (click)="openModel(lproduct.id)">
+                                <i class="fa fa-ioxhost"></i> Enquiry Now
                             </button>
+                            <ng-template #addcart>
+                                <button class="primary-btn add-to-cart" (click)="addtocart(lproduct)">
+                                    <i class="fa fa-shopping-cart" *ngIf="this.name; else cartadded"></i> {{this.name}}
+                                </button>
+                            </ng-template>                            
                         </div>
                     </div>
                 </div>

@@ -40,6 +40,11 @@ class InquiriesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->belongsTo('Products', [
+            'foreignKey' => 'product_id',
+            'joinType' => 'INNER',
+            'className' => 'CatalogManager.Products'
+        ]);
     }
 
     /**

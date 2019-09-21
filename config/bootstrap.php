@@ -133,7 +133,7 @@ if ($isCli) {
 if ($isCli) {
     require __DIR__ . '/bootstrap_cli.php';
 }
-
+define('_CURRENCY_','₹');
 /*
  * Set the full base URL.
  * This URL is used as the base of all absolute links.

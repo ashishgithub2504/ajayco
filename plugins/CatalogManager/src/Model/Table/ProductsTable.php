@@ -91,7 +91,10 @@ class ProductsTable extends Table
             'joinTable' => 'products_tags',
             'className' => 'CatalogManager.Tags'
         ]);
-        
+        // $this->hasMany('Inquiries', [
+        //     'foreignKey' => 'product_id',
+        //     'className' => 'ContactManager.inquiries'
+        // ]);
         $this->addBehavior('Slug', [
             'field' => 'slug',
             'otherField' => 'title'

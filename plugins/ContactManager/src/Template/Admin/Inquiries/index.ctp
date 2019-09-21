@@ -26,6 +26,7 @@
                                 <th>#</th>
                                 <th scope="col"><?= $this->Paginator->sort('first_name', 'Name') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('mobile', 'Mobile Number') ?></th>
+                                <th scope="col"><?= $this->Paginator->sort('product_id', 'Product Name') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                                 <th scope="col" width="18%"><?= $this->Paginator->sort('created') ?></th>
                                 <th scope="col" class="actions" width="12%"><?= __('Actions') ?></th>
@@ -40,7 +41,8 @@
                                     <tr>
                                         <td><?= $this->Number->format($i) ?>.</td>
                                         <td><?= h($inquiry->name); ?></td>  
-                                        <td><?= h($inquiry->mobile) ?></td>  
+                                        <td><?= h($inquiry->mobile) ?></td> 
+                                        <td><?= $this->Html->link(h($inquiry->Products['title']),['controller' => 'Products','action'=>'view',$inquiry->Products['id'], 'plugin' => 'CatalogManager' ]) ?></td> 
                                         <td><a href="mailto:<?= h($inquiry->email) ?>"><?= h($inquiry->email) ?></a></td>   
                                         <td>
                                             <?php

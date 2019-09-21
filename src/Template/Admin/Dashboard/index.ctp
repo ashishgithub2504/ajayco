@@ -53,6 +53,20 @@
           <!-- /.info-box -->
         </div>
 
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-volume-control-phone"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">  Inquiries</span>
+              <span class="info-box-number"><?php echo $inquiryCount; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
         <!-- Left col -->
         <div class="col-md-8">
             <!-- TABLE: LATEST ORDERS -->
@@ -149,73 +163,28 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box">
+                <?php foreach($productList as $key=>$value) { ?>
                 <li class="item">
                   <div class="product-img">
                     <?php echo $this->Html->image('/assets/dist/img/default-50x50.gif'); ?>
                   </div>
                   <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
+                    <a href="javascript:void(0)" class="product-title"><?= $value['title'];?>
+                      <span class="label label-warning pull-right"><?= _CURRENCY_.$value['price']; ?></span></a>
                     <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
+                      <?php echo $value['short_description']; ?>      
+                    </span>
                   </div>
                 </li>
-                <li class="item">
-                  <div class="product-img">
-                    <?php echo $this->Html->image('/assets/dist/img/default-50x50.gif'); ?>
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                  </div>
-                </li>
-                <li class="item">
-                  <div class="product-img">
-                    <?php echo $this->Html->image('/assets/dist/img/default-50x50.gif'); ?>
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                  </div>
-                </li>
-                <li class="item">
-                  <div class="product-img">
-                    <?php echo $this->Html->image('/assets/dist/img/default-50x50.gif'); ?>
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                  </div>
-                </li>
-                <li class="item">
-                  <div class="product-img">
-                    <?php echo $this->Html->image('/assets/dist/img/default-50x50.gif'); ?>
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                  </div>
-                </li>
-                
+                <?php } ?>
+
                 <!-- /.item -->
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">View All Products</a>
+              <?php echo $this->Html->link("View All Products", ["controller" => "Products", "action" => "index", "plugin" => 'CatalogManager'], ["class" => "", "escape" => false]); ?>
+              
             </div>
             <!-- /.box-footer -->
           </div>

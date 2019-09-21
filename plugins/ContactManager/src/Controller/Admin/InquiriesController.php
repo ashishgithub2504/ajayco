@@ -23,6 +23,9 @@ class InquiriesController extends AppController
         $query = $this->Inquiries->find();
         $options['order'] = ['Inquiries.id' => 'DESC'];
         $options['limit'] = $this->ConfigSettings['ADMIN_PAGE_LIMIT'];
+        $options['contain'] = ['products'=>function($q){
+            return $q->select(['id','title']);
+        }];
         $this->paginate = $options;
         $inquiries = $this->paginate($query);
         $this->set(compact('inquiries'));
@@ -37,7 +40,12 @@ class InquiriesController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null) {
-        $inquiry = $this->Inquiries->get($id);
+        $inquiry = $this->Inquiries->get($id,[
+            'contain' => ['products'=>function($q){
+                return $q->select(['id','title']);
+            }]
+        ]);
+        
         $this->set('inquiry', $inquiry);
         $this->set('_serialize', ['inquiry']);
     }

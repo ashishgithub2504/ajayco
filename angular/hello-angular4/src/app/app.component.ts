@@ -12,11 +12,12 @@ import { EventemitterService } from 'src/app/services/eventemitter.service';
 export class AppComponent implements OnInit {
   title = 'hello-angular4';
   isLoading$: Observable<boolean>;
-  
+  cartItem : [];
   constructor(private WebserviceService : WebserviceService,private _eventEmiter: EventemitterService) {
   }
   ngOnInit() {
     this.isLoading$ = this.WebserviceService.isLoading;
+    this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
     document.getElementById('cartdropdown').classList.add('open');
   }
   setDataStr() {
