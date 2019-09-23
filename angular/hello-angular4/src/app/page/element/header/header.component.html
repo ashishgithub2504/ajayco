@@ -65,7 +65,7 @@
                             <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
                             <li *ngIf="!this.userinfo"><a routerLink="/login" routerLinkActive="active"><i class="fa fa-unlock-alt"></i> Login</a></li>
                             <li *ngIf="!this.userinfo"><a routerLink="/register" routerLinkActive="active"><i class="fa fa-user-plus"></i> Create An Account</a></li>
-                            <li  *ngIf="isLoggedIn$ | async"><a (click)="logout()"><i class="fa fa-user-plus"></i> Logout</a></li>
+                            <li  *ngIf="this.userinfo"><a (click)="logout()"><i class="fa fa-user-plus"></i> Logout</a></li>
                         </ul>
                     </li>
                     <!-- /Account -->

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     
      this.result = this.WebserviceService.login(this.loginForm.value);
-     console.log(this.result);
+     
     // .subscribe((data) => {
     //   this.result = data;
     //   console.log(data);

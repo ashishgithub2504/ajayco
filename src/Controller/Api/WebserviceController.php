@@ -313,12 +313,13 @@ class WebserviceController extends AppController {
     public function enquiry() {
         $response = [
             'staus' => false,
-            'message' => 'invalid registration',
+            'message' => 'Enquiry not submited successfully',
             'code' => 404
         ];
         $this->inquiries = TableRegistry::get('ContactManager.Inquiries');
         $inquiries = $this->inquiries->newEntity();
         $inquiries = $this->inquiries->patchEntity($inquiries, $this->request->data['detail']);
+        
         if($this->inquiries->save($inquiries)) {
             $response = ['status'=>true,'code' => 200 ,'message'=>'You enquiry has been successfully saved. we will contact  you shortly.','data' => $inquiries];
         }

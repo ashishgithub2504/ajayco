@@ -166,11 +166,11 @@
                 <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let lproduct of this.profile.latest_products">
                     <div class="product product-single">
                         <div class="product-thumb">
-                            <button class="main-btn quick-view"  routerLink="/product/{{lproduct.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
+                            <button class="main-btn quick-view" routerLink="/product/{{lproduct.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
                             <img src="{{this.profile.timthumb_path}}{{this.profile.product_path}}{{lproduct.image}}&w=350&h=350&a=t&q=100" alt="">
                         </div>
                         <div class="product-body">
-                            <h3 class="product-price">₹ {{lproduct.price}}</h3>
+                            <h3 *ngIf="!lproduct.enquirystatus" class="product-price">₹ {{lproduct.price}}</h3>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -226,11 +226,11 @@
             <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let lproduct of this.profile.latest_products">
                 <div class="product product-single">
                     <div class="product-thumb">
-                        <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                        <button class="main-btn quick-view" routerLink="/product/{{lproduct.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
                         <img src="{{this.profile.timthumb_path}}{{this.profile.product_path}}{{lproduct.image}}&w=350&h=350&a=t&q=100" alt="">
                     </div>
                     <div class="product-body">
-                        <h3 class="product-price">₹ {{lproduct.price}}</h3>
+                        <h3 class="product-price"> <span *ngIf="!lproduct.enquirystatus">₹ {{lproduct.price}}</span></h3>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>

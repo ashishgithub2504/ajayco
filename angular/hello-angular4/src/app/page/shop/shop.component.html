@@ -22,16 +22,13 @@
 					<div class="aside">
 						<h3 class="aside-title">Filter by Categories</h3>
 						<ul class="list-links">
-							<li><a href="#">Nike</a></li>
-							<li><a href="#">Adidas</a></li>
-							<li><a href="#">Polo</a></li>
-							<li><a href="#">Lacost</a></li>
+							<li *ngFor="let cat of this.categories"><a href="javascript::void(0)" (click)="filterByCat(cat.id)">{{cat.title}}</a></li>
 						</ul>
 					</div>
 					<!-- /aside widget -->
 
 					<!-- aside widget -->
-					<div class="aside">
+					<div class="aside" *ngIf="this.products">
 						<h3 class="aside-title">Top Rated Product</h3>
 
 						<!-- widget product -->
@@ -41,7 +38,7 @@
 							</div>
 							<div class="product-body">
 								<h2 class="product-name"><a href="#">{{toprated.title}}</a></h2>
-								<h3 class="product-price">{{toprated.price}}</h3>
+								<h3 class="product-price">₹{{toprated.price}}</h3>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
@@ -97,7 +94,7 @@
 					<!-- /store top filter -->
 
 					<!-- STORE -->
-					<div id="store">
+					<div id="store" *ngIf="this.products; else pageload">
 						<!-- row -->
 						<div class="row">
 
@@ -105,7 +102,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-6"  *ngFor="let product of this.products.products">
 								<div class="product product-single">
 									<div class="product-thumb">
-										<button class="main-btn quick-view">
+										<button class="main-btn quick-view" routerLink="/product/{{product.slug}}">
 											<i class="fa fa-search-plus"></i> Quick view
 										</button>
 										<img src="{{product.timthumb}}{{product.link}}{{product.image}}&w=350&h=350&a=t&q=100" alt="">
@@ -119,10 +116,23 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star-o empty"></i>
 										</div>
-										<h2 class="product-name"><a href="#">{{product.title}}</a></h2>
+										<h2 class="product-name" routerLink="/product/{{product.slug}}"><a href="#">{{product.title}}</a></h2>
 										<div class="product-btns">
 											<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-											<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+											<button class="primary-btn enqury-now"
+												*ngIf="product.enquirystatus; else addcart"
+												data-toggle="modal"
+												data-id="{{product.id}}"
+												data-target="#enquiry"
+												(click)="openModel(product.id)">
+												<i class="fa fa-ioxhost"></i> Enquiry Now
+											</button>
+											<ng-template #addcart>
+												<button class="primary-btn add-to-cart">
+													<i class="fa fa-shopping-cart"></i> Add to Cart
+												</button>
+											</ng-template>
+											
 										</div>
 									</div>
 								</div>
@@ -133,6 +143,14 @@
 						<!-- /row -->
 					</div>
 					<!-- /STORE -->
+					<ng-template #pageload>
+							<div class="contentLoader">
+									<div class="animated-background" style="height: 150px;"> </div>
+									<div class="animated-backgroundlarge firstRow" style="height: 10px; margin-bottom: 10px;"> </div>
+									<div class="animated-backgroundlarge secondRow" style="height: 10px; width: 80%; margin-bottom: 10px;"> </div>
+									<div class="animated-backgroundlarge secondRow" style="height: 10px; width: 70%;"> </div>
+							</div>
+					</ng-template>
 				</div>
 				<!-- /MAIN -->
 			</div>
@@ -141,3 +159,41 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
+
+	<!-- Enquiry form here -->
+<div class="modal" tabindex="-1" role="dialog" id="enquiry">
+		<div class="modal-dialog modal-sm" role="document">
+		  <div class="modal-content flex-grow-1">
+			<div class="modal-header">
+			  <h3 class="modal-title">Enquiry Form!</h3>
+			</div>
+			<div class="modal-body">
+			  <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
+				  <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
+				<div class="form-group">
+					<input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
+				</div>
+				<div class="form-group">
+					<input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+				</div>
+				<div class="form-group">
+						<input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" name="message" formControlName="message" ></textarea>
+				</div>    
+				<input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Signup">
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button
+				type="button"
+				data-dismiss="modal"
+				class="mx-auto btn btn-secondary"
+			  >
+				Close
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </div>
