@@ -11,7 +11,6 @@ import { EventemitterService } from 'src/app/services/eventemitter.service';
 })
 export class AppComponent implements OnInit {
   title = 'hello-angular4';
-  isLoading$: Observable<boolean>;
   cartItem : [];
   constructor(private WebserviceService : WebserviceService,private _eventEmiter: EventemitterService) {
   }
