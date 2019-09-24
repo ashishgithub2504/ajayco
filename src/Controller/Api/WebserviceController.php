@@ -14,7 +14,7 @@ class WebserviceController extends AppController {
         
         $this->RequestHandler->renderAs($this, 'json');
         $this->Products = TableRegistry::get('CatalogManager.Products');
-        $this->Category = TableRegistry::get('Categories');
+        $this->Category = TableRegistry::get('CategoryManager.Categories');
         
     }
 
@@ -93,7 +93,6 @@ class WebserviceController extends AppController {
             'message' => 'List found',
             'code' => 200,
             'data' => [
-                        //'categories'=> $categories->toArray(),
                         'products' => $products,
                         'latest_products' => $latest_products,
                         'banner_images' => $banners['banner_images'],
@@ -103,6 +102,38 @@ class WebserviceController extends AppController {
                         'product_path' => Router::url('/webroot/img/uploads/products/', true)
                     ]
         ];
+        $this->response($response);
+    }
+
+    public function getnavigation() {
+        
+        $categories = $this->Category->find()
+            ->where(['status'=>1,'parent_id' => 0])
+            ->contain(['Products' => function($q) {
+                return $q->select(['id','title','slug']);
+            }])
+            ->hydrate(false)
+            ->toArray();
+        $category = [];
+        foreach($categories as $key=>$val) {
+            $category[$key]['name'] = $val['title'];
+            $category[$key]['slug'] = $val['slug'];
+            if(!empty($val['products'])) {
+                foreach($val['products'] as $k => $v) {
+                    $category[$key]['products'][$k]['title'] = $v['title'];
+                    $category[$key]['products'][$k]['slug'] = $v['slug'];
+                }
+            }
+        }
+        
+        $response = [
+            'status' => true,
+            'message' => 'List found',
+            'code' => 200,
+            'data' => [
+                        'categories'=> $category
+                      ]
+            ];
         $this->response($response);
     }
 
@@ -226,12 +257,18 @@ class WebserviceController extends AppController {
                 'image',
                 'bestselling',
                 'enquirystatus',
+                'title'
+            ],
+            'matching' => [
+                'Categories',function($q){
+                    return $q;
+                }
             ]
         ],['order' => ['sort_order','desc']]
         )
         //->hydrate(false)
         ->toArray();
-
+        
         $mostsell = $this->Products->find('all',[
             'conditions' => ['status' => 1,'bestselling' => 1],
             'fields' => [
@@ -258,7 +295,9 @@ class WebserviceController extends AppController {
         )
         //->hydrate(false)
         ->toArray();
-
+        // echo '<pre>';
+        // print_r($mostsell); die;
+        
         if(!empty($products)){
                 $response = [
                         'status'=>true,

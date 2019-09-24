@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebserviceService } from 'src/app/services/webservice.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   result : any;
-  constructor() { }
+  navigation : any;
+  constructor(private WebserviceService : WebserviceService) { }
   ngOnInit() {
     //this.result.title = 'Login';
+    this.WebserviceService.getnavigation().subscribe((data) => {
+      this.navigation = data;
+    });
   }
 
 }

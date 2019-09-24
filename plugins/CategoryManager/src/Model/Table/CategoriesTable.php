@@ -55,7 +55,12 @@ class CategoriesTable extends Table
             'className' => 'CategoryManager.Categories',
             'foreignKey' => 'parent_id'
         ]);
-        
+        $this->belongsToMany('Products', [
+            'foreignKey' => 'category_id',
+            'targetForeignKey' => 'product_id',
+            'joinTable' => 'products_categories',
+            'className' => 'CatalogManager.Products'
+        ]);
         $this->addBehavior('Slug', [
             'field' => 'slug',
             'otherField' => 'title'
