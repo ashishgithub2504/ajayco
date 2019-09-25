@@ -292,7 +292,6 @@ class WebserviceController extends AppController {
             ]
         ],['order' => ['sort_order','desc']]
         )
-        //->hydrate(false)
         ->toArray();
         
         if(!empty($products)){
@@ -360,7 +359,7 @@ class WebserviceController extends AppController {
             $response = ['status'=>true,'code' => 200 ,'message'=>'You enquiry has been successfully saved. we will contact  you shortly.','data' => $inquiries];
         }
         $this->response($response);
-        // print_r($this->request->data); die;
+        
     }
     
 }
