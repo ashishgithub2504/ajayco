@@ -25,7 +25,6 @@ class WebserviceController extends AppController {
      */
     public function index() {
         
-        
         $products = $this->Products->find('all',[
             'conditions' => ['status' => 1,'bestselling' => '1'],
             'fields' => [
@@ -295,8 +294,6 @@ class WebserviceController extends AppController {
         )
         //->hydrate(false)
         ->toArray();
-        // echo '<pre>';
-        // print_r($mostsell); die;
         
         if(!empty($products)){
                 $response = [
