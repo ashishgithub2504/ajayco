@@ -17,8 +17,8 @@ export class WebserviceService {
   get isLoading() {
     return this.loading.asObservable();
   }
-APIURL = 'http://localhost:8765/api/webservice/';
-// APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+// APIURL = 'http://localhost:8765/api/webservice/';
+APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
   constructor(private http:HttpClient,private router: Router) { }
 
   home() : Observable<object>{
@@ -39,8 +39,9 @@ APIURL = 'http://localhost:8765/api/webservice/';
   }
 
   getProducts(path:string) : Observable<object> {
-    return this.http.get(this.APIURL+'getproducts'+path)
-    .pipe(map((response:any) => response.data));
+    return this.http.post(this.APIURL+'getproducts', {
+      path: path
+    }).pipe(map((response:any) => response));
   }
   
   result: any;

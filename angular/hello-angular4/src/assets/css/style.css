@@ -364,7 +364,7 @@ textarea.input {
 }
 
 .header-search>form .search-input {
-  padding-left: 150px;
+  /* padding-left: 150px; */
   padding-right: 45px;
 }
 
@@ -1732,7 +1732,12 @@ textarea.input {
     width: 100%;
   }
   .header-logo {
+    max-width: 33%;
     text-align: center;
+  }
+
+  .header-logo .logo>img {
+      width: 100%;
   }
 }
 .contentLoader {

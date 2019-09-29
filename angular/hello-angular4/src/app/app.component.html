@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-navigation></app-navigation>
 <!-- <app-login (dataStr)='setDataStr($event)'></app-login> -->
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
 <app-footer></app-footer>
 <div class="loadWrapper" *ngIf="isLoading$ | async">  
     <div class="loader"></div>  

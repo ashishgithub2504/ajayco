@@ -1,11 +1,8 @@
 <!-- HEADER -->
 <header>
-    <!-- top Header -->
+    <!-- top Header
     <div id="top-header">
         <div class="container">
-            <!-- <div class="pull-left">
-                <span>Welcome to E-shop!</span>
-            </div> -->
             <div class="pull-right">
                 <ul class="header-top-links">
                     <li><a href="#">Newsletter</a></li>
@@ -15,7 +12,7 @@
             </div>
         </div>
     </div>
-    <!-- /top Header -->
+    /top Header -->
 
     <!-- header -->
     <div id="header">
@@ -23,7 +20,7 @@
             <div class="pull-left">
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="#">
+                    <a class="logo" routerLink="/" href="javascript::void(0)">
                         <img src="assets/img/logo.png" alt="">
                     </a>
                 </div>
@@ -33,9 +30,9 @@
                 <div class="header-search">
                     <form>
                         <input class="input search-input" type="text" placeholder="Enter your keyword">
-                        <select class="input search-categories" *ngIf="this.categories">
+                        <!-- <select class="input search-categories" *ngIf="this.categories">
                             <option *ngFor="let cat of this.categories" value="{{cat.id}}">{{cat.title}}</option>
-                        </select>
+                        </select> -->
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -43,6 +40,12 @@
             </div>
             <div class="pull-right">
                 <ul class="header-btns">
+                    <!-- Mobile nav toggle-->
+                    <li class="nav-toggle">
+                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                    </li>
+                    <!-- / Mobile nav toggle -->
+
                     <!-- Account -->
                     <li class="header-account dropdown default-dropdown">
                         <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
@@ -62,10 +65,10 @@
                         <ul class="custom-menu">
                             <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
-                            <li *ngIf="!this.userinfo"><a routerLink="/login" routerLinkActive="active"><i class="fa fa-unlock-alt"></i> Login</a></li>
-                            <li *ngIf="!this.userinfo"><a routerLink="/register" routerLinkActive="active"><i class="fa fa-user-plus"></i> Create An Account</a></li>
-                            <li  *ngIf="this.userinfo"><a (click)="logout()"><i class="fa fa-user-plus"></i> Logout</a></li>
+                            <li><a routerLink="/checkout"><i class="fa fa-check"></i> Checkout</a></li>
+                            <li *ngIf="!isLoggedIn$ | async;"><a routerLink="/login" routerLinkActive="active"><i class="fa fa-unlock-alt"></i> Login</a></li>
+                            <li *ngIf="!isLoggedIn$ | async;"><a routerLink="/register" routerLinkActive="active"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+                            <li  *ngIf="isLoggedIn$ | async;"><a (click)="logout()"><i class="fa fa-user-plus"></i> Logout</a></li>
                         </ul>
                     </li>
                     <!-- /Account -->
@@ -105,11 +108,6 @@
                     </li>
                     <!-- /Cart -->
 
-                    <!-- Mobile nav toggle-->
-                    <li class="nav-toggle">
-                        <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-                    </li>
-                    <!-- / Mobile nav toggle -->
                 </ul>
             </div>
         </div>

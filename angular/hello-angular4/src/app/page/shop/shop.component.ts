@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from 'src/app/services/webservice.service';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-shop',
@@ -19,12 +20,14 @@ export class ShopComponent implements OnInit {
   });
   result: any = [];
   categories:any;
-  constructor(private WebserviceService: WebserviceService) { }
+  constructor(private WebserviceService: WebserviceService,private activeRoute: ActivatedRoute) { }
   products : any;
   ngOnInit() {
-    this.WebserviceService.getProducts('').subscribe((data) => {
-      this.products = data;
-      console.log(this.products);
+    this.activeRoute.params.subscribe(routeParams => {
+      this.WebserviceService.getProducts(routeParams.id).subscribe((data) => {
+        this.products = data;
+        console.log(this.products);
+      });
     });
     this.categories = JSON.parse(localStorage.getItem('CATEGORIES')) || [];
     if(this.categories.length < 1 ) {
@@ -54,7 +57,9 @@ export class ShopComponent implements OnInit {
   }
 
   filterByCat(cid) {
-    alert(cid);
+    this.WebserviceService.getProducts(cid).subscribe((data) => {
+      this.products = data; 
+    });
   }
 
 }

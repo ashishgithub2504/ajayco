@@ -10,8 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class AboutComponent implements OnInit {
 
   constructor( private WebserviceService : WebserviceService , 
-    private activeRoute: ActivatedRoute) { 
-      
+    private activeRoute: ActivatedRoute) {
     }
   
   result : any;
@@ -19,10 +18,21 @@ export class AboutComponent implements OnInit {
   ngOnInit() { 
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.staticPage(routeParams.id).subscribe((data) => {
-        this.result = data;      
+        this.result = data; 
+        this.onActivate(this);      
       });
     });
-    
+  }
+
+  onActivate(event) {
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 20); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
   }
 
 }

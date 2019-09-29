@@ -212,7 +212,7 @@ class WebserviceController extends AppController {
         $categories = $this->Category->find('all', [
             //'spacer' => '_', 
             'conditions' => ['status' => 1,'parent_id' => 0],
-            'fields' => ['id' , 'title'],
+            'fields' => ['id' , 'title','slug'],
             ]);
         
         if(!empty($categories->toArray())){
@@ -229,45 +229,29 @@ class WebserviceController extends AppController {
     }
 
     public function getproducts() {
-        $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
-        
+        $response = ['status'=>false,'code' => 404 ,'message'=>'No Product Found'];
         $article = new Product();
-        $article->setVirtual(['linkwrite', 'anshu']);
-        $article->virtualProperties(['linkwrite', $article->get('full_name')]);
         
-        $products = $this->Products->find('all',[
-            'conditions' => ['status' => 1],
-            'fields' => [
-                //'product_path' => Router::url('/webroot/img/uploads/products/', true),
-                'full_name' => "CONCAT(title, ' ', slug)",
-                "link" => "status",
-                "timthumb" => "status",
-                // 'linkwrite' => $article->get('full_name'),
-                'id',
-                'title',
-                'slug',
-                'model',
-                'price',
-                'quantity',
-                'minimum_quantity',
-                'stock_status_id',
-                'short_description',
-                'description',
-                'image',
-                'bestselling',
-                'enquirystatus',
-                'title'
-            ],
-            'matching' => [
-                'Categories',function($q){
-                    return $q;
-                }
-            ]
-        ],['order' => ['sort_order','desc']]
-        )
-        //->hydrate(false)
-        ->toArray();
-        
+        $query = $this->Products->find()
+                    ->where(['Products.status' => 1])
+                    ->select([
+                    'full_name' => "CONCAT(Products.title, ' ', Products.slug)",
+                    'id','title','slug','model','price','quantity','minimum_quantity','stock_status_id','short_description',
+                        'description',
+                        'image',
+                        'bestselling',
+                        'enquirystatus',
+                        'title'
+                    ]);
+        if(!empty($this->request->data) && !empty($this->request->data['path'])) {
+
+            $query->matching('Categories',function($q){
+                return $q->where(['Categories.slug' => $this->request->data['path']]);
+            }); 
+        }
+                    
+        $products = $query->hydrate(false)->toArray();
+            
         $mostsell = $this->Products->find('all',[
             'conditions' => ['status' => 1,'bestselling' => 1],
             'fields' => [
@@ -302,6 +286,8 @@ class WebserviceController extends AppController {
                         'data' => [
                                     'products' => $products,
                                     'mostsell' => $mostsell,
+                                    'link' => $article->link,
+                                    'timthumb' => $article->timthumb,
                                 ]
                     ];
         }

@@ -35,9 +35,14 @@
                     <ul class="list-links">
                         <li><a href="#">My Account</a></li>
                         <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Compare</a></li>
                         <li><a href="#">Checkout</a></li>
-                        <li><a href="#">Login</a></li>
+                        <div  *ngIf="isLoggedIn$ | async; else logintag">
+                            <li><a (click)="logout();" href="javascript::void(0)">Logout</a></li>    
+                        </div>
+                        <ng-template #logintag>
+                            <li><a routerLink="/login" href="#">Login</a></li>
+                        </ng-template>
+                        
                     </ul>
                 </div>
             </div>

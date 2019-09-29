@@ -26,7 +26,8 @@ import { ModelComponent } from './page/model/model.component'
 const appRoutes: Routes = [
   { path : '', component: HomeComponent, pathMatch: 'full' },
   { path: 'pages/:id', component:AboutComponent, pathMatch: 'full' },
-  { path: 'shop' , component:ShopComponent },
+  { path: 'shop/:id' , component:ShopComponent,pathMatch: 'full' },
+  { path: 'shop' , component:ShopComponent, pathMatch: 'full' },
   { path: 'login', component:LoginComponent },
   { path: 'register', component:RegisterComponent },
   { path: 'product/:id', component:ProductComponent},

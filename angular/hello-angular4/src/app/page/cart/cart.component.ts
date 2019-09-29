@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
     localStorage.setItem("CART", items);
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
   }
-  getSum(index: number) : number {
+  getSum(index: string) : number {
     let sum = 0;
     for(let i = 0; i < this.cartItem.length; i++) {
       sum += this.cartItem[i][index];

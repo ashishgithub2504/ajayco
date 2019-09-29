@@ -49,12 +49,12 @@ class Product extends Entity
      *
      * @var array
      */
-    protected $_virtual = ['linkwrite'];
+    protected $_virtual = ['link'];
     protected $_accessible = [
         'title' => true,
         'slug' => true,
         'model' => true,
-        'linkwrite' => true,
+        'link' => true,
         'sku' => true,
         'upc' => true,
         'price' => true,
@@ -84,10 +84,11 @@ class Product extends Entity
         'tags' => true
     ];
 
-    protected function _getLink()
+    public function _getLink()
     {
         return Router::url('/webroot/img/uploads/products/', true);
     }
+
     // protected function _getPrice() {
     //     return $this->price;
     // }
