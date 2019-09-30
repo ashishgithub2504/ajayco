@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     }
     this.isLoading$ = this.WebserviceService.isLoading;
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
-    document.getElementById('cartdropdown').classList.add('open');
+    // document.getElementById('cartdropdown').classList.add('open');
     
   }
   setDataStr() {

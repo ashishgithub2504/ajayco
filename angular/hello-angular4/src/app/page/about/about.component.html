@@ -15,7 +15,9 @@
     <div class="container">
         <!-- row -->
         <div class="row" *ngIf="this.result; else pageload">
-            <p  [innerHTML]="this.result.description"></p>           
+            <div class="col-sm-12">
+                <p  [innerHTML]="this.result.description"></p>
+            </div>                       
         </div>
         <ng-template #pageload>
             <div class="contentLoader">
