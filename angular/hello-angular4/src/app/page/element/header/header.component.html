@@ -29,7 +29,7 @@
                 <!-- Search -->
                 <div class="header-search">
                     <form>
-                        <input class="input search-input" type="text" placeholder="Enter your keyword">
+                        <input class="input search-input" type="text" placeholder="Search">
                         <!-- <select class="input search-categories" *ngIf="this.categories">
                             <option *ngFor="let cat of this.categories" value="{{cat.id}}">{{cat.title}}</option>
                         </select> -->
@@ -40,6 +40,11 @@
             </div>
             <div class="pull-right">
                 <ul class="header-btns">
+                    <!-- Mobile nav toggle-->
+                    <li class="nav-toggle">
+                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                    </li>
+                    <!-- / Mobile nav toggle -->
                     <!-- Account -->
                     <li class="header-account dropdown default-dropdown">
                         <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
@@ -70,13 +75,13 @@
                     <!-- Cart -->
                     <li class="header-cart dropdown default-dropdown"  id="cartdropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <div class="header-btns-icon">
+                            <div class="header-btns-icon" routerLink="/cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="qty">{{this.cartItem?.lenght || 0}}</span>
                             </div>
-                            <strong class="text-uppercase">My Cart:</strong>
-                            <br>
-                            <span>₹ {{ getSum('price') }}</span>
+                            <!-- <strong class="text-uppercase">My Cart:</strong>
+                            <br> -->
+                            <!-- <span>₹ {{ getSum('price') }}</span> -->
                         </a>
 
                         <!-- <div class="custom-menu">
@@ -102,11 +107,7 @@
                         </div> -->
                     </li>
                     <!-- /Cart -->
-                    <!-- Mobile nav toggle-->
-                    <li class="nav-toggle">
-                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-                    </li>
-                    <!-- / Mobile nav toggle -->
+                    
                     
                 </ul>
             </div>
