@@ -64,8 +64,10 @@
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
-							<p><strong>Availability:</strong> In Stock</p>
-							<p><strong>Categories:</strong> Spare parts</p>
+							<p><strong>Availability:</strong>
+								<span *ngIf="this.result.data.stock_status_id == 1;"> In Stock</span>
+								<span *ngIf="this.result.data.stock_status_id == 2;"> Out of Stock</span> 
+							</p>
 							<p>{{this.result.data.short_description}}</p>
 							
 							<div class="product-btns">
@@ -73,11 +75,10 @@
 									<span class="text-uppercase">QTY: </span>
 									<input class="input" type="number" value="1">
 								</div>
-								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<button *ngIf="this.result.data.stock_status_id == 1" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								<div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									
-									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
 								</div>
 							</div>
 						</div>

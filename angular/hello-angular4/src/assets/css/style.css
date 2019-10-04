@@ -69,7 +69,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: #30323A;
   margin: 0 0 10px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 a {
@@ -887,8 +887,8 @@ textarea.input {
 \*----------------------------*/
 
 .product.product-single {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  /* margin-top: 15px;
+  margin-bottom: 15px; */
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -1742,6 +1742,19 @@ textarea.input {
 
   .header-logo .logo>img {
       width: 100%;
+  }
+
+  .product.product-single .product-thumb {
+    width: 50%;
+    float: left;
+    margin-right: 2%;
+  }
+
+  .product-title {
+    position: relative;
+    margin-bottom: 15px;
+    /* margin-top: 15px; */
+    border-bottom: 1px solid #DADADA;
   }
 }
 .contentLoader {

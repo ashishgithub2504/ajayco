@@ -42,7 +42,7 @@
     autoplay: true,
     infinite: true,
     speed: 300,
-    arrows: true,
+    arrows: false,
   });
 
   // PRODUCTS SLICK
@@ -66,7 +66,7 @@
         breakpoint: 480,
         settings: {
           dots: false,
-          arrows: true,
+          arrows: false,
           slidesToShow: 1,
           slidesToScroll: 1,
         }

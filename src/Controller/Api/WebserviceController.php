@@ -296,7 +296,8 @@ class WebserviceController extends AppController {
 
     public function productdetails() {
         $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
-        $detail = $this->Products->find()->select([
+        $detail = $this->Products->find()
+        ->select([
             'full_name' => "CONCAT(title, ' ', slug)",
                 "link" => "status",
                 "timthumb" => "status",
@@ -315,7 +316,8 @@ class WebserviceController extends AppController {
                 'bestselling',
                 'enquirystatus',
                 'status',
-        ])->where([
+        ])
+        ->where([
             'slug' => $this->request->data['slug'],
             'status' => 1
         ])->first();
