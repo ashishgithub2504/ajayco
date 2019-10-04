@@ -42,11 +42,20 @@ export class HomeComponent implements OnInit {
 		    }).catch(error => console.log(error));   
   }
   
-  addtocart(pid) { 
+  addtocart(pid) {
+    pid.qty = 1; 
     this.name = 'Added';
-    var oldItems = JSON.parse(localStorage.getItem('CART')) || [];
-    oldItems.push(pid);
-    localStorage.setItem('CART', JSON.stringify(oldItems));
+    var items = JSON.parse(localStorage.getItem('CART')) || [];
+    for (var i =0; i< items.length; i++) {
+        var item = items[i];
+        if (item.id == pid.id) {
+            items.splice(i, 1);
+            pid.qty = item.qty+1;
+        }
+    }
+    items.push(pid);
+    items = JSON.stringify(items);    
+    localStorage.setItem("CART", items);
     setTimeout(()=> {
       this.name = 'Add to cart';
     }, 1500);

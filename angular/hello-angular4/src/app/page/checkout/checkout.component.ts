@@ -8,37 +8,48 @@ declare var Razorpay: any;
 })
 export class CheckoutComponent implements OnInit {
   loadAPI: Promise<any>;
-  constructor() { }
+  constructor(private WebserviceService:WebserviceService) { }
   cartItem : [];
+  result:any;
   Razorpay : any;
   ngOnInit() {
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
+    console.log(this.cartItem);
   }
   
   pay(price) {
-    
-    var options = {
-      "key": "rzp_test_YdtB3w9X200lvb",
-      "amount":price*100, // 2000 paise = INR 20
-      "name": " Ajay & Company",
-      "description": "Order #7890",
-      "image" : "http://phpdev.co.in/assets/img/logo.png",
-      "handler": function (response){
-          console.log(response);
-          alert(response.razorpay_payment_id);
-         },
-      "prefill": {
-          "name":  "anshu",
-          "email": "ashsih@gmail.com",
-          "contact": "8619089370",
-     },
-      "notes": {  },
-      "theme": {
-          "color": "#F37254"
+    this.WebserviceService.createOrder(this.cartItem,price).subscribe((data) => {
+      this.result = data; 
+      if(this.result.status == true) {
+        var options = {
+          "key": "rzp_test_YdtB3w9X200lvb",
+          "amount":price*100, // 2000 paise = INR 20
+          "name": " Ajay & Company",
+          "description": "Order #7890",
+          "image" : "http://phpdev.co.in/assets/img/logo.png",
+          "handler": function (response){
+              console.log(response);
+              alert(response.razorpay_payment_id);
+             },
+          // "prefill": {
+          //     "name":  "anshu",
+          //     "email": "ashsih@gmail.com",
+          //     "contact": "8619089370",
+          //   },
+          "notes": {  },
+          "theme": {
+              "color": "#F37254"
+            }
+        };
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+
+      } else {
+        alert(this.result.message);
       }
-  };
-  var rzp1 = new Razorpay(options);
-  rzp1.open();
+      
+    });    
+    
 
     // var isFound = false;
     // var scripts = document.getElementsByTagName("script")
@@ -82,10 +93,10 @@ export class CheckoutComponent implements OnInit {
     // }
   }
 
-  getSum(index: string) : number {
+  getSum(index: string, qty: string) : number {
     let sum = 0;
     for(let i = 0; i < this.cartItem.length; i++) {
-      sum += this.cartItem[i][index];
+      sum += this.cartItem[i][index]*this.cartItem[i][qty];
     }
     return sum;
   }

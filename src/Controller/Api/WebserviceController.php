@@ -349,5 +349,39 @@ class WebserviceController extends AppController {
         $this->response($response);
         
     }
+
+    public function createorder() {
+        $response = [
+            'staus' => false,
+            'message' => 'Order Not created successfully',
+            'code' => 404
+        ];
+        if(!empty($this->request->data) ) {
+            $this->order = TableRegistry::get('Orders');
+            $this->orderdetail = TableRegistry::get('OrderDetails');
+
+            $entity = $this->order->newEntity();
+            $entity->order_no = '1001';
+            $entity->order_amount = isset($this->request->data['price'])?$this->request->data['price']:'';
+            $entity->status = '2';
+            if($this->order->save($entity)) {
+                foreach($this->request->data['detail'] as $k=>$v) {
+                    $details = $this->orderdetail->newEntity();
+                    $details->order_id = $entity->id;
+                    $details->product_name = $v['title'];
+                    $details->product_image = $v['image'];
+                    $details->qty = $v['qty'];
+                    $details->price = $v['price'];
+                    $details->status = '1';
+                    $this->orderdetail->save($details);            
+                }
+                $response = ['status'=>true,'code' => 200 ,'message'=>'You order has been successfully saved.','data' => $entity];
+            } else {
+                pr($entity); die;
+            }
+        }
+        
+        $this->response($response);
+    }
     
 }

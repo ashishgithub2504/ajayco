@@ -69,11 +69,11 @@ class OrdersTable extends Table
             ->requirePresence('order_no', 'create')
             ->notEmpty('order_no');
 
-        $validator
-            ->scalar('instruction')
-            ->maxLength('instruction', 255)
-            ->requirePresence('instruction', 'create')
-            ->notEmpty('instruction');
+        // $validator
+        //     ->scalar('instruction')
+        //     ->maxLength('instruction', 255)
+        //     ->requirePresence('instruction', 'create')
+        //     ->notEmpty('instruction');
 
         $validator
             ->numeric('order_amount')
@@ -94,10 +94,10 @@ class OrdersTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+    // public function buildRules(RulesChecker $rules)
+    // {
+    //     $rules->add($rules->existsIn(['user_id'], 'Users'));
 
-        return $rules;
-    }
+    //     return $rules;
+    // }
 }

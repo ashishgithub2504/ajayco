@@ -7,7 +7,7 @@
             <form id="checkout-form" class="clearfix">
                 <div class="col-md-12">
                     <div class="billing-details">
-                        <p>Already a customer ? <a href="#">Login</a></p>
+                        <p>Already a customer ? <a routerLink='/login'>Login</a></p>
                         <div class="section-title">
                             <h3 class="title">Billing Details</h3>
                         </div>
@@ -51,9 +51,9 @@
 
                 <div class="col-md-12">
                     <div class="order-summary clearfix">
-                        ₹ {{ getSum('price') }}
+                        ₹ {{ getSum('price','qty') }}
                         <div class="pull-right">
-                            <button class="primary-btn" (click)="pay(getSum('price'));">Place Order</button>
+                            <button class="primary-btn" (click)="pay(getSum('price','qty'));">Place Order</button>
                         </div>
                     </div>
 

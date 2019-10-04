@@ -21,12 +21,13 @@ class OrdersController extends AppController
     public function index()
     {
 		$query = $this->Orders->find();
-		$query->contain(['Users']);
+		// $query->contain(['Users']);
        
 		$options['order'] = ['Orders.id' => 'DESC'];
         $options['limit'] = $this->ConfigSettings['ADMIN_PAGE_LIMIT'];
         $this->paginate = $options;
         $orders = $this->paginate($query);
+        // pr($orders); die;
 		$this->set(compact('orders'));
         $this->set('_serialize', ['orders']);
     }
@@ -41,7 +42,7 @@ class OrdersController extends AppController
     public function view($id = null)
     {
         $order = $this->Orders->get($id, [
-            'contain' => ['Users', 'OrderDetails']
+            'contain' => [ 'OrderDetails']
         ]);
 
         $this->set('order', $order);
