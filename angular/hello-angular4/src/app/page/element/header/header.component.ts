@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit {
     
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
     if(this.categories.length < 1 ) {
-      this.WebserviceService.getCategories().subscribe((data) => {
-        this.categories = data;
-        localStorage.setItem('CATEGORIES', JSON.stringify(this.categories));      
-      });
+      // this.WebserviceService.getCategories().subscribe((data) => {
+      //   this.categories = data;
+      //   localStorage.setItem('CATEGORIES', JSON.stringify(this.categories));      
+      // });
     }
     
   }

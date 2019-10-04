@@ -24,9 +24,9 @@ export class ShopComponent implements OnInit {
   products : any;
   ngOnInit() {
     this.activeRoute.params.subscribe(routeParams => {
+      this.products = '';
       this.WebserviceService.getProducts(routeParams.id).subscribe((data) => {
         this.products = data;
-        console.log(this.products);
       });
     });
     this.categories = JSON.parse(localStorage.getItem('CATEGORIES')) || [];

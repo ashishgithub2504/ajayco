@@ -79,6 +79,16 @@ APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
     return true;
   }
 
+  showLoading() :boolean {
+    this.loading.next(true);
+    return true;
+  }
+
+  hideLoading() : boolean {
+    this.loading.next(false);
+    return true;
+  }
+
   signup(detail:string) : Observable<object> {    
     return this.http.post(this.APIURL+'signup', {
       detail
