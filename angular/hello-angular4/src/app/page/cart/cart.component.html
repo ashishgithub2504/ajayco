@@ -1,9 +1,9 @@
 <div class="col-md-12">
     <div class="order-summary clearfix">
         <div class="section-title">
-            <h3 class="title">Order Review</h3>
+            <h3 class="title">My Cart</h3>
         </div>
-        <table class="shopping-cart-table table">
+        <table *ngIf="this.cartItem?.length > 0; else notfound" class="shopping-cart-table table">
             <thead>
                 <tr>
                     <th>Product</th>
@@ -14,8 +14,7 @@
                     <th class="text-right"></th>
                 </tr>
             </thead>
-            <tbody *ngIf="this.cartItem">
-
+            <tbody>
                 <tr *ngFor="let item of this.cartItem">
                     <td class="thumb"><img src="{{item.link}}{{item.image}}" alt=""></td>
                     <td class="details">
@@ -50,7 +49,17 @@
                 </tr>
             </tfoot>
         </table>
-        <div class="pull-right">
+        <ng-template #notfound>
+                <div class="bhgxx2 col-12-12">
+                    <div class="_20my3-" style="text-align:center;">
+                        <img src="assets/img/empty-cart.png" class="">
+                        <div class="">Add items to it now.</div>
+                        <button class="primary-btn"><span>Shop now</span></button>
+                    </div>
+                </div>
+        </ng-template>
+        
+        <div class="pull-right" *ngIf="this.cartItem?.length > 0">
             <button class="primary-btn" routerLink="/checkout">Checkout Order</button>
         </div>
     </div>

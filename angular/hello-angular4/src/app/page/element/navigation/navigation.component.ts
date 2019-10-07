@@ -14,6 +14,7 @@ export class NavigationComponent implements OnInit {
     //this.result.title = 'Login';
     this.WebserviceService.getnavigation().subscribe((data) => {
       this.navigation = data;
+      console.log(this.navigation);
     });
   }
 
