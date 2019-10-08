@@ -212,7 +212,7 @@ textarea.input {
   position: relative;
   display: inline-block;
   text-transform: uppercase;
-  padding: 2px 0px;
+  padding: 12px 0px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -375,7 +375,7 @@ textarea.input {
   width: 135px;
 }
 
-.header-search>form .search-btn {
+/* .header-search>form .search-btn {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -383,7 +383,7 @@ textarea.input {
   height: 40px;
   background-color: transparent;
   border: none;
-}
+} */
 
 /*----------------------------*\
 	Account header
@@ -658,7 +658,7 @@ textarea.input {
   border-left: 2px solid #F8694A;
   left: 100%;
   top: 0;
-  width: 750px;
+  width: 350px;
   -webkit-transform: translate(15px, 0px);
   -ms-transform: translate(15px, 0px);
   transform: translate(15px, 0px);
@@ -669,7 +669,9 @@ textarea.input {
   -ms-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-
+.submenu {
+  border-bottom: 1px solid #DADADA;
+}
 /*----------------------------*\
 	Mobile nav
 \*----------------------------*/
@@ -1811,7 +1813,41 @@ textarea.input {
   height: 50px;
   animation: spin 2s linear infinite;
 }
+.search-input {
+  border: 0;
+  border-left: 1px solid rgba(36,39,44,.1);
+  padding: 0 20px;
+  -webkit-box-shadow: inset 0 1px 4px 0 rgba(0,0,0,.1);
+  box-shadow: inset 0 1px 4px 0 rgba(0,0,0,.1);
+  -webkit-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  background: #f7f7f7;
+  color: #24272c;
+  font-size: 14px;
+  height: 48px;
+  line-height: 18px;
+  float: right;
+  margin-right: 60px;
+  width: 84%;
+  text-overflow: ellipsis;
+}
+.search-btn {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  border: 0;
+  width: 60px;
+  height: 48px;
+  cursor: pointer;
+  background: #24272c;
+  top: 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
 
+.search-btn i {
+  color: #fff;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

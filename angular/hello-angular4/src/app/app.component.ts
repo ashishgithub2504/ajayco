@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
       alert(count);
   }
   onActivate(event) {
+    console.log(event);
     let scrollToTop = window.setInterval(() => {
         let pos = window.pageYOffset;
         if (pos > 0) {
