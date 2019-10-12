@@ -383,5 +383,22 @@ class WebserviceController extends AppController {
         
         $this->response($response);
     }
+
+    public function completeorder() {
+        $response = [
+            'staus' => false,
+            'message' => 'Payment not accepted',
+            'code' => 404
+        ];
+        $this->order = TableRegistry::get('Orders');
+        $order_detail = $this->order->get($this->request->data['order_id']);
+        $order_detail->payment_id = $this->request->data['payment_id'];
+        $order_detail->status = '1';
+        if($this->order->save($order_detail)) {
+            $response = ['status'=>true,'code' => 200 ,'message'=>'Payment has been accepted.'];   
+        }
+
+        $this->response($response);
+    }
     
 }

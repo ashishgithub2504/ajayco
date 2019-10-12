@@ -14,6 +14,8 @@ export class ProductComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     public WebserviceService: WebserviceService) { }
   result : any;
+  public name:any = 'Add to cart';
+  public qty:number = 1;
   ngOnInit() {
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.productDetails(routeParams.id).subscribe((data) => {
@@ -25,6 +27,25 @@ export class ProductComponent implements OnInit {
         console.log(this.result);      
       });
     });
+  }
+
+  addtocart(pid) {
+    pid.qty = this.qty; 
+    this.name = 'Added';
+    var items = JSON.parse(localStorage.getItem('CART')) || [];
+    for (var i =0; i< items.length; i++) {
+        var item = items[i];
+        if (item.id == pid.id) {
+            items.splice(i, 1);
+            pid.qty = item.qty+this.qty;
+        }
+    }
+    items.push(pid);
+    items = JSON.stringify(items);    
+    localStorage.setItem("CART", items);
+    setTimeout(()=> {
+      this.name = 'Add to cart';
+    }, 1000);
   }
 
   public loadScript() {

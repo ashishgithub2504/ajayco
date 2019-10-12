@@ -117,4 +117,10 @@ APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
       detail,price
     }).pipe(map((response:any) => response));
   }
+
+  completeOrder(payment_id,order_id) : Observable<Object> {
+    return this.http.post(this.APIURL+'completeorder', {
+      payment_id:payment_id, order_id:order_id
+    }).pipe(map((response:any) => response));
+  }
 }

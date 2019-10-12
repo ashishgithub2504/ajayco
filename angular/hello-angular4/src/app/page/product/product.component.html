@@ -73,9 +73,12 @@
 							<div class="product-btns">
 								<div class="qty-input">
 									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number" value="1">
+									<!-- <input class="input" type="number" value="{{this.qty}}"> -->
+									<input [(ngModel)]="qty" class="input" type="number">
 								</div>
-								<button *ngIf="this.result.data.stock_status_id == 1" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<button *ngIf="this.result.data.stock_status_id == 1" (click)="addtocart(this.result.data)" class="primary-btn add-to-cart">
+									<i class="fa fa-shopping-cart"></i> {{this.name}}
+								</button>
 								<div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									

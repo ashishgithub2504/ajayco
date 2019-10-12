@@ -12,25 +12,32 @@ export class CheckoutComponent implements OnInit {
   cartItem : [];
   result:any;
   Razorpay : any;
+  paymentId: any;
   ngOnInit() {
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
     console.log(this.cartItem);
   }
   
   pay(price) {
+    let options:any = {
+    // your options
+    }
+    this.WebserviceService.showLoading();
     this.WebserviceService.createOrder(this.cartItem,price).subscribe((data) => {
+      this.WebserviceService.hideLoading();
       this.result = data; 
       if(this.result.status == true) {
-        var options = {
+        options = {
           "key": "rzp_test_YdtB3w9X200lvb",
           "amount":price*100, // 2000 paise = INR 20
           "name": " Ajay & Company",
-          "description": "Order #7890",
+          "description": "Order #"+this.result.data.order_no,
           "image" : "http://phpdev.co.in/assets/img/logo.png",
-          "handler": function (response){
-              console.log(response);
-              alert(response.razorpay_payment_id);
-             },
+          "handler": this.paymentCapture.bind(this),
+          // "handler": function (response){
+          //     console.log(response);
+          //   
+          // },
           // "prefill": {
           //     "name":  "anshu",
           //     "email": "ashsih@gmail.com",
@@ -50,7 +57,6 @@ export class CheckoutComponent implements OnInit {
       
     });    
     
-
     // var isFound = false;
     // var scripts = document.getElementsByTagName("script")
     // for (var i = 0; i < scripts.length; ++i) {
@@ -92,6 +98,19 @@ export class CheckoutComponent implements OnInit {
         
     // }
   }
+
+
+  paymentCapture(response) {
+    this.WebserviceService.showLoading();
+    this.paymentId = response.razorpay_payment_id;
+    this.WebserviceService.completeOrder(response.razorpay_payment_id,this.result.data.id)
+    .subscribe((data) => {
+      this.WebserviceService.hideLoading();
+      console.log(data);
+    });
+    console.log("payment id "+this.paymentId);
+    //TODO
+ }
 
   getSum(index: string, qty: string) : number {
     let sum = 0;

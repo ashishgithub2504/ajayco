@@ -33,6 +33,7 @@ class Order extends Entity
     protected $_accessible = [
         'user_id' => true,
         'order_no' => true,
+        'payment_id' => true,
         'instruction' => true,
         'order_amount' => true,
         'status' => true,
