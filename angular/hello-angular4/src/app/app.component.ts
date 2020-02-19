@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { WebserviceService } from 'src/app/services/webservice.service';
 import { Component, OnInit } from '@angular/core';
 import { EventemitterService } from 'src/app/services/eventemitter.service';
+import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   title = 'hello-angular4';
   isLoading$: Observable<boolean>;
   cartItem : [];
-  constructor(private WebserviceService : WebserviceService,private _eventEmiter: EventemitterService) {
+  navigation : any;
+  constructor(private WebserviceService : WebserviceService,private dynamicScriptLoader: DynamicScriptLoaderService,private _eventEmiter: EventemitterService) {
   }
   ngOnInit() {
     var unser = localStorage.getItem('USERINFO') || [];
@@ -34,6 +36,10 @@ export class AppComponent implements OnInit {
       alert(count);
   }
   onActivate(event) {
+    this.dynamicScriptLoader.load('main').then(data => {
+      // Script Loaded Successfully
+    }).catch(error => console.log(error));
+    // $('.category-list').removeClass('open');
     console.log(event);
     let scrollToTop = window.setInterval(() => {
         let pos = window.pageYOffset;

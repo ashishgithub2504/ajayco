@@ -74,7 +74,17 @@ class WebserviceController extends AppController {
                             ]);
                     }])
                     ->where(['id' => '1', 'status' => '1'])->first();
-        
+        foreach ($banners['banner_images'] as $key => $value) {
+            $banners['banner_images'][$key] = [
+                'title' => $value['title'],
+                'text' => $value['description'],
+                'image_classic' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=840&h=430',
+                'image_full' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=840&h=430',
+                'image_mobile' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=510&h=390',
+                'external_link' => $value['external_link'],
+            ];
+        }
+        // print_r($banners); die;
         $footer = [
             'sec1' => [
                 'logo' => Configure::read('Setting.MAIN_LOGO'),
@@ -92,12 +102,13 @@ class WebserviceController extends AppController {
             'message' => 'List found',
             'code' => 200,
             'data' => [
+                        'logo' => Router::url('/img/', true).Configure::read('Setting.MAIN_LOGO'),
                         'products' => $products,
                         'latest_products' => $latest_products,
                         'banner_images' => $banners['banner_images'],
                         'footer' => $footer,
                         'timthumb_path' => Router::url('/timthumb.php?src=',true),
-                        'full_path' => Router::url('/webroot/img/', true),
+                        'full_path' => Router::url('/img/', true),
                         'product_path' => Router::url('/webroot/img/uploads/products/', true)
                     ]
         ];
@@ -115,8 +126,8 @@ class WebserviceController extends AppController {
             ->toArray();
         $category = [];
         foreach($categories as $key=>$val) {
-            $category[$key]['name'] = $val['title'];
-            $category[$key]['slug'] = $val['slug'];
+            $category[$key]['label'] = $val['title'];
+            $category[$key]['url'] = $val['slug'];
             if(!empty($val['products'])) {
                 foreach($val['products'] as $k => $v) {
                     $category[$key]['products'][$k]['title'] = $v['title'];
@@ -130,7 +141,7 @@ class WebserviceController extends AppController {
             'message' => 'List found',
             'code' => 200,
             'data' => [
-                        'categories'=> $category
+                        $category
                       ]
             ];
         $this->response($response);
@@ -192,18 +203,18 @@ class WebserviceController extends AppController {
 
     public function staticpage() {
         $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
-        if($this->request->is(['post'])) {
-            
+        //if($this->request->is(['post'])) {
+            //pr(); die;
             $result = TableRegistry::get('pages')
                     ->find()
-                    ->where(['slug' => $this->request->getData('name')])
+                    ->where(['slug' => $this->request->query('name')])
                     ->first();
             if(!empty($result)){
                 $response = ['status'=>true,'code' => 200 ,'message'=>'List Found','data' => $result];
             }else {
                 $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
             }    
-        }        
+        //}        
      
         $this->response($response);
     }
@@ -212,7 +223,7 @@ class WebserviceController extends AppController {
         $categories = $this->Category->find('all', [
             //'spacer' => '_', 
             'conditions' => ['status' => 1,'parent_id' => 0],
-            'fields' => ['id' , 'title','slug'],
+            'fields' => ['id' ,'name'=> 'title','title','slug','url'=>'slug','image'],
             ]);
         
         if(!empty($categories->toArray())){
@@ -233,62 +244,179 @@ class WebserviceController extends AppController {
         $article = new Product();
         
         $query = $this->Products->find()
-                    ->where(['Products.status' => 1])
-                    ->select([
-                    'full_name' => "CONCAT(Products.title, ' ', Products.slug)",
-                    'id','title','slug','model','price','quantity','minimum_quantity','stock_status_id','short_description',
-                        'description',
-                        'image',
-                        'bestselling',
-                        'enquirystatus',
-                        'title'
-                    ]);
+                ->where(['Products.status' => 1]);
+                    
+        if(!empty($this->request->query)) {
+            $query->limit($this->request->query('limit'));
+        }
         if(!empty($this->request->data) && !empty($this->request->data['path'])) {
 
             $query->matching('Categories',function($q){
                 return $q->where(['Categories.slug' => $this->request->data['path']]);
             }); 
+        }else {
+            $query->contain(['Categories','ProductImages']);
         }
                     
         $products = $query->hydrate(false)->toArray();
-            
-        $mostsell = $this->Products->find('all',[
-            'conditions' => ['status' => 1,'bestselling' => 1],
-            'fields' => [
-                //'product_path' => Router::url('/webroot/img/uploads/products/', true),
-                'full_name' => "CONCAT(title, ' ', slug)",
-                "link" => "status",
-                "timthumb" => "status",
-                // 'linkwrite' => $article->get('full_name'),
-                'id',
-                'title',
-                'slug',
-                'model',
-                'price',
-                'quantity',
-                'minimum_quantity',
-                'stock_status_id',
-                'short_description',
-                'description',
-                'image',
-                'bestselling',
-                'enquirystatus',
-            ]
-        ],['order' => ['sort_order','desc']]
-        )
-        ->toArray();
         
         if(!empty($products)){
+                $list = [];
+                foreach ($products as $key => $value) {
+                    $list[$key]['id'] = $value['id'];
+                    $list[$key]['name'] = $value['title'];
+                    $list[$key]['slug'] = $value['slug'];
+                    $list[$key]['price'] = $value['price'];
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$value['image'].'&w=700&h=700';
+                    if(!empty($value['product_images'])) {
+                        foreach ($value['product_images'] as $k => $val) {
+                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
+                        }                        
+                    } else {
+                        $list[$key]['images'] = [];
+                    }
+                    $list[$key]['compareAtPrice'] = null;
+                    $list[$key]['badges'] = ['new'];
+                    $list[$key]['rating'] = 4;
+                    $list[$key]['reviews'] = 12;
+                    $list[$key]['availability'] = ($value['stock_status_id'] == '1') ? 'in-stock':'Out Of Stock';
+                    $list[$key]['brand'] = 'jenix';
+                    $list[$key]['categories'] = [];
+                    $list[$key]['attributes'] = [];
+                }
+                $response = [
+                        'status'=>true,
+                        'code' => 200 ,
+                        'message'=>'List Found',
+                        'data' => $list
+                    ];
+        }
+        $this->response($response);
+    }
+
+    public function getproductlist() {
+        $response = ['status'=>false,'code' => 404 ,'message'=>'No Product Found'];
+        $article = new Product();
+        
+        $query = $this->Products->find()
+                ->where(['Products.status' => 1]);
+                    
+        if(!empty($this->request->query)) {
+            $query->limit($this->request->query('limit'));
+        }
+        if(!empty($this->request->data) && !empty($this->request->data['path'])) {
+
+            $query->matching('Categories',function($q){
+                return $q->where(['Categories.slug' => $this->request->data['path']]);
+            }); 
+        }else {
+            $query->contain(['Categories','ProductImages']);
+        }
+        $products = $query->hydrate(false)->toArray();
+        
+        $categorylist = $this->Category->find()
+                        ->where(['parent_id' => '0'])
+                        ->contain(['ProductsCategories'])
+                        ->toArray();
+        
+        foreach($categorylist as $key=>$val) {
+           $catList[] =  [
+                'category' => [
+                    'childern' => null,
+                    'customFields' => [],
+                    'id' => $val['id'],
+                    'image' => null,
+                    'items' => count($val['products_categories']),
+                    'name' => $val['title'],
+                    'parents' => null,
+                    'path' => $val['slug'],
+                    'slug' => $val['slug'],
+                    'type' => 'shop'
+                ],
+                'type' => 'child',
+                'name' => $val['title'],
+                'slug' => $val['slug'],
+                'count' => count($val['products_categories'])
+            ];
+        }
+
+        if(!empty($products)){
+                $list = [];
+                foreach ($products as $key => $value) {
+                    $list[$key]['id'] = $value['id'];
+                    $list[$key]['name'] = $value['title'];
+                    $list[$key]['slug'] = $value['slug'];
+                    $list[$key]['price'] = $value['price'];
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$value['image'].'&w=700&h=700';
+                    if(!empty($value['product_images'])) {
+                        foreach ($value['product_images'] as $k => $val) {
+                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
+                        }                        
+                    } else {
+                        $list[$key]['images'] = [];
+                    }
+                    $list[$key]['compareAtPrice'] = null;
+                    $list[$key]['badges'] = ['new'];
+                    $list[$key]['rating'] = 4;
+                    $list[$key]['reviews'] = 12;
+                    $list[$key]['availability'] = ($value['stock_status_id'] == '1') ? 'in-stock':'Out Of Stock';
+                    $list[$key]['brand'] = 'jenix';
+                    
+                    $list[$key]['attributes'] = [];
+                }
                 $response = [
                         'status'=>true,
                         'code' => 200 ,
                         'message'=>'List Found',
                         'data' => [
-                                    'products' => $products,
-                                    'mostsell' => $mostsell,
-                                    'link' => $article->link,
-                                    'timthumb' => $article->timthumb,
-                                ]
+                            'filterValues' => [],
+                            'filters' => [
+                                [
+                                    'name' => 'Categories',
+                                    'root' => true,
+                                    'slug' => 'categories',
+                                    'type' => 'categories',
+                                    'items' => $catList
+                                ],
+                                [
+                                    'name' =>'Price',
+                                    'slug' =>'price',
+                                    'type' => 'range',
+                                    'min' => 0,
+                                    'max' => 2000,
+                                    'value' => [
+                                        '0',
+                                        '2000'
+                                        ]   
+                                ],
+                                // [
+                                //     'name' => 'Brand',
+                                //     'slug' =>'brand',
+                                //     'type' => 'check',
+                                //     'value' => [],
+                                //     'items' => [
+                                //         [
+                                //             'count' => 1,
+                                //             'name'=> 'Brandix',
+                                //             'slug' => 'brandix'
+                                //         ],
+                                //         [
+                                //             'count' => 4,
+                                //             'name' => 'Zosch',
+                                //             'slug' => 'zosch'
+                                //         ]
+                                //     ]
+                                // ]
+                            ],
+                            'form' => 1,
+                            'items' => $list,
+                            'limit' => 12,
+                            'page' => 1,
+                            'pages' => round(count($list)/12),
+                            'sort' => 'default',
+                            'to' => 1,
+                            'total' => count($list)
+                        ]
                     ];
         }
         $this->response($response);
@@ -299,11 +427,11 @@ class WebserviceController extends AppController {
         $detail = $this->Products->find()
         ->select([
             'full_name' => "CONCAT(title, ' ', slug)",
-                "link" => "status",
-                "timthumb" => "status",
+               // "link" => "status",
+                //"timthumb" => "status",
                 // 'linkwrite' => $article->get('full_name'),
                 'id',
-                'title',
+                'name' => 'title',
                 'slug',
                 'model',
                 'price',
@@ -312,22 +440,40 @@ class WebserviceController extends AppController {
                 'stock_status_id',
                 'short_description',
                 'description',
-                'image',
+                'images' => 'image',
                 'bestselling',
                 'enquirystatus',
                 'status',
         ])
         ->where([
-            'slug' => $this->request->data['slug'],
+            'slug' => $this->request->query('slug'), //$this->request->data['slug'],
             'status' => 1
         ])->first();
-
+        // print_r($detail); die;
         if(!empty($detail)){
                 $response = [
                         'status'=>true,
                         'code' => 200 ,
                         'message'=>'List Found',
-                        'data' => $detail
+                        'data' => [
+                            'id' => $detail['id'],
+                            'name' => $detail['name'],
+                            'slug'=> $detail['slug'],
+                            'price'=> $detail['price'],
+                            'model' => $detail['model'],
+                            'description' => $detail['description'],
+                            'short_description' => $detail['short_description'],
+                            'compareAtPrice'=> null,
+                            'images'=> [$detail['images']],
+                            'badges'=> '',
+                            'rating'=> '4',
+                            'reviews'=> '20',
+                            'availability'=> 'in-stock',
+                            'brand'=> $detail['model'],
+                            'categories' => [],
+                            'attributes' => [],
+                            'customFields'=> [],
+                        ]
                     ];
         }
         $this->response($response);
@@ -390,12 +536,14 @@ class WebserviceController extends AppController {
             'message' => 'Payment not accepted',
             'code' => 404
         ];
-        $this->order = TableRegistry::get('Orders');
-        $order_detail = $this->order->get($this->request->data['order_id']);
-        $order_detail->payment_id = $this->request->data['payment_id'];
-        $order_detail->status = '1';
-        if($this->order->save($order_detail)) {
-            $response = ['status'=>true,'code' => 200 ,'message'=>'Payment has been accepted.'];   
+        if(!empty($this->request->data) ) {
+            $this->order = TableRegistry::get('Orders');
+            $order_detail = $this->order->get($this->request->data['order_id']);
+            $order_detail->payment_id = $this->request->data['payment_id'];
+            $order_detail->status = '1';
+            if($this->order->save($order_detail)) {
+                $response = ['status'=>true,'code' => 200 ,'message'=>'Payment has been accepted.'];   
+            }
         }
 
         $this->response($response);

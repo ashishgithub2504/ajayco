@@ -12,7 +12,7 @@ FRONT_DATE_TIME_FORMAT: 'd F, Y'
 FRONT_PAGE_LIMIT: '20'
 GOOGLE_MAP_KEY: AIzaSyD9pg6_fzfgDHJFSW0wkrIcuCOw_V9qOfM
 MAIN_FAVICON: uploads/ajay.png
-MAIN_LOGO: uploads/outpu.png
+MAIN_LOGO: uploads/logo-6887.png
 RESET_URL_EXPIRED: '24'
 SMTP_ALLOW: '1'
 SMTP_EMAIL_HOST: dasda

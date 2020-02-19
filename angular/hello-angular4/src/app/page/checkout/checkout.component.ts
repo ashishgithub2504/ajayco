@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from '../../services/webservice.service';
+import { Router } from '@angular/router';
 declare var Razorpay: any;
 @Component({
   selector: 'app-checkout',
@@ -8,7 +9,7 @@ declare var Razorpay: any;
 })
 export class CheckoutComponent implements OnInit {
   loadAPI: Promise<any>;
-  constructor(private WebserviceService:WebserviceService) { }
+  constructor(private WebserviceService:WebserviceService,private router: Router) { }
   cartItem : [];
   result:any;
   Razorpay : any;
@@ -107,6 +108,7 @@ export class CheckoutComponent implements OnInit {
     .subscribe((data) => {
       this.WebserviceService.hideLoading();
       console.log(data);
+      this.router.navigate(['/']);
     });
     console.log("payment id "+this.paymentId);
     //TODO

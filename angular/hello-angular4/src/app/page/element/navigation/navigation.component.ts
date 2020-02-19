@@ -9,13 +9,17 @@ import { WebserviceService } from 'src/app/services/webservice.service';
 export class NavigationComponent implements OnInit {
   result : any;
   navigation : any;
+  step: any;
   constructor(private WebserviceService : WebserviceService) { }
   ngOnInit() {
-    //this.result.title = 'Login';
-    this.WebserviceService.getnavigation().subscribe((data) => {
-      this.navigation = data;
-      console.log(this.navigation);
-    });
+    this.navigation = JSON.parse(localStorage.getItem('NAVIGATION')) || '';
+    if(this.navigation.length < 1 ) {
+      this.WebserviceService.getnavigation().subscribe((data) => {
+        this.navigation = data;
+        localStorage.setItem('NAVIGATION', JSON.stringify(this.navigation));
+        console.log(this.navigation);
+      });
+    }
   }
 
 }

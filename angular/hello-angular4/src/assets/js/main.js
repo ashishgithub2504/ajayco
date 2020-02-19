@@ -29,7 +29,7 @@
             menuList.addClass('open');
           }
           $('#navigation').addClass('shadow');
-          responsiveNav.addClass('open');
+          //responsiveNav.addClass('open');
         }
       }
     }

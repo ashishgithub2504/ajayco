@@ -1,0 +1,23 @@
+import * as tslib_1 from "tslib";
+import { Component, Input } from '@angular/core';
+import { StoreService } from '../../shared/services/store.service';
+let HeaderComponent = class HeaderComponent {
+    constructor(store) {
+        this.store = store;
+        this.layout = 'classic';
+    }
+};
+tslib_1.__decorate([
+    Input(),
+    tslib_1.__metadata("design:type", String)
+], HeaderComponent.prototype, "layout", void 0);
+HeaderComponent = tslib_1.__decorate([
+    Component({
+        selector: 'app-header',
+        templateUrl: './header.component.html',
+        styleUrls: ['./header.component.scss']
+    }),
+    tslib_1.__metadata("design:paramtypes", [StoreService])
+], HeaderComponent);
+export { HeaderComponent };
+//# sourceMappingURL=header.component.js.map

@@ -6,7 +6,7 @@
             <!-- category nav -->
             <div class="category-nav show-on-click">
                 <span class="category-header">Categories <i class="fa fa-list"></i></span>
-                <ul class="category-list open" *ngIf="this.navigation">
+                <ul [ngClass]="(step=='step')?'category-list open':'category-list'" *ngIf="this.navigation">
 
                     <li class="dropdown side-dropdown" *ngFor="let nav of this.navigation.data.categories">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{nav.name}} <i class="fa fa-angle-right"></i></a>
