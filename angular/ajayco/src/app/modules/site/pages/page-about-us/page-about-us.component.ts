@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DirectionService } from '../../../../shared/services/direction.service';
-
+import { ShopService } from '../../../../shared/api/shop.service';
 @Component({
     selector: 'app-about-us',
     templateUrl: './page-about-us.component.html',
@@ -17,8 +17,16 @@ export class PageAboutUsComponent {
         },
         rtl: this.direction.isRTL()
     };
-
+    resp : any;
     constructor(
-        private direction: DirectionService
-    ) { }
+        private direction: DirectionService,
+        private ShopService:ShopService
+    ) {}
+
+    ngOnInit(): void {
+        this.ShopService.getStatic('about-us').subscribe((data) => {
+            this.resp = data;
+            console.log(this.resp);
+        });
+    }
 }

@@ -20,7 +20,7 @@
         <a *ngIf="!item.external" [routerLink]="item.url" [target]="item.target"><ng-container [ngTemplateOutlet]="link"></ng-container></a>
         <a *ngIf="item.external" [href]="item.url" [target]="item.target"><ng-container [ngTemplateOutlet]="link"></ng-container></a>
 
-        <div *ngIf="item.menu && item.menu.type == 'menu' && item.menu.items.isLogin == 'true'" class="nav-links__menu">
+        <div *ngIf="item.menu && item.menu.type == 'menu'" class="nav-links__menu">
             <app-header-menu [items]="item.menu.items" (itemClick)="onSubItemClick()"></app-header-menu>
         </div>
         <div *ngIf="item.menu && item.menu.type == 'megamenu'" class="nav-links__megamenu nav-links__megamenu--size--{{ item.menu.size }}">

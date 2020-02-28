@@ -18,7 +18,8 @@ export class LinksComponent {
 
     onItemMouseEnter(item: NavigationLink, event: MouseEvent): void {
         this.hoveredItem = item;
-
+        console.log('menu enter');
+        console.log(item);
         if (!(event.target instanceof HTMLElement)) {
             return;
         }

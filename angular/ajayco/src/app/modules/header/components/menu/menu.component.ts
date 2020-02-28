@@ -18,6 +18,7 @@ export class MenuComponent {
     constructor() { }
 
     onItemMouseEnter(item: NavigationLink): void {
+        console.log('mouse enter');
         this.hoveredItem = item;
     }
 

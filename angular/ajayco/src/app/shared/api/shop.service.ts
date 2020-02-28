@@ -5,6 +5,7 @@ import { Category } from '../interfaces/category';
 import { HttpClient } from '@angular/common/http';
 import { Brand } from '../interfaces/brand';
 import { Product } from '../interfaces/product';
+import { Static } from '../interfaces/static';
 import { ProductsList } from '../interfaces/list';
 import { SerializedFilterValues } from '../interfaces/filter';
 import { Router } from '@angular/router';
@@ -35,8 +36,8 @@ export interface ListOptions {
     providedIn: 'root'
 })
 export class ShopService {
-    APIURL = 'http://localhost:8765/api/webservice/';
-    // APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+    // APIURL = 'http://localhost:8765/api/webservice/';
+    APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
     constructor(
         private http: HttpClient,
         private router: Router
@@ -343,8 +344,8 @@ export class ShopService {
        // return getRelatedProducts(product);
     }
 
-    getStatic(slug: string):Observable<any> {
-        return this.http.get<any>(this.APIURL+'staticpage?name='+slug)
+    getStatic(slug: string):Observable<Static[]> {
+        return this.http.get<Static[]>(this.APIURL+'staticpage?name='+slug)
         .pipe(map((response: any) => response.data));
     }
 
