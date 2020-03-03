@@ -128,21 +128,24 @@ class WebserviceController extends AppController {
         foreach($categories as $key=>$val) {
             $category[$key]['label'] = $val['title'];
             $category[$key]['url'] = $val['slug'];
+            
             if(!empty($val['products'])) {
                 foreach($val['products'] as $k => $v) {
-                    $category[$key]['products'][$k]['title'] = $v['title'];
-                    $category[$key]['products'][$k]['slug'] = $v['slug'];
+                    $cat[$k]['label'] = $v['title'];
+                    $cat[$k]['url'] = 'shop/products/'.$v['slug'];
                 }
             }
+            $category[$key]['menu'] = [
+                'type'=>'menu',
+                'items' => $cat
+            ];
         }
         
         $response = [
             'status' => true,
             'message' => 'List found',
             'code' => 200,
-            'data' => [
-                        $category
-                      ]
+            'data' => $category
             ];
         $this->response($response);
     }
@@ -250,7 +253,6 @@ class WebserviceController extends AppController {
             $query->limit($this->request->query('limit'));
         }
         if(!empty($this->request->data) && !empty($this->request->data['path'])) {
-
             $query->matching('Categories',function($q){
                 return $q->where(['Categories.slug' => $this->request->data['path']]);
             }); 
@@ -259,7 +261,7 @@ class WebserviceController extends AppController {
         }
                     
         $products = $query->hydrate(false)->toArray();
-        
+        // pr($products);die;
         if(!empty($products)){
                 $list = [];
                 foreach ($products as $key => $value) {
@@ -281,7 +283,12 @@ class WebserviceController extends AppController {
                     $list[$key]['reviews'] = 12;
                     $list[$key]['availability'] = ($value['stock_status_id'] == '1') ? 'in-stock':'Out Of Stock';
                     $list[$key]['brand'] = 'jenix';
-                    $list[$key]['categories'] = [];
+                    if(!empty($value['categories'])) {
+                        foreach($value['categories'] as $kk=>$vv) {
+                            $list[$key]['categories'][] = $vv['title'];
+                        }
+                    }
+                    // $list[$key]['categories'] = [];
                     $list[$key]['attributes'] = [];
                 }
                 $response = [

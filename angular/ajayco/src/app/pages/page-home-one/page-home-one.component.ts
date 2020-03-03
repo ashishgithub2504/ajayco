@@ -38,12 +38,13 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
 
     featuredProducts: ProductsCarouselData;
     latestProducts: ProductsCarouselData;
-
+    categoryList: Observable<any>;
     constructor(
         private shop: ShopService,
     ) { }
 
     ngOnInit(): void {
+        // this.categoryList = this.shop.getCategories();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
         this.popularCategories$ = this.shop.getCategoriesBySlug([
@@ -53,7 +54,8 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
             'power-machinery',
             'measurement',
             'clothes-and-ppe',
-        ], 1);
+        ], 2);
+
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
@@ -68,11 +70,11 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                     current: true,
                     products$: this.shop.getFeaturedProducts(null, 8),
                 },
-                // {
-                //     name: 'Power Tools',
-                //     current: false,
-                //     products$: this.shop.getFeaturedProducts('power-tools', 8),
-                // },
+                {
+                    name: 'Power Tools',
+                    current: false,
+                    products$: this.shop.getFeaturedProducts('power-tools', 8),
+                },
                 // {
                 //     name: 'Hand Tools',
                 //     current: false,

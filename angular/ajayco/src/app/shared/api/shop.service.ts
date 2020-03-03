@@ -36,8 +36,8 @@ export interface ListOptions {
     providedIn: 'root'
 })
 export class ShopService {
-    // APIURL = 'http://localhost:8765/api/webservice/';
-    APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+    APIURL = 'http://localhost:8765/api/webservice/';
+    // APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
     constructor(
         private http: HttpClient,
         private router: Router
@@ -79,13 +79,16 @@ export class ShopService {
          * - parent = parent.slug
          * - depth  = depth
          */
-        // const params: {[param: string]: string} = {
-        //     parent: parent.slug,
-        //     depth: depth.toString(),
-        // };
+        const params: {[param: string]: string} = {
+            parent: parent.slug,
+            depth: depth.toString(),
+        };
         //
         // return this.http.get<Category[]>('https://example.com/api/shop/categories.json', {params});
-
+        // return this.http.get<Category[]>('http://localhost:8765/api/webservice/getcategories')
+        // .pipe(map((response: any) => response.data));
+        // return this.http.get<Product[]>(this.APIURL+'getcategories', {params})
+        // .pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         return getShopCategoriesTree(parent ? parent.slug : null, depth);
     }
@@ -183,10 +186,10 @@ export class ShopService {
             params.slug = productSlug.toString();
         }
         // return this.http.get<Product>(`https://example.com/api/products/${productSlug}.json`);
-        // return this.http.get<Product[]>(this.APIURL + 'productdetails', {params})
-        // .pipe(map((response: any) => response.data));
+        return this.http.get<Product[]>(this.APIURL + 'productdetails', {params})
+        .pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return getProduct(productSlug);
+        // return getProduct(productSlug);
     }
 
     /**
@@ -283,9 +286,9 @@ export class ShopService {
          */
         const params: {[param: string]: string} = {};
         //
-        // if (category) {
-        //     params.category = category;
-        // }
+        if (categorySlug) {
+            params.category = categorySlug;
+        }
         if (limit) {
             params.limit = limit.toString();
         }

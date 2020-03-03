@@ -14,9 +14,9 @@ import { isPlatformBrowser } from '@angular/common';
 export class DepartmentsComponent implements OnInit {
     private destroy$: Subject<any> = new Subject();
 
-    items: NavigationLink[] = departments;
+    items: any;
     hoveredItem: NavigationLink = null;
-
+    
     isOpen = false;
     fixed = false;
 
@@ -32,6 +32,10 @@ export class DepartmentsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.service.getNavigation().subscribe((data) => {
+            this.items = data;
+        });
+        console.log(this.items);
         const root = this.element.querySelector('.departments') as HTMLElement;
         const content = this.element.querySelector('.departments__links-wrapper') as HTMLElement;
 
