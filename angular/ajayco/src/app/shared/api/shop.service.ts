@@ -266,6 +266,7 @@ export class ShopService {
         if (limit) {
             params.limit = limit.toString();
         }
+        params.bestselling = '1';
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/special-offers.json', {params});
         return this.http.get<Product[]>(this.APIURL+'getproducts', {params})
@@ -292,6 +293,7 @@ export class ShopService {
         if (limit) {
             params.limit = limit.toString();
         }
+            params.is_featured = '1';
         //
         return this.http.get<Product[]>(this.APIURL+'getproducts', {params})
         .pipe(map((response: any) => response.data));

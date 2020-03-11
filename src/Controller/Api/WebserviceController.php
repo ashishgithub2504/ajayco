@@ -251,17 +251,23 @@ class WebserviceController extends AppController {
                     
         if(!empty($this->request->query)) {
             $query->limit($this->request->query('limit'));
+            $query->order(['Products.created' => 'desc']);
         }
         if(!empty($this->request->data) && !empty($this->request->data['path'])) {
             $query->matching('Categories',function($q){
                 return $q->where(['Categories.slug' => $this->request->data['path']]);
             }); 
-        }else {
+        } else {
             $query->contain(['Categories','ProductImages']);
         }
-                    
+        if(!empty($this->request->query('is_featured'))) {
+            $query->andWhere(['is_featured' => '1']);
+        }
+        if(!empty($this->request->query('bestselling'))) {
+            $query->andWhere(['bestselling' => '1']);
+        }        
         $products = $query->hydrate(false)->toArray();
-        // pr($products);die;
+        
         if(!empty($products)){
                 $list = [];
                 foreach ($products as $key => $value) {
