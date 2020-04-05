@@ -81,6 +81,7 @@ class Product extends Entity
         'related_products' => true,
         'categories' => true,
         'bestselling' => true,
+        'is_featured' => true,
         'tags' => true
     ];
 

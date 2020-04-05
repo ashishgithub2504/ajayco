@@ -78,9 +78,9 @@ class WebserviceController extends AppController {
             $banners['banner_images'][$key] = [
                 'title' => $value['title'],
                 'text' => $value['description'],
-                'image_classic' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=840&h=430',
-                'image_full' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=840&h=430',
-                'image_mobile' => Router::url('/timthumb.php?src=',true).Router::url('/img/', true).$value['image'].'&w=510&h=390',
+                'image_classic' => Router::url('/timthumb.php?src=',true).'/img/'.$value['image'].'&w=840&h=430',
+                'image_full' => Router::url('/timthumb.php?src=',true).'/img/'.$value['image'].'&w=840&h=430',
+                'image_mobile' => Router::url('/timthumb.php?src=',true).'/img/'.$value['image'].'&w=510&h=390',
                 'external_link' => $value['external_link'],
             ];
         }
@@ -92,10 +92,23 @@ class WebserviceController extends AppController {
             ],
             'sec2' => [
                 'text' => 'Menu',
-
             ]
             
         ];
+
+        $news = TableRegistry::get('News')
+                    ->find()
+                    ->where(['status' => '1'])->limit(5)->toArray();
+        foreach($news as $k => $val) {
+            $news[$k] = [
+                'image' => Router::url('/img/uploads/news/', true).$val['image'],
+                'title' => $val['title'],
+                'slug' => $val['slug'],
+                'shot_desc' => $val['short_desc'],
+                'long_desc' => $val['long_desc'],
+                'date' => date('M d,Y',strtotime($val['created'])),
+            ];
+        }
 
         $response = [
             'status' => true,
@@ -106,10 +119,11 @@ class WebserviceController extends AppController {
                         'products' => $products,
                         'latest_products' => $latest_products,
                         'banner_images' => $banners['banner_images'],
+                        'news' => $news,
                         'footer' => $footer,
                         'timthumb_path' => Router::url('/timthumb.php?src=',true),
                         'full_path' => Router::url('/img/', true),
-                        'product_path' => Router::url('/webroot/img/uploads/products/', true)
+                        'product_path' => Router::url('/img/uploads/products/', true)
                     ]
         ];
         $this->response($response);
@@ -133,6 +147,7 @@ class WebserviceController extends AppController {
                 foreach($val['products'] as $k => $v) {
                     $cat[$k]['label'] = $v['title'];
                     $cat[$k]['url'] = 'shop/products/'.$v['slug'];
+                    $cat[$k]['enabled'] = true;
                 }
             }
             $category[$key]['menu'] = [
@@ -265,24 +280,29 @@ class WebserviceController extends AppController {
         }
         if(!empty($this->request->query('bestselling'))) {
             $query->andWhere(['bestselling' => '1']);
-        }        
+        }
+        if(!empty($this->request->query('category'))) {
+            $query->matching('Categories',function($q){
+                return $q->where(['Categories.slug' => $this->request->query('category')]);
+            });
+        }
         $products = $query->hydrate(false)->toArray();
-        
+        // pr($products);die;
+        $list = [];
         if(!empty($products)){
-                $list = [];
                 foreach ($products as $key => $value) {
                     $list[$key]['id'] = $value['id'];
                     $list[$key]['name'] = $value['title'];
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
-                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     if(!empty($value['product_images'])) {
                         foreach ($value['product_images'] as $k => $val) {
-                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
+                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
                         }                        
                     } else {
                         $list[$key]['images'] = [];
                     }
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     $list[$key]['compareAtPrice'] = null;
                     $list[$key]['badges'] = ['new'];
                     $list[$key]['rating'] = 4;
@@ -296,14 +316,15 @@ class WebserviceController extends AppController {
                     }
                     // $list[$key]['categories'] = [];
                     $list[$key]['attributes'] = [];
-                }
-                $response = [
-                        'status'=>true,
-                        'code' => 200 ,
-                        'message'=>'List Found',
-                        'data' => $list
-                    ];
+                }      
         }
+        
+        $response = [
+            'status'=>true,
+            'code' => 200 ,
+            'message'=>'List Found',
+            'data' => $list
+        ];
         $this->response($response);
     }
 
@@ -360,10 +381,10 @@ class WebserviceController extends AppController {
                     $list[$key]['name'] = $value['title'];
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
-                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$value['image'].'&w=700&h=700';
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     if(!empty($value['product_images'])) {
                         foreach ($value['product_images'] as $k => $val) {
-                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/webroot/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
+                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
                         }                        
                     } else {
                         $list[$key]['images'] = [];
@@ -446,6 +467,7 @@ class WebserviceController extends AppController {
                 'id',
                 'name' => 'title',
                 'slug',
+                'sku',
                 'model',
                 'price',
                 'quantity',
@@ -462,7 +484,7 @@ class WebserviceController extends AppController {
             'slug' => $this->request->query('slug'), //$this->request->data['slug'],
             'status' => 1
         ])->first();
-        // print_r($detail); die;
+        // pr($detail); die;
         if(!empty($detail)){
                 $response = [
                         'status'=>true,
@@ -472,12 +494,15 @@ class WebserviceController extends AppController {
                             'id' => $detail['id'],
                             'name' => $detail['name'],
                             'slug'=> $detail['slug'],
+                            'sku'=> $detail['sku'],
                             'price'=> $detail['price'],
                             'model' => $detail['model'],
                             'description' => $detail['description'],
                             'short_description' => $detail['short_description'],
                             'compareAtPrice'=> null,
-                            'images'=> [$detail['images']],
+                            'images'=> [
+                                Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$detail['images'].'&w=700&h=700',
+                            ],
                             'badges'=> '',
                             'rating'=> '4',
                             'reviews'=> '20',
@@ -540,6 +565,23 @@ class WebserviceController extends AppController {
             }
         }
         
+        $this->response($response);
+    }
+
+    public function getcontact() {
+        $response = [
+            'status' => true,
+            'message' => 'List found',
+            'code' => 200,
+            'data' => [
+                'mobile' => Configure::read('Setting.TELEPHONE'),
+                'email' => Configure::read('Setting.ADMIN_EMAIL'),
+                'address' => Configure::read('Setting.ADDRESS'),
+                'openinghours' => Configure::read('Setting.opening_hours'),
+                'comment' => Configure::read('Setting.CONTACT_US_TEXT'),
+                'location' => Configure::read('Setting.location'),
+            ]
+        ];
         $this->response($response);
     }
 

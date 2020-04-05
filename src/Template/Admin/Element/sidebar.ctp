@@ -46,6 +46,11 @@ $ctrl = strtolower($this->request->getParam('controller'));
                 echo $this->Html->link("<i class=\"fa fa-picture-o\"></i> <span>Banner Manager</span>", ["controller" => "banners", "action" => "index", "plugin" => null], ["class" => "", "escape" => false]);
                 ?>
             </li>
+            <li class="<?php echo (($act == "index") && $ctrl == "news") ? "active" : ""; ?>">
+                <?php
+                echo $this->Html->link("<i class=\"fa fa-picture-o\"></i> <span>News Manager</span>", ["controller" => "news", "action" => "index", "plugin" => null], ["class" => "", "escape" => false]);
+                ?>
+            </li>
             <li class="<?php echo (($act == "index") && $ctrl == "categories") ? "active" : ""; ?>">
                 <?php
                 echo $this->Html->link("<i class=\"fa fa-picture-o\"></i> <span>Category Manager</span>", ["controller" => "categories", "action" => "index", "plugin" => null], ["class" => "", "escape" => false]);

@@ -16,13 +16,11 @@
             <a appClick [routerLink]="root.post()" *ngFor="let category of post.categories">{{ category }}</a>
         </div>
         <div class="post-card__name">
-            <a appClick [routerLink]="root.post()">{{ post.title }}</a>
+            <a appClick [routerLink]="[root.blog(), post.slug]">{{ post.title }}</a>
         </div>
         <div class="post-card__date">{{ post.date }}</div>
         <div class="post-card__content">
-            In one general sense, philosophy is associated with wisdom,
-            intellectual culture and a search for knowledge.
-            In that sense, all cultures...
+            {{post.shot_desc}}
         </div>
         <div class="post-card__read-more">
             <a appClick [routerLink]="root.post()" class="btn btn-secondary btn-sm">Read More</a>

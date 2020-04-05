@@ -15,6 +15,5 @@ export class PageLoginComponent {
     constructor(public ShopService: ShopService) { }
     onSubmit() {
         this.ShopService.getLogin(this.loginForm.value);
-        console.log(this.loginForm.value);
     }
 }

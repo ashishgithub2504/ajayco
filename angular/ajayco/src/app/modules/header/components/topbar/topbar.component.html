@@ -8,9 +8,9 @@
             <div class="topbar__item topbar__item--link">
                 <a class="topbar-link" routerLink="/site/contact-us">Contacts</a>
             </div>
-            <div class="topbar__item topbar__item--link">
+            <!-- <div class="topbar__item topbar__item--link">
                 <a class="topbar-link" routerLink="">Store Location</a>
-            </div>
+            </div> -->
             <div class="topbar__item topbar__item--link">
                 <a class="topbar-link" routerLink="/shop/track-order">Track Order</a>
             </div>
@@ -27,7 +27,7 @@
 
                     <div class="topbar-dropdown__body">
                         <app-header-menu layout="topbar" (itemClick)="accountDropdown.close()" [items]="[
-                            {label: 'Dashboard',     url: '/account/dashboard'},
+                            {label: 'Dashboard',     url: '/account/dashboard', enabled:true},
                             {label: 'Edit Profile',  url: '/account/profile'},
                             {label: 'Order History', url: '/account/orders'},
                             {label: 'Addresses',     url: '/account/addresses'},

@@ -130,7 +130,12 @@ use Cake\Core\Configure;
                         <div class="col-md-6">
                             <div class="form-group">
                                 <?php echo $this->Form->input('bestselling', ['label' => 'Best Selling Product','type' => 'checkbox']); ?>
+                            </div><!-- /.form-group -->
+                        </div>
 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php echo $this->Form->input('is_featured', ['label' => 'Featured Product','type' => 'checkbox']); ?>
                             </div><!-- /.form-group -->
                         </div>
 

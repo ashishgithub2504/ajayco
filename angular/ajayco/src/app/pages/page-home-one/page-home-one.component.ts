@@ -34,7 +34,7 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
     columnSpecialOffers$: Observable<Product[]>;
     columnBestsellers$: Observable<Product[]>;
 
-    posts = posts;
+    posts : any;
 
     featuredProducts: ProductsCarouselData;
     latestProducts: ProductsCarouselData;
@@ -47,14 +47,14 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
         // this.categoryList = this.shop.getCategories();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
-        this.popularCategories$ = this.shop.getCategoriesBySlug([
-            'power-tools',
-            'hand-tools',
-            'machine-tools',
-            'power-machinery',
-            'measurement',
-            'clothes-and-ppe',
-        ], 2);
+        // this.popularCategories$ = this.shop.getCategoriesBySlug([
+        //     'power-tools',
+        //     'hand-tools',
+        //     'machine-tools',
+        //     'power-machinery',
+        //     'measurement',
+        //     'clothes-and-ppe',
+        // ], 2);
 
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
@@ -71,15 +71,15 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                     products$: this.shop.getFeaturedProducts(null, 8),
                 },
                 {
-                    name: 'Power Tools',
+                    name: 'Fan Blades',
                     current: false,
-                    products$: this.shop.getFeaturedProducts('power-tools', 8),
+                    products$: this.shop.getFeaturedProducts('fan-blades', 8),
                 },
-                // {
-                //     name: 'Hand Tools',
-                //     current: false,
-                //     products$: this.shop.getFeaturedProducts('hand-tools', 8),
-                // },
+                {
+                    name: 'Farrata Pipe',
+                    current: false,
+                    products$: this.shop.getFeaturedProducts('farrata-pipe', 8),
+                },
                 // {
                 //     name: 'Plumbing',
                 //     current: false,
@@ -87,6 +87,7 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                 // },
             ],
         };
+        
         this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
 
         this.latestProducts = {
@@ -116,6 +117,10 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                 // },
             ],
         };
+
+        this.shop.getIndex().subscribe((data) => {
+            this.posts = data;
+        });
         this.groupChange(this.latestProducts, this.latestProducts.groups[0]);
     }
 

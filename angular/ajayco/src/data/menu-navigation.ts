@@ -4,7 +4,7 @@ let enabled = true;
 if(localStorage.hasOwnProperty('USERINFO')) {
     flag  = true;
 }
-export const navigation: NavigationLink[] = [
+export const manunavigation: NavigationLink[] = [
     {label: 'Home', url: '/', menu: {
         type: 'menu', 
         items: [
@@ -110,17 +110,7 @@ export const navigation: NavigationLink[] = [
             {label: 'Track Order', url: '/shop/track-order', enabled:enabled},
         ]
     }},
-    {label: 'Account', url: '/account', menu: {
-        type: 'menu',
-        items: [
-            {label: 'Dashboard',       url: '/account/dashboard', enabled:enabled},
-            {label: 'Edit Profile',    url: '/account/profile', enabled:enabled},
-            {label: 'Order History',   url: '/account/orders', enabled:enabled},
-            {label: 'Address Book',    url: '/account/addresses', enabled:enabled},
-            {label: 'Change Password', url: '/account/password', enabled:enabled},
-            {label: 'Logout',           url: '/account/logout', enabled:enabled}
-        ]
-    }},
+    {label: 'Login', url: '/account/login'},
     // {label: 'Blog', url: '/blog', menu: {
     //     type: 'menu',
     //     items: [

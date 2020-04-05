@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Category } from '../interfaces/category';
 import { HttpClient } from '@angular/common/http';
@@ -38,6 +38,10 @@ export interface ListOptions {
 export class ShopService {
     APIURL = 'http://localhost:8765/api/webservice/';
     // APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+    private loggedIn = new BehaviorSubject<boolean>(false);
+    get isLoggedIn() {
+      return this.loggedIn.asObservable(); // {2}
+    }
     constructor(
         private http: HttpClient,
         private router: Router
@@ -221,7 +225,7 @@ export class ShopService {
         if (limit) {
             params.limit = limit.toString();
         }
-        //
+        params.bestselling = '1';
         // return this.http.get<Product[]>('https://example.com/api/shop/products/bestsellers.json', {params});
         return this.http.get<Product[]>(this.APIURL+'getproducts', {params})
         .pipe(map((response: any) => response.data));
@@ -266,7 +270,7 @@ export class ShopService {
         if (limit) {
             params.limit = limit.toString();
         }
-        params.bestselling = '1';
+        
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/special-offers.json', {params});
         return this.http.get<Product[]>(this.APIURL+'getproducts', {params})
@@ -354,6 +358,16 @@ export class ShopService {
         .pipe(map((response: any) => response.data));
     }
 
+    getContact():Observable<Static[]> {
+        return this.http.get<Static[]>(this.APIURL+'getcontact')
+        .pipe(map((response: any) => response.data));
+    }
+
+    getIndex():Observable<Static[]> {
+        return this.http.get<Static[]>(this.APIURL+'index')
+        .pipe(map((response: any) => response.data));
+    }
+
     result: any;
     getLogin(detail) {
         this.http.post(this.APIURL+'login',{
@@ -361,7 +375,7 @@ export class ShopService {
         }).subscribe((data) => {
         this.result = data;
         if(this.result.status == true){
-            //this.loggedIn.next(true);
+            this.loggedIn.next(true);
             localStorage.setItem('USERINFO', JSON.stringify(this.result.data));
             this.router.navigate(['/']);
         } else {
@@ -369,5 +383,11 @@ export class ShopService {
         }      
         return this.result;
         });
+    }
+
+    getLogout() {
+        this.loggedIn.next(false);
+        localStorage.removeItem("USERINFO");
+        this.router.navigate(['/account/login']);
     }
 }

@@ -11,8 +11,10 @@ FRONT_DATE_FORMAT: 'd F, Y'
 FRONT_DATE_TIME_FORMAT: 'd F, Y'
 FRONT_PAGE_LIMIT: '20'
 GOOGLE_MAP_KEY: AIzaSyD9pg6_fzfgDHJFSW0wkrIcuCOw_V9qOfM
+location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.345880496631!2d75.8034237501341!3d26.828949070068177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db3f851f07719%3A0xc03c2405ccd7c121!2sJaipur%20International%20Airport!5e0!3m2!1sen!2sin!4v1585507045983!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>'
 MAIN_FAVICON: uploads/ajay.png
 MAIN_LOGO: uploads/logo-6887.png
+opening_hours: "Monday to Friday: 8am-8pm\r\nSaturday: 8am-6pm\r\nSunday: 10am-4pm"
 RESET_URL_EXPIRED: '24'
 SMTP_ALLOW: '1'
 SMTP_EMAIL_HOST: dasda

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PageLogoutComponent } from './pages/page-logout/page-logout.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
@@ -37,12 +38,16 @@ const routes: Routes = [
             {
                 path: 'password',
                 component: PagePasswordComponent
-            }
+            },
         ]
     },
     {
         path: 'login',
         component: PageLoginComponent
+    },
+    {
+        path: 'logout',
+        component: PageLogoutComponent
     }
 ];
 

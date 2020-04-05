@@ -10,7 +10,7 @@ import { NestedLink } from '../../../../shared/interfaces/nested-link';
 export class MenuComponent {
     @Input() layout: 'classic'|'topbar' = 'classic';
     @Input() items: NestedLink[] = [];
-
+    @Input() islogin : any;
     @Output() itemClick: EventEmitter<NestedLink> = new EventEmitter<NestedLink>();
 
     hoveredItem: NavigationLink = null;
@@ -18,7 +18,6 @@ export class MenuComponent {
     constructor() { }
 
     onItemMouseEnter(item: NavigationLink): void {
-        console.log('mouse enter');
         this.hoveredItem = item;
     }
 
