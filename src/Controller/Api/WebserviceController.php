@@ -174,7 +174,7 @@ class WebserviceController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data = $this->request->data['detail'];
             $user = $this->Auth->identify();
-
+            $user['profile_pic'] = Router::url($user['image_path'], true).$user['profile_photo'];
             if ($user) {
                 if ($user['is_verified'] != 1) {
                     $response['message'] = 'Your account is not verified. Please check your email and verify them.';

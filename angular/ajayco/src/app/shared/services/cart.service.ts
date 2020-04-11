@@ -160,10 +160,12 @@ export class CartService {
         this.subtotalSubject$.next(this.data.subtotal);
         this.totalsSubject$.next(this.data.totals);
         this.totalSubject$.next(this.data.total);
+        localStorage.setItem('cartTotal', JSON.stringify(this.data.total));
     }
-
+    
     private save(): void {
         localStorage.setItem('cartItems', JSON.stringify(this.data.items));
+        
     }
 
     private load(): void {

@@ -37,7 +37,7 @@ export interface ListOptions {
 })
 export class ShopService {
     APIURL = 'http://localhost:8765/api/webservice/';
-    // APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+    // APIURL = 'http://jenix.in/api/webservice/';
     private loggedIn = new BehaviorSubject<boolean>(false);
     get isLoggedIn() {
       return this.loggedIn.asObservable(); // {2}
@@ -368,7 +368,7 @@ export class ShopService {
         .pipe(map((response: any) => response.data));
     }
 
-    result: any;
+    result: any; 
     getLogin(detail) {
         this.http.post(this.APIURL+'login',{
             detail:detail

@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class BlockSlideshowComponent {
     @Input() withDepartments = false;
     APIURL = 'http://localhost:8765/api/webservice/';
-    // APIURL = 'http://phpdev.co.in/ajayco/api/webservice/';
+    // APIURL = 'http://13.233.91.120/api/webservice/';
     result : any;
     options = {
         nav: false,

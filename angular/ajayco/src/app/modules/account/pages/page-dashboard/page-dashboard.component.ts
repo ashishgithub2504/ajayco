@@ -12,6 +12,9 @@ import { addresses } from '../../../../../data/account-addresses';
 export class PageDashboardComponent {
     address: Address = addresses[0];
     orders: Order[] = orders.slice(0, 3);
-
-    constructor() { }
+    userInfo : any;
+    constructor() { 
+        this.userInfo = JSON.parse(localStorage.getItem("USERINFO"));
+        console.log(this.userInfo);
+    }
 }
