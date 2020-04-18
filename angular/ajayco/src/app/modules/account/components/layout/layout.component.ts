@@ -12,7 +12,7 @@ export class LayoutComponent {
         {label: 'Order History', url: './orders'},
         {label: 'Addresses', url: './addresses'},
         {label: 'Password', url: './password'},
-        {label: 'Logout', url: './login'}
+        {label: 'Logout', url: './logout'}
     ];
 
     constructor() { }

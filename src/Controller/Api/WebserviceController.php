@@ -174,8 +174,10 @@ class WebserviceController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data = $this->request->data['detail'];
             $user = $this->Auth->identify();
-            $user['profile_pic'] = Router::url($user['image_path'], true).$user['profile_photo'];
+            
             if ($user) {
+                $user['profile_pic'] = Router::url($user['image_path'], true).$user['profile_photo'];
+            
                 if ($user['is_verified'] != 1) {
                     $response['message'] = 'Your account is not verified. Please check your email and verify them.';
                 } else if ($user['status'] != 1) {
@@ -215,6 +217,31 @@ class WebserviceController extends AppController {
             $response = ['status'=>true,'code' => 200 ,'message'=>'You have successfully registred','data' => $user];
         }else{
              $response['data'] = $user->errors();
+        }
+        $this->response($response);
+    }
+
+    public function update() {
+        $response = [
+            'staus' => false,
+            'message' => 'invalid registration',
+            'code' => 404
+        ];
+        $this->Users = TableRegistry::get('UserManager.Users');
+        $this->request->data = $this->request->getData('detail');
+        $data = $this->Users->find()
+                ->where(['email' => $this->request->data['email']])
+                ->first();
+        
+        if(!empty($data)) {
+            $data['first_name'] = $this->request->data['first_name'];
+            $data['last_name'] = $this->request->data['last_name'];
+            $data['mobile'] = $this->request->data['phone'];
+            if($this->Users->save($data)) {
+                $response = ['status'=>true,'code' => 200 ,'message'=>'Profile update successfully','data' => $data];
+            } else{
+                $response['data'] = $data->errors();
+            }
         }
         $this->response($response);
     }
@@ -329,29 +356,44 @@ class WebserviceController extends AppController {
     }
 
     public function getproductlist() {
-        $response = ['status'=>false,'code' => 404 ,'message'=>'No Product Found'];
+        $status = 404;
+        $response = ['status'=>404,'code' => 404 ,'message'=>'No Product Found'];
         $article = new Product();
+        $sort = (!empty($this->request->data['options']) && isset($this->request->data['options']['sort']))?$this->request->data['options']['sort']:'default';
+        $limit = (!empty($this->request->data['options']) && isset($this->request->data['options']['limit'])) ? $this->request->data['options']['limit']:'12';
+        $filterValues = !empty($this->request->data['options'])?$this->request->data['options']['filterValues'] : [];
+        $pricelimit = isset($filterValues['price'])?explode('-',$filterValues['price']):explode('-','0-2000');
+        // pr($pricelimit); die;
         
-        $query = $this->Products->find()
-                ->where(['Products.status' => 1]);
-                    
-        if(!empty($this->request->query)) {
-            $query->limit($this->request->query('limit'));
+        $categorylist = $this->Category->find()
+                        ->where(['parent_id' => '0'])
+                        ->contain(['Products'=>function($q) {
+                            return $q->select(['id','title']);
+                        }])
+                        ->toArray();
+                        
+        $query = $this->Products->find()->where(['Products.status' => 1]);
+        $query->andWhere(['Products.price <=' => $pricelimit['1'], 'Products.price >=' => $pricelimit['0']]);
+        $query->limit($limit);
+        
+        if($sort == 'name_asc') {
+            $query->order(['Products.title'=>'asc']);
+        } else if ($sort == 'name_desc') {
+            $query->order(['Products.title' => 'desc']);
+        } else {
+            $query->order(['id' => 'desc']);
         }
-        if(!empty($this->request->data) && !empty($this->request->data['path'])) {
 
+        if(!empty($this->request->data) && !empty($this->request->data['path'])) {
             $query->matching('Categories',function($q){
                 return $q->where(['Categories.slug' => $this->request->data['path']]);
             }); 
         }else {
             $query->contain(['Categories','ProductImages']);
         }
+        
         $products = $query->hydrate(false)->toArray();
         
-        $categorylist = $this->Category->find()
-                        ->where(['parent_id' => '0'])
-                        ->contain(['ProductsCategories'])
-                        ->toArray();
         
         foreach($categorylist as $key=>$val) {
            $catList[] =  [
@@ -360,7 +402,7 @@ class WebserviceController extends AppController {
                     'customFields' => [],
                     'id' => $val['id'],
                     'image' => null,
-                    'items' => count($val['products_categories']),
+                    'items' => count($val['products']),
                     'name' => $val['title'],
                     'parents' => null,
                     'path' => $val['slug'],
@@ -370,18 +412,18 @@ class WebserviceController extends AppController {
                 'type' => 'child',
                 'name' => $val['title'],
                 'slug' => $val['slug'],
-                'count' => count($val['products_categories'])
+                'count' => count($val['products'])
             ];
         }
 
+        $list = [];
         if(!empty($products)){
-                $list = [];
+                $status = true;
                 foreach ($products as $key => $value) {
                     $list[$key]['id'] = $value['id'];
                     $list[$key]['name'] = $value['title'];
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
-                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     if(!empty($value['product_images'])) {
                         foreach ($value['product_images'] as $k => $val) {
                             $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
@@ -389,6 +431,7 @@ class WebserviceController extends AppController {
                     } else {
                         $list[$key]['images'] = [];
                     }
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     $list[$key]['compareAtPrice'] = null;
                     $list[$key]['badges'] = ['new'];
                     $list[$key]['rating'] = 4;
@@ -397,62 +440,63 @@ class WebserviceController extends AppController {
                     $list[$key]['brand'] = 'jenix';
                     
                     $list[$key]['attributes'] = [];
-                }
-                $response = [
-                        'status'=>true,
-                        'code' => 200 ,
-                        'message'=>'List Found',
-                        'data' => [
-                            'filterValues' => [],
-                            'filters' => [
-                                [
-                                    'name' => 'Categories',
-                                    'root' => true,
-                                    'slug' => 'categories',
-                                    'type' => 'categories',
-                                    'items' => $catList
-                                ],
-                                [
-                                    'name' =>'Price',
-                                    'slug' =>'price',
-                                    'type' => 'range',
-                                    'min' => 0,
-                                    'max' => 2000,
-                                    'value' => [
-                                        '0',
-                                        '2000'
-                                        ]   
-                                ],
-                                // [
-                                //     'name' => 'Brand',
-                                //     'slug' =>'brand',
-                                //     'type' => 'check',
-                                //     'value' => [],
-                                //     'items' => [
-                                //         [
-                                //             'count' => 1,
-                                //             'name'=> 'Brandix',
-                                //             'slug' => 'brandix'
-                                //         ],
-                                //         [
-                                //             'count' => 4,
-                                //             'name' => 'Zosch',
-                                //             'slug' => 'zosch'
-                                //         ]
-                                //     ]
-                                // ]
-                            ],
-                            'form' => 1,
-                            'items' => $list,
-                            'limit' => 12,
-                            'page' => 1,
-                            'pages' => round(count($list)/12),
-                            'sort' => 'default',
-                            'to' => 1,
-                            'total' => count($list)
-                        ]
-                    ];
+                }        
         }
+
+        $response = [
+            'status'=>$status,
+            'code' => 200 ,
+            'message'=>'List Found',
+            'data' => [
+                'filterValues' => $filterValues,
+                'filters' => [
+                    [
+                        'name' => 'Categories',
+                        'root' => true,
+                        'slug' => 'categories',
+                        'type' => 'categories',
+                        'items' => $catList
+                    ],
+                    [
+                        'name' =>'Price',
+                        'slug' =>'price',
+                        'type' => 'range',
+                        'min' => 0,
+                        'max' => 2000,
+                        'value' => [
+                            '0',
+                            '2000'
+                            ]   
+                    ],
+                    // [
+                    //     'name' => 'Brand',
+                    //     'slug' =>'brand',
+                    //     'type' => 'check',
+                    //     'value' => [],
+                    //     'items' => [
+                    //         [
+                    //             'count' => 1,
+                    //             'name'=> 'Brandix',
+                    //             'slug' => 'brandix'
+                    //         ],
+                    //         [
+                    //             'count' => 4,
+                    //             'name' => 'Zosch',
+                    //             'slug' => 'zosch'
+                    //         ]
+                    //     ]
+                    // ]
+                ],
+                'form' => 1,
+                'items' => $list,
+                'limit' => $limit,
+                'page' => 1,
+                'pages' => round(count($list)/$limit),
+                'sort' => $sort,
+                'to' => 1,
+                'total' => count($list)
+            ]
+        ];
         $this->response($response);
     }
 

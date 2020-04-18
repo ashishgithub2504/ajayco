@@ -167,6 +167,7 @@ export class ShopService {
         // Object.keys(options.filters).forEach(slug => params[`filter_${slug}`] = options.filters[slug]);
         //
         // return this.http.get<ProductsList>('https://example.com/api/products.json', {params});
+        console.log(options);
         return this.http.post<Product[]>(this.APIURL+'getproductlist',{
             options
         }).pipe(map((response: any) => response.data));
@@ -389,5 +390,17 @@ export class ShopService {
         this.loggedIn.next(false);
         localStorage.removeItem("USERINFO");
         this.router.navigate(['/account/login']);
+    }
+
+    signup(detail:string) : Observable<object> {    
+        return this.http.post(this.APIURL+'signup', {
+            detail
+        }).pipe(map((response: any) => response.data));
+    }
+
+    update(detail:string) : Observable<object> {
+        return this.http.post(this.APIURL+'update',{
+            detail
+        }).pipe(map((response: any) => response.data));
     }
 }
