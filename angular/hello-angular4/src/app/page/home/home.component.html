@@ -9,7 +9,7 @@
             <div id="home-slick" *ngIf="this.profile; else bannerloader">
                 <!-- banner -->
                 <div class="banner banner-1" *ngFor="let banner of this.profile.banner_images">
-                        <img src="{{this.profile.timthumb_path}}{{this.profile.full_path}}{{banner.image}}&w=870&h=485" alt="">
+                        <img src="{{banner.image_classic}}" alt="">
                 </div>
                 <!-- /banner -->
             </div>
@@ -84,8 +84,7 @@
         <!-- row -->
         <div class="row"  *ngIf="this.profile; else loadBest">
             <!-- section-title -->
-            <div class="col-md-12">
-                    
+            <div class="col-md-12">                    
                 <div class="section-title">
                     <h2 class="title">Best Selling products</h2>
                     <div class="pull-right">
@@ -96,8 +95,7 @@
             <!-- /section-title -->
             
             <!-- Product Slick -->
-            <div class="col-md-12 col-sm-6 col-xs-6">
-                    
+            <div class="col-md-12 col-sm-6 col-xs-6">                    
                 <div class="row">
                     <div id="product-slick-1" class="product-slick">
                         <!-- Product Single -->
@@ -107,9 +105,15 @@
                                 <img src="{{this.profile.product_path}}{{product.image}}" alt="">
                             </div>
                             <div class="product-body">
-                                <h3 class="product-price">
-                                    ₹{{product.price}}
+                                <h3  class="product-price" *ngIf="product.enquirystatus; else showprice">
+                                    ₹ --
                                 </h3>
+                                <ng-template #showprice>
+                                    <h3 class="product-price">
+                                        ₹{{product.price}}
+                                    </h3>
+                                </ng-template>
+                                
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -120,9 +124,20 @@
                                 <h2 class="product-name"><a href="#">{{product.title}}</a></h2>
                                 <div class="product-btns">
                                     <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="primary-btn add-to-cart" (click)="addtocart(product)">
-                                        <i class="fa fa-shopping-cart"></i> {{this.name}}
+                                    <button class="primary-btn enqury-now"
+                                        *ngIf="product.enquirystatus; else addcart"
+                                        data-toggle="modal"
+                                        data-id="{{product.id}}"
+                                        data-target="#enquiry"
+                                        (click)="openModel(product.id)">
+                                        <i class="fa fa-ioxhost"></i> Enquiry Now
                                     </button>
+                                    <ng-template #addcart>
+                                            <button class="primary-btn add-to-cart" (click)="addtocart(product)">
+                                                <i class="fa fa-shopping-cart"></i> {{this.name}}
+                                            </button>
+                                    </ng-template>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -280,6 +295,58 @@
     <!-- /container -->
 </div>
 <!-- /section -->
+
+<!-- section -->
+<div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row"  *ngIf="this.profile; else loadBest">
+                <!-- section-title -->
+                <div class="col-md-12">                    
+                    <div class="section-title">
+                        <h2 class="title">Best Selling products</h2>
+                        <div class="pull-right">
+                            <div class="product-slick-dots-1 custom-dots"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /section-title -->
+                
+                <!-- Product Slick -->
+                <div class="col-md-12 col-sm-6 col-xs-6">                    
+                    <div class="row">
+                        <div id="product-slick-1" class="product-slick-news">
+                            <!-- Product Single -->
+                            <div class="product product-single" *ngFor="let news of this.profile.news">
+                                <div class="product-thumb">
+                                    <button class="main-btn quick-view" routerLink="/product/{{news.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
+                                    <img src="{{news.image}}" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <h2 class="product-name"><a href="#">{{news.title}}</a></h2>
+                                </div>
+                            </div>
+                            <!-- /Product Single -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- /Product Slick -->
+            </div>
+            <!-- /row -->
+            <ng-template #loadBest>
+                <div class="contentLoader">
+                        <div class="animated-background" style="height: 150px;"> </div>
+                        <div class="animated-backgroundlarge firstRow" style="height: 10px; margin-bottom: 10px;"> </div>
+                        <div class="animated-backgroundlarge secondRow" style="height: 10px; width: 80%; margin-bottom: 10px;"> </div>
+                        <div class="animated-backgroundlarge secondRow" style="height: 10px; width: 70%;"> </div>
+                </div>
+            </ng-template>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
 
 <!-- Enquiry form here -->
 <div class="modal" tabindex="-1" role="dialog" id="enquiry">

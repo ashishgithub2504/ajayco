@@ -2,10 +2,10 @@
 	<div id="breadcrumb" *ngIf="this.result">
 		<div class="container">
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
+				<li><a routerLink="/">Home</a></li>
 				<li><a href="#">Products</a></li>
-				<li><a href="#">Category</a></li>
-				<li class="active">{{this.result.data.title}}</li>
+				<li><a href="#">{{this.result.data.model}}</a></li>
+				<li class="active">{{this.result.data.name}}</li>
 			</ul>
 		</div>
 	</div>
@@ -19,40 +19,22 @@
 			<div class="row">
 				<!--  Product Details -->
 				<div class="product product-details clearfix">
-					<div class="col-md-6">
+					<div class="col-md-6" *ngIf="this.result.data.name">
 						<div id="product-main-view">
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-                                <img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
+							<div class="product-view" *ngFor="let image of this.result.data.images; index as i;">
+								 <img src="{{image}}" alt=""> 
 							</div>
 						</div>
-						<div id="product-view">
+						<div id="product-view" *ngFor="let image of this.result.data.images; index as i;">
 							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="{{this.result.data.timthumb}}{{this.result.data.link}}{{this.result.data.image}}" alt="">
+								<img src="{{image}}" alt="">
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="product-body">
 							
-							<h2 class="product-name">{{this.result.data.title}}</h2>
+							<h2 class="product-name">{{this.result.data.name}}</h2>
 							<h3 class="product-price">₹ {{this.result.data.price}} </h3>
 							<div>
 								<div class="product-rating">
@@ -64,10 +46,8 @@
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
-							<p><strong>Availability:</strong>
-								<span *ngIf="this.result.data.stock_status_id == 1;"> In Stock</span>
-								<span *ngIf="this.result.data.stock_status_id == 2;"> Out of Stock</span> 
-							</p>
+							<strong>Availability: {{this.result.data.availability}}</strong>
+								
 							<p>{{this.result.data.short_description}}</p>
 							
 							<div class="product-btns">
@@ -76,13 +56,24 @@
 									<!-- <input class="input" type="number" value="{{this.qty}}"> -->
 									<input [(ngModel)]="qty" class="input" type="number">
 								</div>
-								<button *ngIf="this.result.data.stock_status_id == 1" (click)="addtocart(this.result.data)" class="primary-btn add-to-cart">
-									<i class="fa fa-shopping-cart"></i> {{this.name}}
+								<button class="primary-btn enqury-now"
+									*ngIf="this.result.data.enquirystatus; else addcart"
+									data-toggle="modal"
+									data-id="{{this.result.data.id}}"
+									data-target="#enquiry"
+									(click)="openModel(this.result.data.id)">
+									<i class="fa fa-ioxhost"></i> Enquiry Now
 								</button>
-								<div class="pull-right">
+								<ng-template #addcart>
+									<button *ngIf="this.result.data.stock_status_id == 1" (click)="addtocart(this.result.data)" class="primary-btn add-to-cart">
+										<i class="fa fa-shopping-cart"></i> {{this.name}}
+									</button>
+								</ng-template>
+								
+								<!-- <div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -219,3 +210,41 @@
 		
 	</div>
 	<!-- /section -->
+
+<!-- Enquiry form here -->
+<div class="modal" tabindex="-1" role="dialog" id="enquiry">
+		<div class="modal-dialog modal-sm" role="document">
+		  <div class="modal-content flex-grow-1">
+			<div class="modal-header">
+			  <h3 class="modal-title">Enquiry Form!</h3>
+			</div>
+			<div class="modal-body">
+			  <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
+				  <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
+				<div class="form-group">
+					<input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
+				</div>
+				<div class="form-group">
+					<input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+				</div>
+				<div class="form-group">
+						<input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" name="message" formControlName="message" ></textarea>
+				</div>    
+				<input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Signup">
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button
+				type="button"
+				data-dismiss="modal"
+				class="mx-auto btn btn-secondary"
+			  >
+				Close
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </div>

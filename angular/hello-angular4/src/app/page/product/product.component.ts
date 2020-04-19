@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from 'src/app/services/webservice.service';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -9,7 +10,13 @@ import { WebserviceService } from 'src/app/services/webservice.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
+  enquiryForm = new FormGroup({
+    product_id: new FormControl('',Validators.required),
+    first_name: new FormControl('',Validators.required),
+    mobile: new FormControl('',Validators.required),
+    email: new FormControl('',Validators.required),
+    message: new FormControl('',Validators.required),
+  });
   constructor(public activeRoute: ActivatedRoute, 
     private dynamicScriptLoader: DynamicScriptLoaderService,
     public WebserviceService: WebserviceService) { }
@@ -46,6 +53,25 @@ export class ProductComponent implements OnInit {
     setTimeout(()=> {
       this.name = 'Add to cart';
     }, 1000);
+  }
+
+  openModel(pid) {
+    this.enquiryForm.controls['product_id'].setValue(pid);
+  }
+
+  onSubmit() {
+    this.WebserviceService.enquiry(this.enquiryForm.value)
+    .subscribe((data) => {
+      this.result = data;
+      console.log(this.result);
+      if(this.result.status == true) {
+        alert(this.result.message);
+        window.location.reload();
+      } else {
+        alert(this.result.message);
+        window.location.reload();
+      }     
+    });
   }
 
   public loadScript() {
