@@ -22,7 +22,6 @@ export class CategoryResolverService implements Resolve<any> {
         if (categorySlug === null) {
             return null;
         }
-
         return this.shop.getCategory(categorySlug).pipe(
             catchError(error => {
                 if (error instanceof HttpErrorResponse && error.status === 404) {

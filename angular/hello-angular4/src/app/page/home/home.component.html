@@ -28,55 +28,6 @@
     <!-- /container -->
 </div>
 <!-- /HOME -->
-
-<!-- section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner banner-1" href="#">
-                    <img src="assets/img/img04.jpg" alt="">
-                </a>
-                <div class="banner-caption text-center">
-                        <h2 class="primary-color">FAN PARTS</h2>
-                </div>
-            </div>
-            <!-- /banner -->
-
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner banner-1" href="#">
-                    <img src="assets/img/img01.jpg" alt="">
-                    
-                </a>
-                <div class="banner-caption text-center">
-                    <h2 class="primary-color">Industrial Trolleys</h2>
-                </div>
-            </div>
-            <!-- /banner -->
-
-            <!-- banner -->
-            <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-1" href="#">
-                    <img src="assets/img/img10.jpg" alt="">
-                    
-                </a>
-                <div class="banner-caption text-center">
-                        <h2 class="primary-color">SPARE PARTS</h2>
-                </div>
-            </div>
-            <!-- /banner -->
-
-        </div>
-        <!-- /row -->
-    </div>
-    <!-- /container -->
-</div>
-<!-- /section -->
-
 <!-- section -->
 <div class="section">
     <!-- container -->
@@ -305,7 +256,7 @@
                 <!-- section-title -->
                 <div class="col-md-12">                    
                     <div class="section-title">
-                        <h2 class="title">Best Selling products</h2>
+                        <h2 class="title">Latest News</h2>
                         <div class="pull-right">
                             <div class="product-slick-dots-1 custom-dots"></div>
                         </div>
@@ -320,7 +271,7 @@
                             <!-- Product Single -->
                             <div class="product product-single" *ngFor="let news of this.profile.news">
                                 <div class="product-thumb">
-                                    <button class="main-btn quick-view" routerLink="/product/{{news.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
+                                    <button class="main-btn quick-view" routerLink="/news/{{news.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
                                     <img src="{{news.image}}" alt="">
                                 </div>
                                 <div class="product-body">
@@ -353,9 +304,10 @@
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content flex-grow-1">
         <div class="modal-header">
-          <h3 class="modal-title">Enquiry Form!</h3>
+          <h3 class="modal-title"><img src="http://localhost:4200/assets/img/updated-logo.png" style="width:250px;"/></h3>
         </div>
         <div class="modal-body">
+            <span class="details">Please provide us details:</span>
           <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
               <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
             <div class="form-group">

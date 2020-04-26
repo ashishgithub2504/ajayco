@@ -365,7 +365,8 @@ function getCategoriesTree(categoriesType: 'shop'|'blog', parentSlug: string = n
 
         categories = parent.children.slice();
     }
-
+    console.log('list of category');
+    console.log(categories);
     return of(limitDepth(categories, depth));
 }
 
@@ -382,12 +383,18 @@ export function getShopCategoriesBySlugs(slugs: string[], depth: number = 0): Ob
 }
 
 export function getShopCategory(slug: string): Observable<Category> {
+    
     const category = shopCategoriesList.find(x => x.slug === slug);
 
     if (!category) {
+        console.log(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
         return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
     }
-
+    console.log(JSON.parse(JSON.stringify({
+        ...category,
+        parents: limitDepth(category.parents, 0),
+        children: limitDepth(category.children, 0),
+    })));
     return of(JSON.parse(JSON.stringify({
         ...category,
         parents: limitDepth(category.parents, 0),

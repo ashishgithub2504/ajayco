@@ -8,11 +8,11 @@
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="footer">
                     <!-- footer logo -->
-                    <!-- <div class="footer-logo">
+                    <div class="footer-logo">
                         <a class="logo" href="#">
-                            <img src="assets/img/logo.png" alt="">
+                            <img src="assets/img/logo.png" alt="" style="width:65%;">
                         </a>
-                    </div> -->
+                    </div>
                     <!-- /footer logo -->
 
                     <!-- footer social -->
@@ -33,9 +33,9 @@
                 <div class="footer">
                     <h3 class="footer-header">My Account</h3>
                     <ul class="list-links">
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Checkout</a></li>
+                        <li><a routerLink="/" routerLinkActive="active">My Account</a></li>
+                        <li><a routerLink="/" routerLinkActive="active">My Wishlist</a></li>
+                        <li><a routerLink="/checkout" routerLinkActive="active">Checkout</a></li>
                         <div  *ngIf="isLoggedIn$ | async; else logintag">
                             <li><a (click)="logout();" href="javascript::void(0)">Logout</a></li>    
                         </div>

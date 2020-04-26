@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from 'src/app/services/webservice.service';
 import { Observable } from 'rxjs/internal/Observable';
-
+import { Router , Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -12,7 +12,19 @@ export class NavigationComponent implements OnInit {
   result : any;
   navigation : any;
   step: any;
-  constructor(private WebserviceService : WebserviceService) { }
+  classheader: any;
+  constructor(private router: Router,private WebserviceService : WebserviceService) { 
+    
+    this.router.events.subscribe((event) => {
+      if(event['url'] && event['url'] != '') {
+        this.classheader = 'show-on-click';  
+        if( event['url'] == '/') {
+          this.classheader = '';
+        }        
+      }
+      console.log(this.classheader);
+    });
+  }
   ngOnInit() {
     this.isLoggedIn$ = this.WebserviceService.isLoggedIn;
     this.navigation = JSON.parse(localStorage.getItem('NAVIGATION')) || '';

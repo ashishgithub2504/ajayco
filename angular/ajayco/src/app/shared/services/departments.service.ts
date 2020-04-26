@@ -9,8 +9,8 @@ import { NavigationLink } from '../../../app/shared/interfaces/navigation-link';
 })
 export class DepartmentsService {
     private areaElementSubject$: BehaviorSubject<HTMLElement> = new BehaviorSubject(null);
-    APIURL = 'http://localhost:8765/api/webservice/';
-    // APIURL = 'http://13.233.91.120/api/webservice/';
+    // APIURL = 'http://localhost:8765/api/webservice/';
+    APIURL = 'http://jenix.in/api/webservice/';
     areaElement$: Observable<HTMLElement> = this.areaElementSubject$.asObservable();
 
     constructor(

@@ -68,8 +68,7 @@
 {
     font-family: 'slick';
     font-size: 20px;
-    line-height: 1;
-
+    line-height: 0;
     opacity: .75;
     color: white;
 

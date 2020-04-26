@@ -3,8 +3,8 @@
 		<div class="container">
 			<ul class="breadcrumb">
 				<li><a routerLink="/">Home</a></li>
-				<li><a href="#">Products</a></li>
-				<li><a href="#">{{this.result.data.model}}</a></li>
+				<li><a routerLink="/shop">Products</a></li>
+				<!-- <li><a href="#">{{this.result.data.model}}</a></li> -->
 				<li class="active">{{this.result.data.name}}</li>
 			</ul>
 		</div>
@@ -35,7 +35,7 @@
 						<div class="product-body">
 							
 							<h2 class="product-name">{{this.result.data.name}}</h2>
-							<h3 class="product-price">₹ {{this.result.data.price}} </h3>
+							<!-- <h3 class="product-price">₹ {{this.result.data.price}} </h3> -->
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -48,7 +48,7 @@
 							</div>
 							<strong>Availability: {{this.result.data.availability}}</strong>
 								
-							<p>{{this.result.data.short_description}}</p>
+							<p  [innerHTML]="this.result.data.short_description"></p>
 							
 							<div class="product-btns">
 								<div class="qty-input">

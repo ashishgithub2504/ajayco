@@ -115,6 +115,10 @@ APIURL = 'http://localhost:8765/api/webservice/';
     }).pipe(map((response:any) => response));
   }
 
+  newsdetail(slug) : Observable<Object> {
+    return this.http.get(this.APIURL+'newsdetail?slug='+slug)
+    .pipe(map((response:any) => response));
+  }
   completeOrder(payment_id,order_id) : Observable<Object> {
     return this.http.post(this.APIURL+'completeorder', {
       payment_id:payment_id, order_id:order_id

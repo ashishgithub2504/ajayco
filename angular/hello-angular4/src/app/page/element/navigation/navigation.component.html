@@ -3,23 +3,23 @@
     <!-- container -->
     <div class="container">
         <div id="responsive-nav">
-            <!-- category nav -->
-            <div class="category-nav show-on-click">
+            <!-- category nav show-on-click -->
+            <div class="category-nav {{classheader}}">
                 <span class="category-header">Categories <i class="fa fa-list"></i></span>
                 <ul [ngClass]="(step=='step')?'category-list open':'category-list'" *ngIf="this.navigation">
 
                     <li class="dropdown side-dropdown" *ngFor="let nav of this.navigation.data">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{nav.name}} <i class="fa fa-angle-right"></i></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{nav.label}} <i class="fa fa-angle-right"></i></a>
                         
-                        <div class="custom-menu" *ngIf="nav.products">
+                        <div class="custom-menu" *ngIf="nav.menu">
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="list-links">
                                         <li class="section-title">
                                             <h3 class="list-links-title">Products</h3>
                                         </li>
-                                        <li class="submenu" *ngFor="let cat of nav.products">
-                                            <a href="javascript::void(0)" routerLink="/product/{{cat.slug}}">{{cat.title}}</a>
+                                        <li class="submenu" *ngFor="let cat of nav.menu.items">
+                                            <a routerLink="/{{cat.purl}}">{{cat.label}}</a>
                                         </li>
                                     </ul>
                                     <hr class="hidden-md hidden-lg">

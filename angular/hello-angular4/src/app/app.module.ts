@@ -21,13 +21,15 @@ import { RegisterComponent } from './page/register/register.component';
 import { ProductComponent } from './page/product/product.component';
 import { CartComponent } from './page/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
-import { ModelComponent } from './page/model/model.component'
+import { ModelComponent } from './page/model/model.component';
+import { NewsComponent } from './page/news/news.component'
 
 const appRoutes: Routes = [
   { path : '', component: HomeComponent, pathMatch: 'full' },
   { path: 'pages/:id', component:AboutComponent, pathMatch: 'full' },
   { path: 'shop/:id' , component:ShopComponent,pathMatch: 'full' },
   { path: 'shop' , component:ShopComponent, pathMatch: 'full' },
+  { path: 'news/:id' , component: NewsComponent, pathMatch:'full'},
   { path: 'login', component:LoginComponent },
   { path: 'register', component:RegisterComponent },
   { path: 'product/:id', component:ProductComponent},
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     ProductComponent,
     CartComponent,
     CheckoutComponent,
-    ModelComponent
+    ModelComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

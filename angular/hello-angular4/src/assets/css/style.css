@@ -684,7 +684,10 @@ textarea.input {
   display: none;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 500px) {
+  .header-logo .logo>img {
+    width: 100%;
+  }
   #header .nav-toggle {
     display: inline-block;
   }
@@ -1707,7 +1710,15 @@ textarea.input {
 /*=========================================================
 	12 -> RESPONSIVE
 ===========================================================*/
-
+@media only screen and (max-width: 768px) {
+  .header-logo {
+    width: 60%;
+    margin: 0px;
+  }
+  .header-search {
+    width: 40%;
+  }
+}
 @media only screen and (max-width: 991px) {
   #home .home-wrap {
     margin-left: 0px;
@@ -1756,7 +1767,7 @@ textarea.input {
     clear: both;
   }
   .header-logo .logo>img {
-      width: 60%;
+      /* width: 60%; */
       float: left;
   }
 
@@ -1865,4 +1876,9 @@ textarea.input {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.details {
+  text-decoration: underline;
+    font-weight: bold;
+    font-size: 17px;
 }

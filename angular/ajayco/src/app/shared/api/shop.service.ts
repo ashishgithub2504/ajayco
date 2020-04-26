@@ -36,8 +36,8 @@ export interface ListOptions {
     providedIn: 'root'
 })
 export class ShopService {
-    APIURL = 'http://localhost:8765/api/webservice/';
-    // APIURL = 'http://jenix.in/api/webservice/';
+    // APIURL = 'http://localhost:8765/api/webservice/';
+    APIURL = 'http://jenix.in/api/webservice/';
     private loggedIn = new BehaviorSubject<boolean>(false);
     get isLoggedIn() {
       return this.loggedIn.asObservable(); // {2}
@@ -62,7 +62,10 @@ export class ShopService {
          * - power-tools = slug
          */
         // return this.http.get<Category>(`https://example.com/api/shop/categories/${slug}.json`);
-
+        
+        // return this.http.post<Product[]>(this.APIURL+'getcategory',{
+        //     slug
+        // }).pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         return getShopCategory(slug);
     }

@@ -513,7 +513,7 @@ use Cake\Core\Configure;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-<?php echo $this->Form->control('short_description', ['type' => 'textarea', 'class' => 'form-control', 'placeholder' => 'Short Description', 'label' => ['text' => "Short Description"]]); ?>
+<?php echo $this->Form->control('short_description', ['type' => 'textarea', 'class' => 'form-control ckeditor', 'placeholder' => 'Short Description', 'label' => ['text' => "Short Description"]]); ?>
 
                             </div><!-- /.form-group -->
                         </div><!-- /.col -->

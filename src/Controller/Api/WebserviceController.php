@@ -28,7 +28,7 @@ class WebserviceController extends AppController {
         $products = $this->Products->find('all',[
             'conditions' => ['status' => 1,'bestselling' => '1'],
             'fields' => [
-                'full_name' => "CONCAT(title, ' ', slug)",
+                //'full_name' => "CONCAT(title,' ',slug)",
                 "link" => "status",    
                 'id',
                 'title',
@@ -46,11 +46,11 @@ class WebserviceController extends AppController {
             ]],['order' => ['sort_order','desc']]
         )
         ->toArray();
-    
+        // print_r($products); die;
         $latest_products = $this->Products->find('all',[
             'conditions' => ['status' => 1],
             'fields' => [
-            'full_name' => "CONCAT(title, ' ', slug)",
+            // 'full_name' => "CONCAT(title, ' ', slug)",
             "link" => "status",
             'id',
             'title',
@@ -101,7 +101,7 @@ class WebserviceController extends AppController {
                     ->where(['status' => '1'])->limit(5)->toArray();
         foreach($news as $k => $val) {
             $news[$k] = [
-                'image' => Router::url('/img/uploads/news/', true).$val['image'],
+                'image' => Router::url('/timthumb.php?src=', true).'/img/uploads/news/'.$val['image'].'&w=350&h=200',
                 'title' => $val['title'],
                 'slug' => $val['slug'],
                 'shot_desc' => $val['short_desc'],
@@ -147,6 +147,7 @@ class WebserviceController extends AppController {
                 foreach($val['products'] as $k => $v) {
                     $cat[$k]['label'] = $v['title'];
                     $cat[$k]['url'] = 'shop/products/'.$v['slug'];
+                    $cat[$k]['purl'] = 'product/'.$v['slug'];
                     $cat[$k]['enabled'] = true;
                 }
             }
@@ -281,7 +282,37 @@ class WebserviceController extends AppController {
         }
         
         $this->response($response);
+    }
 
+    public function getcategory() {
+        $response = [
+            'ok' => false,
+            'status'=> 404,
+            'statusText'=> 'Page Not Found',
+            'url' => null,
+        ];
+        $categories = $this->Category->find('all', [
+            'conditions' => ['status' => 1
+                //,'slug'=>$this->request->data['slug']
+            ],
+            'fields' => ['id' ,'name'=> 'title','title','slug','url'=>'slug','image'],
+        ])->first();
+        // print_r($categories); die;
+        if(!empty($categories)) {
+            $response = [
+                'children'=> [],
+                'customFields'=> [],
+                'id'=> 40,
+                'image'=> null,
+                'items'=> 54,
+                'name'=> "Electronics",
+                'parents'=> [],
+                'path'=> "electronics",
+                'slug'=> "electronics",
+                'type'=> "shop",
+            ];
+        }
+        $this->response($response);
     }
 
     public function getproducts() {
@@ -336,6 +367,7 @@ class WebserviceController extends AppController {
                     $list[$key]['reviews'] = 12;
                     $list[$key]['availability'] = ($value['stock_status_id'] == '1') ? 'in-stock':'Out Of Stock';
                     $list[$key]['brand'] = 'jenix';
+                    $list[$key]['enquirystatus'] = $value['enquirystatus'];
                     if(!empty($value['categories'])) {
                         foreach($value['categories'] as $kk=>$vv) {
                             $list[$key]['categories'][] = $vv['title'];
@@ -464,8 +496,8 @@ class WebserviceController extends AppController {
                         'min' => 0,
                         'max' => 2000,
                         'value' => [
-                            '0',
-                            '2000'
+                            $pricelimit['0'],
+                            $pricelimit['1']
                             ]   
                     ],
                     // [
@@ -504,7 +536,7 @@ class WebserviceController extends AppController {
         $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
         $detail = $this->Products->find()
         ->select([
-            'full_name' => "CONCAT(title, ' ', slug)",
+            // 'full_name' => "CONCAT(title, ' ', slug)",
                // "link" => "status",
                 //"timthumb" => "status",
                 // 'linkwrite' => $article->get('full_name'),
@@ -552,6 +584,7 @@ class WebserviceController extends AppController {
                             'reviews'=> '20',
                             'availability'=> 'in-stock',
                             'brand'=> $detail['model'],
+                            'enquirystatus' => $detail['enquirystatus'],
                             'categories' => [],
                             'attributes' => [],
                             'customFields'=> [],

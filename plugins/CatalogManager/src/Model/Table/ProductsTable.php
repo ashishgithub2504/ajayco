@@ -170,7 +170,7 @@ class ProductsTable extends Table
 
         $validator
             ->scalar('short_description')
-            ->maxLength('short_description', 255)
+            //->maxLength('short_description', 255)
             ->requirePresence('short_description', 'create')
             ->notEmpty('short_description');
 
