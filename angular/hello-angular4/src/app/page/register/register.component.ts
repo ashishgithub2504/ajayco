@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor(public WebserviceService: WebserviceService, private router: Router) { }
   result: any = [];
   ngOnInit() {
-    this.result.title = 'Login';
+    this.result.title = 'Register';
   }
   
   onSubmit() {

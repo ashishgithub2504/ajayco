@@ -66,6 +66,26 @@ class WebserviceController extends AppController {
             'enquirystatus',
 
         ]],['order' => ['id','desc']])->toArray();
+
+        $feature_products = $this->Products->find('all',[
+            'conditions' => ['status' => 1,'is_featured' => 1],
+            'fields' => [
+            // 'full_name' => "CONCAT(title, ' ', slug)",
+            "link" => "status",
+            'id',
+            'title',
+            'slug',
+            'model',
+            'price',
+            'quantity',
+            'minimum_quantity',
+            'stock_status_id',
+            'short_description',
+            'description',
+            'image',
+            'enquirystatus',
+        ]],['order' => ['id','desc']])->toArray();
+
         // print_r($products); die;
         $banners = TableRegistry::get('BannerManager.Banners')->find()
                     ->contain(['BannerImages'=> function($q) {
@@ -118,6 +138,7 @@ class WebserviceController extends AppController {
                         'logo' => Router::url('/img/', true).Configure::read('Setting.MAIN_LOGO'),
                         'products' => $products,
                         'latest_products' => $latest_products,
+                        'feature_products' => $feature_products,
                         'banner_images' => $banners['banner_images'],
                         'news' => $news,
                         'footer' => $footer,
@@ -208,12 +229,11 @@ class WebserviceController extends AppController {
         $this->request->data = $this->request->getData('detail');
         $this->request->data['login_count'] = 0;
         $this->request->data['is_verified'] = 0;
-        $this->request->data['status'] = 0;
+        $this->request->data['status'] = '1';
         $this->Users = TableRegistry::get('UserManager.Users');
         $user = $this->Users->newEntity();
-        
         $user = $this->Users->patchEntity($user, $this->request->data);
-        
+        // pr($user); die;
         if ($this->Users->save($user)) {
             $response = ['status'=>true,'code' => 200 ,'message'=>'You have successfully registred','data' => $user];
         }else{
@@ -316,36 +336,48 @@ class WebserviceController extends AppController {
     }
 
     public function getproducts() {
+        $this->request->data = !empty($this->request->data['path'])?$this->request->data['path']:$this->request->data;
+        // print_r($this->request->data); die;
         $response = ['status'=>false,'code' => 404 ,'message'=>'No Product Found'];
         $article = new Product();
+        $limit = !empty($this->request->data['limit'])?$this->request->data['limit']:12;
+        $page = !empty($this->request->data['page'])?$this->request->data['page']:1;
+        $offset = $limit*($page-1);
+        $sort = !empty($this->request->data['sort'])?$this->request->data['sort']:'asc';
+
+
+        $orderby = ['Products.title' => $sort];
+
+        $query = $this->Products->find()->where(['Products.status' => 1]);
         
-        $query = $this->Products->find()
-                ->where(['Products.status' => 1]);
-                    
-        if(!empty($this->request->query)) {
-            $query->limit($this->request->query('limit'));
-            $query->order(['Products.created' => 'desc']);
-        }
-        if(!empty($this->request->data) && !empty($this->request->data['path'])) {
+        if(!empty($this->request->data) && !empty($this->request->data['category_id'])) {
             $query->matching('Categories',function($q){
-                return $q->where(['Categories.slug' => $this->request->data['path']]);
+                return $q->where(['Categories.slug' => $this->request->data['category_id']]);
             }); 
         } else {
             $query->contain(['Categories','ProductImages']);
         }
+
         if(!empty($this->request->query('is_featured'))) {
             $query->andWhere(['is_featured' => '1']);
         }
+
         if(!empty($this->request->query('bestselling'))) {
             $query->andWhere(['bestselling' => '1']);
         }
-        if(!empty($this->request->query('category'))) {
-            $query->matching('Categories',function($q){
-                return $q->where(['Categories.slug' => $this->request->query('category')]);
-            });
-        }
+
+        // if(!empty($this->request->query('category'))) {
+        //     $query->matching('Categories',function($q){
+        //         return $q->where(['Categories.slug' => $this->request->query('category')]);
+        //     });
+        // }
+
+        $count = $query->count();
+        $query->limit($limit)->offset($offset);
+        $query->order($orderby);
+
         $products = $query->hydrate(false)->toArray();
-        // pr($products);die;
+
         $list = [];
         if(!empty($products)){
                 foreach ($products as $key => $value) {
@@ -382,7 +414,14 @@ class WebserviceController extends AppController {
             'status'=>true,
             'code' => 200 ,
             'message'=>'List Found',
-            'data' => $list
+            'data' => [
+                'limit' => (int)$limit,
+                'offset' => (int)$offset,
+                'page' => (int)$page,
+                'sort' => $sort,
+                'pages' => (int)ceil($count/$limit),
+                'products' => $list
+            ]
         ];
         $this->response($response);
     }
@@ -600,15 +639,41 @@ class WebserviceController extends AppController {
             'message' => 'Enquiry not submited successfully',
             'code' => 404
         ];
-        $this->inquiries = TableRegistry::get('ContactManager.Inquiries');
-        $inquiries = $this->inquiries->newEntity();
-        $inquiries = $this->inquiries->patchEntity($inquiries, $this->request->data['detail']);
-        
-        if($this->inquiries->save($inquiries)) {
-            $response = ['status'=>true,'code' => 200 ,'message'=>'You enquiry has been successfully saved. we will contact  you shortly.','data' => $inquiries];
+        if(isset($this->request->data['detail'])) {
+            $this->inquiries = TableRegistry::get('ContactManager.Inquiries');
+            $inquiries = $this->inquiries->newEntity();
+            $inquiries = $this->inquiries->patchEntity($inquiries, $this->request->data['detail']);
+            
+            if($this->inquiries->save($inquiries)) {
+                $this->sendmessage($this->request->data['detail']);
+                $response = ['status'=>true,'code' => 200 ,'message'=>'You enquiry has been successfully saved. we will contact  you shortly.','data' => $inquiries];
+            }    
         }
+        
         $this->response($response);
         
+    }
+
+    public function sendmessage($data = []) {
+        // Account details
+        $apiKey = urlencode('q8RMJy5S6xY-MN4lCzGX24tkDdkQNU1tcNcwAKb6eW');
+        // Message details
+        $numbers = urlencode('919928519150,91'.$data['mobile']);
+        $sender = urlencode('TXTLCL');
+        $message = rawurlencode('Hi '. $data['first_name'].',
+        Thank you for interest in our product. our representative will call you shortly. 
+            Team Ajayco.in
+         ');
+         
+        // Prepare data for POST request
+        $data = 'apikey=' . $apiKey . '&numbers=' . $numbers . "&sender=" . $sender . "&message=" . $message;
+        // Send the GET request with cURL
+        $ch = curl_init('https://api.textlocal.in/send/?' . $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        // Process your response here
+        echo $response;
     }
 
     public function createorder() {
@@ -658,6 +723,39 @@ class WebserviceController extends AppController {
                 'comment' => Configure::read('Setting.CONTACT_US_TEXT'),
                 'location' => Configure::read('Setting.location'),
             ]
+        ];
+        $this->response($response);
+    }
+
+    public function newsdetail($slug= '') {
+        if(isset($this->request->query['slug'])){
+            $news = TableRegistry::get('News')
+                ->find()
+                ->where(['status' => '1','slug'=>$this->request->query['slug']])
+                ->first();
+            $news['image'] = Router::url('/timthumb.php?src=', true).'/img/uploads/news/'.$news['image'].'&w=850&h=200';
+        } else {
+            $news = TableRegistry::get('News')
+                    ->find()
+                    ->where(['status' => '1'])
+                    ->toArray();
+            foreach($news as $k => $val) {
+                $news[$k] = [
+                    'image' => Router::url('/timthumb.php?src=', true).'/img/uploads/news/'.$val['image'].'&w=350&h=200',
+                    'title' => $val['title'],
+                    'slug' => $val['slug'],
+                    'shot_desc' => $val['short_desc'],
+                    'long_desc' => $val['long_desc'],
+                    'date' => date('M d,Y',strtotime($val['created'])),
+                ];
+            }    
+        }
+        
+        $response = [
+            'status' => true,
+            'message' => 'List found',
+            'code' => 200,
+            'data' => $news
         ];
         $this->response($response);
     }

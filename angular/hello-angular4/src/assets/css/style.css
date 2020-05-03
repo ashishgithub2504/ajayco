@@ -994,8 +994,8 @@ textarea.input {
 
 .product.product-single .product-btns {
   margin-top: 20px;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -1751,6 +1751,9 @@ textarea.input {
   [class*='col-xs'] {
     width: 100%;
   }
+  .blog_post {
+    width: 100% !important;
+  }
   .header-logo {
     /* max-width: 30%; */
     margin-right: 10px;
@@ -1779,12 +1782,22 @@ textarea.input {
 
   .product-title {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     /* margin-top: 15px; */
     border-bottom: 1px solid #DADADA;
   }
   .toprated {
     display: none;
+  }
+  .product.product-single .product-btns {
+    margin-top: 10px;
+  }
+  .product.product-single .product-body {
+    padding: 5px;
+  }
+  .product.product-single .product-thumb {
+    margin-bottom: 5px;
+    padding: 5px;
   }
 }
 .contentLoader {
@@ -1881,4 +1894,173 @@ textarea.input {
   text-decoration: underline;
     font-weight: bold;
     font-size: 17px;
+}
+
+/*  NEWS section */
+
+.blog {
+  padding-top: 80px;
+  padding-bottom: 100px;
+  background: #FFFFFF;
+}
+.container {
+  max-width: 1170px;
+}
+.container {
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.blog .row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.blog .col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.blog_posts {
+  width: 100%;
+  flex-wrap: wrap;
+}
+.align-items-start {
+  -ms-flex-align: start!important;
+  align-items: flex-start!important;
+}
+.justify-content-between {
+  -ms-flex-pack: justify!important;
+  justify-content: space-between!important;
+}
+.flex-row {
+  -ms-flex-direction: row!important;
+  flex-direction: row!important;
+}
+.d-flex {
+  display: -ms-flexbox!important;
+  display: flex!important;
+}
+.blog_post {
+  width: calc((100% - 60px) / 3);
+  height: 290px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+  z-index: 0;
+  position: relative;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+.blog_image {
+  width: 100%;
+  height: 160px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.blog_text {
+  padding-left: 31px;
+  padding-right: 31px;
+  padding-top: 21px;
+  padding-bottom: 30px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.blog_button {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: #0e8ce4;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+.blog_button a {
+  display: block;
+  color: #FFFFFF;
+  line-height: 48px;
+  font-size: 18px;
+}
+.blog_post:hover {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  z-index: 1;
+}
+.blog_post:hover .blog_button {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* News detail page */
+.home {
+  width: 100%;
+  height: 260px;
+  background: transparent;
+  margin-top: -1px;
+}
+
+
+.home_background {
+  height: 260px;
+}
+.parallax-window {
+  min-height: 200px;
+  background: transparent;
+}
+.single_post {
+  padding-top: 25px;
+}
+.single_post .container {
+  max-width: 960px;
+}
+.single_post .row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.offset-lg-2 {
+  margin-left: 16.666667%;
+}
+.col-lg-8 {
+  -ms-flex: 0 0 66.666667%;
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+}
+.single_post_title {
+  font-size: 30px;
+  font-weight: 500;
+}
+.single_post_text {
+  margin-top: 33px;
+}
+.single_post_text p {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(0,0,0,0.7);
+  line-height: 2;
 }

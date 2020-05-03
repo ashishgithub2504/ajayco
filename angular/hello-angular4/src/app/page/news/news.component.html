@@ -1,0 +1,39 @@
+<div class="blog" *ngIf="this.news && objectLength===false">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="blog_posts d-flex flex-row align-items-start justify-content-between">
+						<!-- Blog post -->
+						<div class="blog_post" *ngFor="let new of this.news.data">
+							<div class="blog_image" [ngStyle]="{background: 'url(' + new.image + ')'}"></div>
+							<div class="blog_text">{{new.shot_desc}}</div>
+							<div class="blog_button"><a routerLink="/news/{{new.slug}}">Continue Reading</a></div>
+						</div>
+						
+					</div>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="this.news && objectLength===true">
+		<div class="home">
+			<div class="home_background parallax-window" data-parallax="scroll" [ngStyle]="{background: 'url(' + this.news.data.image + ')'}" data-speed="0.8"></div>
+		</div>
+		<div class="single_post">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1">
+						<div class="single_post_title">
+							{{this.news.data.title}}
+						</div>
+						<div class="single_post_text">
+							<p  [innerHTML]="this.news.data.long_desc"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	

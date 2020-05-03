@@ -37,4 +37,12 @@ export class NavigationComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.WebserviceService.logout();
+    localStorage.removeItem('USERINFO');
+    this.isLoggedIn$ = this.WebserviceService.isLoggedIn; // {2}
+    this.router.navigate(['/login']);
+    //return false;
+  }
+
 }

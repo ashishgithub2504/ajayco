@@ -2,7 +2,7 @@
 <div id="breadcrumb">
 		<div class="container">
 			<ul class="breadcrumb">
-				<li><a routerLink="/">Home</a></li>
+				<li><a href="#">Home</a></li>
 				<li class="active">Shop</li>
 			</ul>
 		</div>
@@ -39,7 +39,7 @@
 								<img src="{{this.products.data.timthumb}}{{this.products.data.link}}{{toprated.image}}&w=50&h=50&a=t&q=100" alt="">
 							</div>
 							<div class="product-body">
-								<h2 class="product-name"><a>{{toprated.title}}</a></h2>
+								<h2 class="product-name"><a href="#">{{toprated.title}}</a></h2>
 								<h3 class="product-price">₹--</h3>
 								<!-- <div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -71,7 +71,8 @@
 								<select class="input">
 										<option value="asc" [selected]="'asc' == this.products.data.sort">Name (A-Z)</option>
 										<option value="desc" [selected]="'desc' == this.products.data.sort">Name (Z-A)</option>
-								</select>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
 							</div>
 						</div>
 						<div class="pull-right">
@@ -88,7 +89,7 @@
 								<li *ngFor='let key of this.numbers' [ngClass]="{'active': key==this.products.data.page}">
 									{{key}}
 								</li>
-								<li><a><i class="fa fa-caret-right"></i></a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -118,7 +119,7 @@
 											<i class="fa fa-star-o empty"></i>
 										</div> -->
 										<h2 class="product-name" routerLink="/product/{{product.slug}}">
-											<a routerLink="/product/{{product.slug}}">{{product.name}}</a></h2>
+											<a href="#">{{product.name}}</a></h2>
 										<div class="product-btns">
 											<button class="primary-btn enqury-now"
 												*ngIf="product.enquirystatus; else addcart"

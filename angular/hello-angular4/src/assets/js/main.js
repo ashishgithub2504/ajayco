@@ -125,7 +125,7 @@
     infinite: true,
     speed: 300,
     dots: true,
-    arrows: false,
+    arrows: true,
     appendDots: '.product-slick-dots-2',
     responsive: [{
         breakpoint: 991,

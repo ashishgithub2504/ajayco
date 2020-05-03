@@ -29,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'pages/:id', component:AboutComponent, pathMatch: 'full' },
   { path: 'shop/:id' , component:ShopComponent,pathMatch: 'full' },
   { path: 'shop' , component:ShopComponent, pathMatch: 'full' },
+  { path: 'news' , component: NewsComponent, pathMatch:'full'},
   { path: 'news/:id' , component: NewsComponent, pathMatch:'full'},
   { path: 'login', component:LoginComponent },
   { path: 'register', component:RegisterComponent },

@@ -31,7 +31,7 @@
                 echo $this->Form->control('title',['class' => 'form-control', 'placeholder' => __('Title')]);
                 echo $this->Form->control('image',['type'=>'file','name'=>'image_file','class' => 'form-control', 'placeholder' => __('Image')]);
                 echo $this->Form->control('short_desc',['class' => 'form-control', 'placeholder' => __('Description')]);
-                echo $this->Form->control('long_desc',['class' => 'form-control', 'placeholder' => __('Long Description')]);
+                echo $this->Form->control('long_desc',['class' => 'form-control  ckeditor', 'placeholder' => __('Long Description')]);
             echo $this->Form->control('status',['options'=>[1 => "Active", 0 => "Inactive"],'class' => 'form-control']);
         ?>
 </div>

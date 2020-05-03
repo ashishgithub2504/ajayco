@@ -48,12 +48,12 @@
             <!-- Product Slick -->
             <div class="col-md-12 col-sm-6 col-xs-6">                    
                 <div class="row">
-                    <div id="product-slick-1" class="product-slick">
+                    <div id="product-slick-2" *ngIf="this.profile.products">
                         <!-- Product Single -->
                         <div class="product product-single" *ngFor="let product of this.profile.products">
                             <div class="product-thumb">
                                 <button class="main-btn quick-view" routerLink="/product/{{product.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
-                                <img src="{{this.profile.product_path}}{{product.image}}" alt="">
+                                <img src="{{this.profile.timthumb_path}}{{this.profile.product_path}}{{product.image}}&w=350&h=250" alt="">
                             </div>
                             <div class="product-body">
                                 <h3  class="product-price" *ngIf="product.enquirystatus; else showprice">
@@ -127,7 +127,7 @@
             </div>
             <!-- section title -->
             <!-- Product Single -->
-            <div class="row row-eq-height">
+            <div class="row row-eq-height grid">
                 <div class="col-md-3 col-sm-6 col-xs-6 product-title" *ngFor="let lproduct of this.profile.latest_products">
                     <div class="product product-single">
                         <div class="product-thumb">
@@ -139,13 +139,6 @@
                             <ng-template #pricetemplate>
                                 <h3 class="product-price"> ₹ --</h3>
                             </ng-template>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                            </div>
                             <h2 class="product-name"><a href="javascript:void(0)">{{lproduct.title}}</a></h2>
                             <div class="product-btns">
                                 <!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button> -->
@@ -181,17 +174,17 @@
         </ng-template>
 
         <!-- row -->
-        <div class="row"  *ngIf="this.profile; else Pickedyou">
+        <div class="row grid"  *ngIf="this.profile; else Pickedyou">
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h2 class="title">Picked For You</h2>
+                    <h2 class="title">Feature Products</h2>
                 </div>
             </div>
             <!-- section title -->
 
             <!-- Product Single -->
-            <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let lproduct of this.profile.latest_products">
+            <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let lproduct of this.profile.feature_products">
                 <div class="product product-single">
                     <div class="product-thumb">
                         <button class="main-btn quick-view" routerLink="/product/{{lproduct.slug}}"><i class="fa fa-search-plus"></i> Quick view</button>
@@ -202,16 +195,8 @@
                         <ng-template #pricetemplate>
                             <h3 class="product-price"> ₹ --</h3>
                         </ng-template>
-                        <div class="product-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o empty"></i>
-                        </div>
                         <h2 class="product-name"><a href="#">{{lproduct.title}}</a></h2>
                         <div class="product-btns">
-                            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                             <button class="primary-btn enqury-now"
                                 *ngIf="lproduct.enquirystatus; else addcart"
                                 data-toggle="modal"
@@ -304,7 +289,7 @@
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content flex-grow-1">
         <div class="modal-header">
-          <h3 class="modal-title"><img src="http://localhost:4200/assets/img/updated-logo.png" style="width:250px;"/></h3>
+          <h3 class="modal-title"><img src="assets/img/updated-logo.png" style="width:250px;"/></h3>
         </div>
         <div class="modal-body">
             <span class="details">Please provide us details:</span>
@@ -320,9 +305,9 @@
                     <input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="message" formControlName="message" ></textarea>
+                <textarea class="form-control" name="message" placeholder="Tell us about the product quantity" formControlName="message" ></textarea>
             </div>    
-            <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Signup">
+            <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Submit">
           </form>
         </div>
         <div class="modal-footer">

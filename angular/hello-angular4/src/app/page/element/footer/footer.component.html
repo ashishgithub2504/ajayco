@@ -31,11 +31,12 @@
             <!-- footer widget -->
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="footer">
-                    <h3 class="footer-header">My Account</h3>
+                    <h3 class="footer-header">My Menu</h3>
                     <ul class="list-links">
-                        <li><a routerLink="/" routerLinkActive="active">My Account</a></li>
-                        <li><a routerLink="/" routerLinkActive="active">My Wishlist</a></li>
-                        <li><a routerLink="/checkout" routerLinkActive="active">Checkout</a></li>
+                        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+                        <li><a routerLink="/pages/about-us" routerLinkActive="active">About Us</a></li>
+                        <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
+                        <li><a routerLink="/news" routerLinkActive="active">News</a></li>
                         <div  *ngIf="isLoggedIn$ | async; else logintag">
                             <li><a (click)="logout();" href="javascript::void(0)">Logout</a></li>    
                         </div>

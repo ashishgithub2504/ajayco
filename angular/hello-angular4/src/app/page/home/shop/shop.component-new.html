@@ -1,0 +1,274 @@
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Shop</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					
+					<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Filter by Categories</h3>
+						<ul class="list-links">
+							<li class="submenu" *ngFor="let cat of this.categories">
+								<a href="javascript::void(0)" routerLink="/shop/{{cat.slug}}">{{cat.title}}</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /aside widget -->
+
+					<!-- aside widget -->
+					<div class="aside toprated" *ngIf="this.products">
+						<h3 class="aside-title">Top Rated Product</h3>
+
+						<!-- widget product -->
+						<div class="product product-widget" *ngFor="let toprated of this.products.data.mostsell">
+							<div class="product-thumb">
+								<img src="{{this.products.data.timthumb}}{{this.products.data.link}}{{toprated.image}}&w=50&h=50&a=t&q=100" alt="">
+							</div>
+							<div class="product-body">
+								<h2 class="product-name"><a href="#">{{toprated.title}}</a></h2>
+								<h3 class="product-price">₹--</h3>
+								<!-- <div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div> -->
+							</div>
+						</div>
+						<!-- /widget product -->
+
+					</div>
+					<!-- /aside widget -->
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix"  *ngIf="this.products; else pageload">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span>
+								<select class="input">
+										<option value="asc" [selected]="'asc' == this.products.data.sort">Name (A-Z)</option>
+										<option value="desc" [selected]="'desc' == this.products.data.sort">Name (Z-A)</option>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Show:</span>
+									<select class="input">
+										<option value="12" [selected]="12 === this.products.data.limit">12</option>
+										<option value="24" [selected]="24 === this.products.data.limit">24</option>
+										<option value="36" [selected]="36 === this.products.data.limit">36</option>
+									</select>
+							</div>
+							<ul class="store-pages" *ngIf="this.numbers">
+								<li><span class="text-uppercase">Page:</span></li>
+								<li *ngFor='let key of this.numbers' [ngClass]="{'active': key==this.products.data.page}">
+									{{key}}
+								</li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div *ngIf="this.products.status; else notfound" class="row">
+							
+							<ul class="products-loop clearfix grid" style="display: block;">
+									
+								<li class="item post-1900 product type-product status-publish has-post-thumbnail product_brand-easymech product_cat-omni-wheel product_tag-easymech product_tag-hd-wheel product_tag-holonomic-wheel product_tag-omni-wheel product_tag-robotic-wheel product_shipping_class-normal first instock shipping-taxable purchasable product-type-simple">
+									<div class="products-entry item-wrap clearfix"> 
+										<div class="item-detail">
+											<div class="item-img products-thumb">
+												<a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">
+													<div class="product-thumb-hover">
+														<img width="150" height="200" src="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BEARING TYPE ROLLER) High Quality" srcset="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png 314w, https://robu.in/wp-content/uploads/2014/03/1900-2-316x255.png 316w" sizes="(max-width: 314px) 100vw, 314px">
+													</div>
+												</a>
+											</div>
+											<div class="item-content products-content">
+													<h4><a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality</a></h4>		
+													<!-- rating -->
+													<div class="reviews-content">
+													<div class="star"></div>
+													</div>										<!-- Price -->
+													<span class="item-price">
+														<span class="woocommerce-Price-amount amount">
+															<span class="woocommerce-Price-currencySymbol">₹</span>&nbsp;1,039.00</span>
+															<p style="font-size: 11px;display:inline;"> (inc GST)<br></p>
+															<p style="font-size: 11px;">₹ 880.51 (+18% GST extra)</p>
+														</span>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li class="item post-1900 product type-product status-publish has-post-thumbnail product_brand-easymech product_cat-omni-wheel product_tag-easymech product_tag-hd-wheel product_tag-holonomic-wheel product_tag-omni-wheel product_tag-robotic-wheel product_shipping_class-normal first instock shipping-taxable purchasable product-type-simple">
+										<div class="products-entry item-wrap clearfix"> 
+											<div class="item-detail">
+												<div class="item-img products-thumb">
+													<a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">
+														<div class="product-thumb-hover">
+															<img width="150" height="200" src="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BEARING TYPE ROLLER) High Quality" srcset="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png 314w, https://robu.in/wp-content/uploads/2014/03/1900-2-316x255.png 316w" sizes="(max-width: 314px) 100vw, 314px">
+														</div>
+													</a>
+												</div>
+												<div class="item-content products-content">
+														<h4><a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality</a></h4>		
+														<!-- rating -->
+														<div class="reviews-content">
+														<div class="star"></div>
+														</div>										<!-- Price -->
+														<span class="item-price">
+															<span class="woocommerce-Price-amount amount">
+																<span class="woocommerce-Price-currencySymbol">₹</span>&nbsp;1,039.00</span>
+																<p style="font-size: 11px;display:inline;"> (inc GST)<br></p>
+																<p style="font-size: 11px;">₹ 880.51 (+18% GST extra)</p>
+															</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="item post-1900 product type-product status-publish has-post-thumbnail product_brand-easymech product_cat-omni-wheel product_tag-easymech product_tag-hd-wheel product_tag-holonomic-wheel product_tag-omni-wheel product_tag-robotic-wheel product_shipping_class-normal first instock shipping-taxable purchasable product-type-simple">
+											<div class="products-entry item-wrap clearfix" style="height: 300px;"> 
+												<div class="item-detail">
+													<div class="item-img products-thumb">
+														<a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">
+															<div class="product-thumb-hover">
+																<img width="150" height="252" src="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BEARING TYPE ROLLER) High Quality" srcset="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png 314w, https://robu.in/wp-content/uploads/2014/03/1900-2-316x255.png 316w" sizes="(max-width: 314px) 100vw, 314px">
+															</div>
+														</a>
+													</div>
+													<div class="item-content products-content">
+															<h4><a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality</a></h4>		
+															<!-- rating -->
+															<div class="reviews-content">
+															<div class="star"></div>
+															</div>										<!-- Price -->
+															<span class="item-price">
+																<span class="woocommerce-Price-amount amount">
+																	<span class="woocommerce-Price-currencySymbol">₹</span>&nbsp;1,039.00</span>
+																	<p style="font-size: 11px;display:inline;"> (inc GST)<br></p>
+																	<p style="font-size: 11px;">₹ 880.51 (+18% GST extra)</p>
+																</span>
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<li class="item post-1900 product type-product status-publish has-post-thumbnail product_brand-easymech product_cat-omni-wheel product_tag-easymech product_tag-hd-wheel product_tag-holonomic-wheel product_tag-omni-wheel product_tag-robotic-wheel product_shipping_class-normal first instock shipping-taxable purchasable product-type-simple">
+												<div class="products-entry item-wrap clearfix" style="height: 300px;"> 
+													<div class="item-detail">
+														<div class="item-img products-thumb">
+															<a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">
+																<div class="product-thumb-hover">
+																	<img width="150" height="252" src="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BEARING TYPE ROLLER) High Quality" srcset="https://robu.in/wp-content/uploads/2014/03/1900-2-314x252.png 314w, https://robu.in/wp-content/uploads/2014/03/1900-2-316x255.png 316w" sizes="(max-width: 314px) 100vw, 314px">
+																</div>
+															</a>
+														</div>
+														<div class="item-content products-content">
+																<h4><a href="https://robu.in/product/100mm-double-plastic-omni-wheel-basic/" title="EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality">EasyMech Yellow 100mm Double Glass Fiber Omni Wheel (BUSH TYPE ROLLER) High Quality</a></h4>		
+																<!-- rating -->
+																<div class="reviews-content">
+																<div class="star"></div>
+																</div>										<!-- Price -->
+																<span class="item-price">
+																	<span class="woocommerce-Price-amount amount">
+																		<span class="woocommerce-Price-currencySymbol">₹</span>&nbsp;1,039.00</span>
+																		<p style="font-size: 11px;display:inline;"> (inc GST)<br></p>
+																		<p style="font-size: 11px;">₹ 880.51 (+18% GST extra)</p>
+																	</span>
+														</div>
+													</div>
+												</div>
+											</li>
+							</ul>
+							
+						</div>
+						<!-- /row -->
+						<ng-template #notfound>
+								{{this.products.message}}
+						</ng-template>
+					</div>
+					<!-- /STORE -->
+
+					<ng-template #pageload>
+							<div class="contentLoader">
+									<div class="animated-background" style="height: 150px;"> </div>
+									<div class="animated-backgroundlarge firstRow" style="height: 10px; margin-bottom: 10px;"> </div>
+									<div class="animated-backgroundlarge secondRow" style="height: 10px; width: 80%; margin-bottom: 10px;"> </div>
+									<div class="animated-backgroundlarge secondRow" style="height: 10px; width: 70%;"> </div>
+							</div>
+					</ng-template>
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- Enquiry form here -->
+<div class="modal" tabindex="-1" role="dialog" id="enquiry">
+		<div class="modal-dialog modal-sm" role="document">
+		  <div class="modal-content flex-grow-1">
+			<div class="modal-header">
+			  <h3 class="modal-title">Enquiry Form!</h3>
+			</div>
+			<div class="modal-body">
+			  <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
+				  <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
+				<div class="form-group">
+					<input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
+				</div>
+				<div class="form-group">
+					<input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+				</div>
+				<div class="form-group">
+						<input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" name="message" formControlName="message" ></textarea>
+				</div>    
+				<input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Signup">
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button
+				type="button"
+				data-dismiss="modal"
+				class="mx-auto btn btn-secondary"
+			  >
+				Close
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </div>
