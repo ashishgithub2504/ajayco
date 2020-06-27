@@ -64,7 +64,7 @@ $cakeDescription = Configure::read("Setting.SYSTEM_APPLICATION_NAME");
                 echo $this->Html->image(Configure::read("Setting.MAIN_LOGO"), ["class" => "logo-default", "alt" => Configure::read("Setting.TITLE"), "height" => 245]);
 
                 ?>
-            <p style="font-weight: bold; font-family: initial;font-size: -webkit-xxx-large;">Ajay & Co.</p>
+            <p style="font-weight: bold; font-family: initial;font-size: -webkit-xxx-large;">Jenix.in</p>
             </div>
             <?= $this->Flash->render(); ?>
             <?= $this->fetch('content') ?>

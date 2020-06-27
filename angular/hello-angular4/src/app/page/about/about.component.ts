@@ -18,7 +18,8 @@ export class AboutComponent implements OnInit {
   ngOnInit() { 
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.staticPage(routeParams.id).subscribe((data) => {
-        this.result = data; 
+        this.result = data;
+        console.log(this.result); 
         this.onActivate(this);      
       });
     });

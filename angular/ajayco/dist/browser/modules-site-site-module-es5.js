@@ -7,7 +7,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"block about-us\">\r\n    <div class=\"about-us__image\"></div>\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-12 col-xl-10\">\r\n                <div class=\"about-us__body\">\r\n                    <h1 class=\"about-us__title\">About Us</h1>\r\n                    <div class=\"about-us__text typography\">\r\n                        <p>\r\n                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacus metus, convallis ut leo nec, tincidunt\r\n                            eleifend justo. Ut felis orci, hendrerit a pulvinar et, gravida ac lorem. Sed vitae molestie sapien, at\r\n                            sollicitudin tortor.\r\n                        </p>\r\n                        <p>\r\n                            Duis id volutpat libero, id vestibulum purus.Donec euismod accumsan felis,egestas lobortis velit tempor vitae.\r\n                            Integer eget velit fermentum, dignissim odio non, bibendum velit.\r\n                        </p>\r\n                    </div>\r\n                    <div class=\"about-us__team\">\r\n                        <h2 class=\"about-us__team-title\">Meat Our Team</h2>\r\n                        <div class=\"about-us__team-subtitle text-muted\">Want to work in our friendly team?<br><a routerLink=\"../contact-us\">Contact us</a> and we will consider your candidacy.</div>\r\n                        <div class=\"about-us__teammates teammates\">\r\n                            <owl-carousel-o [options]=\"carouselOptions\" appOwlPreventClick>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-1.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Michael Russo</div>\r\n                                        <div class=\"teammate__position text-muted\">Chief Executive Officer</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-2.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Katherine Miller</div>\r\n                                        <div class=\"teammate__position text-muted\">Marketing Officer</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-3.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Anthony Harris</div>\r\n                                        <div class=\"teammate__position text-muted\">Finance Director</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                            </owl-carousel-o>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"block about-us\">\r\n    <div class=\"about-us__image\"></div>\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-12 col-xl-10\">\r\n                <div class=\"about-us__body\" *ngIf=\"resp\">\r\n                    <h1 class=\"about-us__title\">{{resp.title}}</h1>\r\n                    <div class=\"about-us__text typography\" [innerHTML]=\"resp.description\">\r\n                    </div>\r\n                    <div class=\"about-us__team\">\r\n                        <h2 class=\"about-us__team-title\">Meat Our Team</h2>\r\n                        <div class=\"about-us__team-subtitle text-muted\">Want to work in our friendly team?<br><a routerLink=\"../contact-us\">Contact us</a> and we will consider your candidacy.</div>\r\n                        <div class=\"about-us__teammates teammates\">\r\n                            <owl-carousel-o [options]=\"carouselOptions\" appOwlPreventClick>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-1.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Michael Russo</div>\r\n                                        <div class=\"teammate__position text-muted\">Chief Executive Officer</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-2.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Katherine Miller</div>\r\n                                        <div class=\"teammate__position text-muted\">Marketing Officer</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                                <ng-template carouselSlide>\r\n                                    <div class=\"teammates__item teammate\">\r\n                                        <div class=\"teammate__avatar\">\r\n                                            <img src=\"assets/images/teammates/teammate-3.jpg\" alt=\"\">\r\n                                        </div>\r\n                                        <div class=\"teammate__name\">Anthony Harris</div>\r\n                                        <div class=\"teammate__position text-muted\">Finance Director</div>\r\n                                    </div>\r\n                                </ng-template>\r\n                            </owl-carousel-o>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-components/page-components.component.html": 
@@ -40,7 +40,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<app-block-map></app-block-map>\r\n\r\n<app-page-header [header]=\"'Contact Us'\" [breadcrumbs]=\"[\r\n    {label: 'Home',       url: '../../'},\r\n    {label: 'Contact Us', url: ''}\r\n]\"></app-page-header>\r\n\r\n<div class=\"block\">\r\n    <div class=\"container\">\r\n        <div class=\"card mb-0\">\r\n            <div class=\"card-body contact-us\">\r\n                <div class=\"contact-us__container\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-12 col-lg-6 pb-4 pb-lg-0\">\r\n                            <h4 class=\"contact-us__header card-title\">Our Address</h4>\r\n\r\n                            <div class=\"contact-us__address\">\r\n                                <p>\r\n                                    715 Fake Ave, Apt. 34, New York, NY 10021 USA<br>\r\n                                    Email: stroyka@example.com<br>\r\n                                    Phone Number: +1 754 000-00-00\r\n                                </p>\r\n\r\n                                <p>\r\n                                    <strong>Opening Hours</strong><br>\r\n                                    Monday to Friday: 8am-8pm<br>\r\n                                    Saturday: 8am-6pm<br>\r\n                                    Sunday: 10am-4pm\r\n                                </p>\r\n\r\n                                <p>\r\n\r\n                                    <strong>Comment</strong><br>\r\n                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit suscipit mi, non\r\n                                    tempor nulla finibus eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n                                </p>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-12 col-lg-6\">\r\n                            <h4 class=\"contact-us__header card-title\">Leave us a Message</h4>\r\n\r\n                            <form>\r\n                                <div class=\"form-row\">\r\n                                    <div class=\"form-group col-md-6\">\r\n                                        <label for=\"form-name\">Your Name</label>\r\n                                        <input type=\"text\" id=\"form-name\" class=\"form-control\" placeholder=\"Your Name\">\r\n                                    </div>\r\n                                    <div class=\"form-group col-md-6\">\r\n                                        <label for=\"form-email\">Email</label>\r\n                                        <input type=\"email\" id=\"form-email\" class=\"form-control\" placeholder=\"Email Address\">\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label for=\"form-subject\">Subject</label>\r\n                                    <input type=\"text\" id=\"form-subject\" class=\"form-control\" placeholder=\"Subject\">\r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <label for=\"form-message\">Message</label>\r\n                                    <textarea id=\"form-message\" class=\"form-control\" rows=\"4\"></textarea>\r\n                                </div>\r\n                                <button type=\"submit\" class=\"btn btn-primary\">Send Message</button>\r\n                            </form>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<app-block-map></app-block-map>\n\n<app-page-header [header]=\"'Contact Us'\" [breadcrumbs]=\"[\n    {label: 'Home',       url: '../../'},\n    {label: 'Contact Us', url: ''}\n]\"></app-page-header>\n\n<div class=\"block\">\n    <div class=\"container\">\n        <div class=\"card mb-0\">\n            <div class=\"card-body contact-us\">\n                <div class=\"contact-us__container\">\n                    <div class=\"row\">\n                        <div class=\"col-12 col-lg-6 pb-4 pb-lg-0\">\n                            <h4 class=\"contact-us__header card-title\">Our Address</h4>\n\n                            <div *ngIf=\"resp\" class=\"contact-us__address\">\n                                <p>\n                                    {{resp.address}}<br>\n                                    Email: {{resp.email}}<br>\n                                    Phone Number: {{resp.mobile}}\n                                </p>\n\n                                <p>\n                                    <strong>Opening Hours</strong><br>\n                                    {{resp.openinghours}}\n                                </p>\n\n                                <p>\n\n                                    <strong>Comment</strong><br>\n                                    {{resp.comment}}\n                                </p>\n                            </div>\n                        </div>\n\n                        <div class=\"col-12 col-lg-6\">\n                            <h4 class=\"contact-us__header card-title\">Leave us a Message</h4>\n\n                            <form>\n                                <div class=\"form-row\">\n                                    <div class=\"form-group col-md-6\">\n                                        <label for=\"form-name\">Your Name</label>\n                                        <input type=\"text\" id=\"form-name\" class=\"form-control\" placeholder=\"Your Name\">\n                                    </div>\n                                    <div class=\"form-group col-md-6\">\n                                        <label for=\"form-email\">Email</label>\n                                        <input type=\"email\" id=\"form-email\" class=\"form-control\" placeholder=\"Email Address\">\n                                    </div>\n                                </div>\n                                <div class=\"form-group\">\n                                    <label for=\"form-subject\">Subject</label>\n                                    <input type=\"text\" id=\"form-subject\" class=\"form-control\" placeholder=\"Subject\">\n                                </div>\n                                <div class=\"form-group\">\n                                    <label for=\"form-message\">Message</label>\n                                    <textarea id=\"form-message\" class=\"form-control\" rows=\"4\"></textarea>\n                                </div>\n                                <button type=\"submit\" class=\"btn btn-primary\">Send Message</button>\n                            </form>\n\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-faq/page-faq.component.html": 
@@ -62,7 +62,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<app-page-header [breadcrumbs]=\"[\r\n    {label: 'Home',                 url: '../../'},\r\n    {label: 'Terms And Conditions', url: ''}\r\n]\"></app-page-header>\r\n\r\n<div class=\"block\">\r\n    <div class=\"container\">\r\n        <div class=\"document\">\r\n            <div class=\"document__header\">\r\n                <h1 class=\"document__title\">Terms And Conditions</h1>\r\n                <div class=\"document__subtitle\">This Agreement was last modified on 27 May 2018.</div>\r\n            </div>\r\n            <div class=\"document__content typography\">\r\n                <p>\r\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis neque ut purus fermentum, ac pretium\r\n                    nibh facilisis. Vivamus venenatis viverra iaculis. Suspendisse tempor orci non sapien ullamcorper dapibus.\r\n                    Suspendisse at velit diam. Donec pharetra nec enim blandit vulputate. Suspendisse potenti. Pellentesque et\r\n                    molestie ante. In feugiat ante vitae ultricies malesuada.\r\n                </p>\r\n\r\n                <h2>Definitions</h2>\r\n\r\n                <ol>\r\n                    <li>\r\n                        <strong>Risus</strong> — Morbi posuere eleifend sollicitudin. Praesent eget ante in enim scelerisque\r\n                        scelerisque. Donec mi lorem, molestie a sapien non, laoreet convallis felis. In semper felis in lacus\r\n                        venenatis, sit amet commodo leo interdum. Maecenas congue ut leo et auctor.\r\n                    </li>\r\n                    <li>\r\n                        <strong>Praesent</strong> — Class aptent taciti sociosqu ad litora torquent per conubia nostra, per\r\n                        inceptos himenaeos. Nulla orci ante, viverra in imperdiet in, pharetra et leo\r\n                    </li>\r\n                    <li>\r\n                        <strong>Vestibulum</strong> — Vestibulum arcu tellus, aliquam vel fermentum vestibulum, lacinia pulvinar\r\n                        ipsum. In hac habitasse platea dictumst. Integer felis libero, blandit scelerisque mauris eget, porta\r\n                        elementum sapien. Mauris luctus arcu non enim lobortis gravida.\r\n                    </li>\r\n                </ol>\r\n\r\n                <h2>Ornare dolor</h2>\r\n\r\n                <p>\r\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis neque ut purus fermentum, ac pretium\r\n                    nibh facilisis. Vivamus venenatis viverra iaculis. Suspendisse tempor orci non sapien ullamcorper dapibus.\r\n                    Suspendisse at velit diam. Donec pharetra nec enim blandit vulputate. Suspendisse potenti. Pellentesque et\r\n                    molestie ante. In feugiat ante vitae ultricies malesuada.\r\n                </p>\r\n\r\n                <p>For information about how to contact us, please visit our <a routerLink=\"/site/contact-us\">contact page</a>.</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<app-page-header [breadcrumbs]=\"[\r\n    {label: 'Home',                 url: '../../'},\r\n    {label: 'Terms And Conditions', url: ''}\r\n]\"></app-page-header>\r\n\r\n<div class=\"block\">\r\n    <div class=\"container\">\r\n        <div class=\"document\">\r\n            <div class=\"document__header\">\r\n                <h1 class=\"document__title\">{{resp.title}}</h1>\r\n                <div class=\"document__subtitle\">This Agreement was last modified on 27 May 2018.</div>\r\n            </div>\r\n            <div class=\"document__content typography\" [innerHTML]=\"resp.description\">\r\n            \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-typography/page-typography.component.html": 
@@ -99,9 +99,11 @@
             /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
             /* harmony import */ var _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../shared/services/direction.service */ "./src/app/shared/services/direction.service.ts");
+            /* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
             var PageAboutUsComponent = /** @class */ (function () {
-                function PageAboutUsComponent(direction) {
+                function PageAboutUsComponent(direction, ShopService) {
                     this.direction = direction;
+                    this.ShopService = ShopService;
                     this.carouselOptions = {
                         nav: false,
                         dots: true,
@@ -113,10 +115,18 @@
                         rtl: this.direction.isRTL()
                     };
                 }
+                PageAboutUsComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.ShopService.getStatic('about-us').subscribe(function (data) {
+                        _this.resp = data;
+                        console.log(_this.resp);
+                    });
+                };
                 return PageAboutUsComponent;
             }());
             PageAboutUsComponent.ctorParameters = function () { return [
-                { type: _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_2__["DirectionService"] }
+                { type: _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_2__["DirectionService"] },
+                { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"] }
             ]; };
             PageAboutUsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -124,7 +134,8 @@
                     template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-about-us.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-about-us/page-about-us.component.html")).default,
                     styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-about-us.component.scss */ "./src/app/modules/site/pages/page-about-us/page-about-us.component.scss")).default]
                 }),
-                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_direction_service__WEBPACK_IMPORTED_MODULE_2__["DirectionService"]])
+                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_direction_service__WEBPACK_IMPORTED_MODULE_2__["DirectionService"],
+                    _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"]])
             ], PageAboutUsComponent);
             /***/ 
         }),
@@ -225,18 +236,29 @@
             /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageContactUsComponent", function () { return PageContactUsComponent; });
             /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
             var PageContactUsComponent = /** @class */ (function () {
-                function PageContactUsComponent() {
+                function PageContactUsComponent(ShopService) {
+                    this.ShopService = ShopService;
                 }
+                PageContactUsComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.ShopService.getContact().subscribe(function (data) {
+                        _this.resp = data;
+                    });
+                };
                 return PageContactUsComponent;
             }());
+            PageContactUsComponent.ctorParameters = function () { return [
+                { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"] }
+            ]; };
             PageContactUsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
                     selector: 'app-contact-us',
                     template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-contact-us.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-contact-us/page-contact-us.component.html")).default,
                     styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-contact-us.component.scss */ "./src/app/modules/site/pages/page-contact-us/page-contact-us.component.scss")).default]
                 }),
-                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"]])
             ], PageContactUsComponent);
             /***/ 
         }),
@@ -299,18 +321,30 @@
             /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageTermsComponent", function () { return PageTermsComponent; });
             /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
             var PageTermsComponent = /** @class */ (function () {
-                function PageTermsComponent() {
+                function PageTermsComponent(ShopService) {
+                    this.ShopService = ShopService;
                 }
+                PageTermsComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.ShopService.getStatic('terms-conditions').subscribe(function (data) {
+                        _this.resp = data;
+                        console.log(_this.resp);
+                    });
+                };
                 return PageTermsComponent;
             }());
+            PageTermsComponent.ctorParameters = function () { return [
+                { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"] }
+            ]; };
             PageTermsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
                     selector: 'app-terms',
                     template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-terms.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-terms/page-terms.component.html")).default,
                     styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-terms.component.scss */ "./src/app/modules/site/pages/page-terms/page-terms.component.scss")).default]
                 }),
-                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"]])
             ], PageTermsComponent);
             /***/ 
         }),
@@ -336,18 +370,26 @@
             /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageTypographyComponent", function () { return PageTypographyComponent; });
             /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
             var PageTypographyComponent = /** @class */ (function () {
-                function PageTypographyComponent() {
+                function PageTypographyComponent(shop) {
+                    this.shop = shop;
                 }
+                PageTypographyComponent.prototype.ngOnInit = function () {
+                    this.page = this.shop.getStatic('about_us');
+                };
                 return PageTypographyComponent;
             }());
+            PageTypographyComponent.ctorParameters = function () { return [
+                { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"] }
+            ]; };
             PageTypographyComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
                     selector: 'app-typography',
                     template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-typography.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/site/pages/page-typography/page-typography.component.html")).default,
                     styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-typography.component.scss */ "./src/app/modules/site/pages/page-typography/page-typography.component.scss")).default]
                 }),
-                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+                tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"]])
             ], PageTypographyComponent);
             /***/ 
         }),

@@ -17,8 +17,8 @@ export class WebserviceService {
   get isLoading() {
     return this.loading.asObservable();
   }
-APIURL = 'http://localhost:8765/api/webservice/';
-// APIURL = 'http://jenix.in/api/webservice/';
+// APIURL = 'http://localhost:8765/api/webservice/';
+APIURL = 'http://admin.jenix.in/api/webservice/';
   constructor(private http:HttpClient,private router: Router) { }
 
   home() : Observable<object>{
@@ -110,9 +110,9 @@ APIURL = 'http://localhost:8765/api/webservice/';
     .pipe(map((response:any) => response));
   }
 
-  createOrder(detail,price) : Observable<Object> {
+  createOrder(detail,price,txnid,userInfo) : Observable<Object> {
     return this.http.post(this.APIURL+'createorder', {
-      detail,price
+      detail,price,txnid,userInfo
     }).pipe(map((response:any) => response));
   }
 

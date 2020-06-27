@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"block-map block\">\r\n    <div class=\"block-map__body\">\r\n        <iframe src='https://maps.google.com/maps?q=Holbrook-Palmer%20Park&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed'\r\n                frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"block-map block\">\n    <div class=\"block-map__body\">\n        <iframe src='https://maps.google.com/maps?q=Holbrook-Palmer%20Park&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed'\n                frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -152,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- .block-products -->\r\n<div class=\"block block-products block-products--layout--{{ layout }}\">\r\n    <div class=\"container\">\r\n        <app-block-header [header]=\"header\"></app-block-header>\r\n\r\n        <div class=\"block-products__body\">\r\n            <ng-template #largeTemplate>\r\n                <ng-container *ngIf=\"large !== null\">\r\n                    <div class=\"block-products__featured\">\r\n                        <div class=\"block-products__featured-item\">\r\n                            <app-product-card [product]=\"large\"></app-product-card>\r\n                        </div>\r\n                    </div>\r\n                </ng-container>\r\n            </ng-template>\r\n            <ng-template #smallsTemplate>\r\n                <div *ngIf=\"smalls.length > 0\" class=\"block-products__list\">\r\n                    <div *ngFor=\"let product of smalls\" class=\"block-products__list-item\">\r\n                        <app-product-card [product]=\"product\"></app-product-card>\r\n                    </div>\r\n                </div>\r\n            </ng-template>\r\n\r\n            <ng-container *ngIf=\"layout === 'large-last'\" [ngTemplateOutlet]=\"smallsTemplate\"></ng-container>\r\n            <ng-container [ngTemplateOutlet]=\"largeTemplate\"></ng-container>\r\n            <ng-container *ngIf=\"layout === 'large-first'\" [ngTemplateOutlet]=\"smallsTemplate\"></ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!-- .block-products / end -->\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- .block-products -->\r\n<div class=\"block block-products block-products--layout--{{ layout }}\">\r\n    <div class=\"container\">\r\n        <app-block-header [header]=\"header\"></app-block-header>\r\n\r\n        <div class=\"block-products__body\">\r\n            <ng-template #largeTemplate>\r\n                <ng-container *ngIf=\"large !== null\">\r\n                    <div class=\"block-products__featured\">\r\n                        <div class=\"block-products__featured-item\">\r\n                            <app-product-card [product]=\"large\"></app-product-card>\r\n                        </div>\r\n                    </div>\r\n                </ng-container>\r\n            </ng-template>\r\n            <ng-template #smallsTemplate>\r\n                <div *ngIf=\"smalls\" class=\"block-products__list\">\r\n                    <div *ngFor=\"let product of smalls\" class=\"block-products__list-item\">\r\n                        <app-product-card [product]=\"product\"></app-product-card>\r\n                    </div>\r\n                </div>\r\n            </ng-template>\r\n\r\n            <ng-container *ngIf=\"layout === 'large-last'\" [ngTemplateOutlet]=\"smallsTemplate\"></ng-container>\r\n            <ng-container [ngTemplateOutlet]=\"largeTemplate\"></ng-container>\r\n            <ng-container *ngIf=\"layout === 'large-first'\" [ngTemplateOutlet]=\"smallsTemplate\"></ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!-- .block-products / end -->\r\n");
 
 /***/ }),
 
@@ -269,7 +269,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ul class=\"nav-links__list\">\r\n    <li\r\n        *ngFor=\"let item of items\"\r\n        class=\"nav-links__item\"\r\n        [ngClass]=\"{\r\n            'nav-links__item--with-submenu': item.menu,\r\n            'nav-links__item--hover': hoveredItem === item\r\n        }\"\r\n        (mouseenter)=\"onItemMouseEnter(item, $event)\"\r\n        (mouseleave)=\"onItemMouseLeave(item)\"\r\n    >\r\n\r\n        <ng-template #link>\r\n            <span>\r\n                {{ item.label }}\r\n                <app-icon *ngIf=\"item.menu\" class=\"nav-links__arrow\" name=\"arrow-rounded-down-9x6\" size=\"9x6\"></app-icon>\r\n            </span>\r\n        </ng-template>\r\n\r\n        <a *ngIf=\"!item.external\" [routerLink]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n        <a *ngIf=\"item.external\" [href]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n\r\n        <div *ngIf=\"item.menu && item.menu.type == 'menu'\" class=\"nav-links__menu\">\r\n            <app-header-menu [items]=\"item.menu.items\" (itemClick)=\"onSubItemClick()\"></app-header-menu>\r\n        </div>\r\n        <div *ngIf=\"item.menu && item.menu.type == 'megamenu'\" class=\"nav-links__megamenu nav-links__megamenu--size--{{ item.menu.size }}\">\r\n            <app-header-megamenu [menu]=\"item.menu\" (itemClick)=\"onSubItemClick()\"></app-header-megamenu>\r\n        </div>\r\n    </li>\r\n</ul>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ul class=\"nav-links__list\" *ngIf=\"loginValue\">\r\n    <li\r\n        *ngFor=\"let item of items\"\r\n        class=\"nav-links__item\"\r\n        [ngClass]=\"{\r\n            'nav-links__item--with-submenu': item.menu,\r\n            'nav-links__item--hover': hoveredItem === item\r\n        }\"\r\n        (mouseenter)=\"onItemMouseEnter(item, $event)\"\r\n        (mouseleave)=\"onItemMouseLeave(item)\"\r\n    >\r\n\r\n        <ng-template #link>\r\n            <span>\r\n                {{ item.label }}\r\n                <app-icon *ngIf=\"item.menu\" class=\"nav-links__arrow\" name=\"arrow-rounded-down-9x6\" size=\"9x6\"></app-icon>\r\n            </span>\r\n        </ng-template>\r\n\r\n        <a *ngIf=\"!item.external\" [routerLink]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n        <!-- <a *ngIf=\"item.external\" [href]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a> -->\r\n\r\n        <div *ngIf=\"item.menu && item.menu.type == 'menu'\" class=\"nav-links__menu\">\r\n            <app-header-menu [items]=\"item.menu.items\" [islogin]=\"loginValue\" (itemClick)=\"onSubItemClick()\"></app-header-menu>\r\n        </div>\r\n        <div *ngIf=\"item.menu && item.menu.type == 'megamenu'\" class=\"nav-links__megamenu nav-links__megamenu--size--{{ item.menu.size }}\">\r\n            <app-header-megamenu [menu]=\"item.menu\" (itemClick)=\"onSubItemClick()\"></app-header-megamenu>\r\n        </div>\r\n    </li>\r\n</ul>\r\n\r\n<ul class=\"nav-links__list\" *ngIf=\"!loginValue\">\r\n        <li\r\n            *ngFor=\"let item of menuitems\"\r\n            class=\"nav-links__item\"\r\n            [ngClass]=\"{\r\n                'nav-links__item--with-submenu': item.menu,\r\n                'nav-links__item--hover': hoveredItem === item\r\n            }\"\r\n            (mouseenter)=\"onItemMouseEnter(item, $event)\"\r\n            (mouseleave)=\"onItemMouseLeave(item)\"\r\n        >\r\n    \r\n            <ng-template #link>\r\n                <span>\r\n                    {{ item.label }}\r\n                    <app-icon *ngIf=\"item.menu\" class=\"nav-links__arrow\" name=\"arrow-rounded-down-9x6\" size=\"9x6\"></app-icon>\r\n                </span>\r\n            </ng-template>\r\n    \r\n            <a *ngIf=\"!item.external\" [routerLink]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n            <!-- <a *ngIf=\"item.external\" [href]=\"item.url\" [target]=\"item.target\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a> -->\r\n    \r\n            <div *ngIf=\"item.menu && item.menu.type == 'menu'\" class=\"nav-links__menu\">\r\n                <app-header-menu [items]=\"item.menu.items\" [islogin]=\"loginValue\" (itemClick)=\"onSubItemClick()\"></app-header-menu>\r\n            </div>\r\n            <div *ngIf=\"item.menu && item.menu.type == 'megamenu'\" class=\"nav-links__megamenu nav-links__megamenu--size--{{ item.menu.size }}\">\r\n                <app-header-megamenu [menu]=\"item.menu\" (itemClick)=\"onSubItemClick()\"></app-header-megamenu>\r\n            </div>\r\n        </li>\r\n    </ul>    ");
 
 /***/ }),
 
@@ -295,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- .menu -->\r\n<ul class=\"menu\" [ngClass]=\"{'menu--layout--classic': layout === 'classic', 'menu--layout--topbar': layout === 'topbar'}\">\r\n    <li\r\n        *ngFor=\"let item of items\"\r\n        class=\"menu__item\"\r\n        [ngClass]=\"{\r\n            'menu__item--hover': item === hoveredItem\r\n        }\"\r\n        (mouseenter)=\"onItemMouseEnter(item)\"\r\n        (mouseleave)=\"onItemMouseLeave(item)\"\r\n    >\r\n\r\n        <ng-template #link>\r\n            {{ item.label }}\r\n            <app-icon *ngIf=\"item.items\" class=\"menu__arrow\" name=\"arrow-rounded-right-6x9\" size=\"6x9\"></app-icon>\r\n        </ng-template>\r\n\r\n        <a *ngIf=\"!item.external\" [routerLink]=\"item.url\" [target]=\"item.target\" (click)=\"itemClick.emit(item)\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n        <a *ngIf=\"item.external\" [href]=\"item.url\" [target]=\"item.target\" (click)=\"itemClick.emit(item)\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a>\r\n\r\n        <div *ngIf=\"item.items\" class=\"menu__submenu\">\r\n            <app-header-menu [items]=\"item.items\" (itemClick)=\"onSubItemClick($event)\"></app-header-menu>\r\n        </div>\r\n    </li>\r\n</ul>\r\n<!-- .menu / end -->\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- .menu -->\n<ul class=\"menu\" [ngClass]=\"{'menu--layout--classic': layout === 'classic', 'menu--layout--topbar': layout === 'topbar'}\">\n    <li\n        *ngFor=\"let item of items\"\n        class=\"menu__item\"\n        [ngClass]=\"{\n            'menu__item--hover': item === hoveredItem\n        }\"\n        (mouseenter)=\"onItemMouseEnter(item)\"\n        (mouseleave)=\"onItemMouseLeave(item)\"\n    >\n\n        <ng-template #link>\n            {{ item.label }}\n            <app-icon *ngIf=\"item.items\" class=\"menu__arrow\" name=\"arrow-rounded-right-6x9\" size=\"6x9\"></app-icon>\n        </ng-template>\n\n        <ng-template #linkauth>\n            {{ item.label }}\n            <app-icon *ngIf=\"item.items\" class=\"menu__arrow\" name=\"arrow-rounded-right-6x9\" size=\"6x9\"></app-icon>\n        </ng-template>\n\n        <!-- <a *ngIf=\"!item.external\" [routerLink]=\"item.url\" [target]=\"item.target\" (click)=\"itemClick.emit(item)\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a> -->\n        <a *ngIf=\"item.external\" [routerLink]=\"item.url\" [target]=\"item.target\" (click)=\"itemClick.emit(item)\"><ng-container [ngTemplateOutlet]=\"linkauth\"></ng-container></a>\n        <a *ngIf=\"item.enabled\" [routerLink]=\"item.url\" [target]=\"item.target\" (click)=\"itemClick.emit(item)\"><ng-container [ngTemplateOutlet]=\"link\"></ng-container></a> \n        <div *ngIf=\"item.items\" class=\"menu__submenu\">\n            <app-header-menu [items]=\"item.items\" (itemClick)=\"onSubItemClick($event)\"></app-header-menu>\n        </div>\n    </li>\n</ul>\n<!-- .menu / end -->\n");
 
 /***/ }),
 
@@ -308,7 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"nav-panel\">\r\n    <div class=\"nav-panel__container container\">\r\n        <div class=\"nav-panel__row\">\r\n            <div *ngIf=\"logo\" class=\"nav-panel__logo\">\r\n                <a [routerLink]=\"root.home()\">\r\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120px\" height=\"20px\">\r\n                        <path d=\"M118.5,20h-1.1c-0.6,0-1.2-0.4-1.4-1l-1.5-4h-6.1l-1.5,4c-0.2,0.6-0.8,1-1.4,1h-1.1c-1,0-1.8-1-1.4-2l1.1-3\r\n                                 l1.5-4l3.6-10c0.2-0.6,0.8-1,1.4-1h1.6c0.6,0,1.2,0.4,1.4,1l3.6,10l1.5,4l1.1,3C120.3,19,119.5,20,118.5,20z M111.5,6.6l-1.6,4.4\r\n                                 h3.2L111.5,6.6z M99.5,20h-1.4c-0.4,0-0.7-0.2-0.9-0.5L94,14l-2,3.5v1c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-17\r\n                                 C88,0.7,88.7,0,89.5,0h1C91.3,0,92,0.7,92,1.5v8L94,6l3.2-5.5C97.4,0.2,97.7,0,98.1,0h1.4c1.2,0,1.9,1.3,1.3,2.3L96.3,10l4.5,7.8\r\n                                 C101.4,18.8,100.7,20,99.5,20z M80.3,11.8L80,12.3v6.2c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-6.2l-0.3-0.5l-5.5-9.5\r\n                                 c-0.6-1,0.2-2.3,1.3-2.3h1.4c0.4,0,0.7,0.2,0.9,0.5L76,4.3l2,3.5l2-3.5l2.2-3.8C82.4,0.2,82.7,0,83.1,0h1.4c1.2,0,1.9,1.3,1.3,2.3\r\n                                 L80.3,11.8z M60,20c-5.5,0-10-4.5-10-10S54.5,0,60,0s10,4.5,10,10S65.5,20,60,20z M60,4c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6\r\n                                 S63.3,4,60,4z M47.8,17.8c0.6,1-0.2,2.3-1.3,2.3h-2L41,14h-4v4.5c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-17\r\n                                 C33,0.7,33.7,0,34.5,0H41c0.3,0,0.7,0,1,0.1c3.4,0.5,6,3.4,6,6.9c0,2.4-1.2,4.5-3.1,5.8L47.8,17.8z M42,4.2C41.7,4.1,41.3,4,41,4h-3\r\n                                 c-0.6,0-1,0.4-1,1v4c0,0.6,0.4,1,1,1h3c0.3,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.9-0.5C43.6,8.8,44,7.9,44,7C44,5.7,43.2,4.6,42,4.2z\r\n                                  M29.5,4H25v14.5c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5V4h-4.5C15.7,4,15,3.3,15,2.5v-1C15,0.7,15.7,0,16.5,0h13\r\n                                 C30.3,0,31,0.7,31,1.5v1C31,3.3,30.3,4,29.5,4z M6.5,20c-2.8,0-5.5-1.7-6.4-4c-0.4-1,0.3-2,1.3-2h1c0.5,0,0.9,0.3,1.2,0.7\r\n                                 c0.2,0.3,0.4,0.6,0.8,0.8C4.9,15.8,5.8,16,6.5,16c1.5,0,2.8-0.9,2.8-2c0-0.7-0.5-1.3-1.2-1.6C7.4,12,7,11,7.4,10.3l0.4-0.9\r\n                                 c0.4-0.7,1.2-1,1.8-0.6c0.6,0.3,1.2,0.7,1.6,1.2c1,1.1,1.7,2.5,1.7,4C13,17.3,10.1,20,6.5,20z M11.6,6h-1c-0.5,0-0.9-0.3-1.2-0.7\r\n                                 C9.2,4.9,8.9,4.7,8.6,4.5C8.1,4.2,7.2,4,6.5,4C5,4,3.7,4.9,3.7,6c0,0.7,0.5,1.3,1.2,1.6C5.6,8,6,9,5.6,9.7l-0.4,0.9\r\n                                 c-0.4,0.7-1.2,1-1.8,0.6c-0.6-0.3-1.2-0.7-1.6-1.2C0.6,8.9,0,7.5,0,6c0-3.3,2.9-6,6.5-6c2.8,0,5.5,1.7,6.4,4C13.3,4.9,12.6,6,11.6,6\r\n                                 z\"></path>\r\n                    </svg>\r\n                </a>\r\n            </div>\r\n\r\n            <div *ngIf=\"departments\" class=\"nav-panel__departments\">\r\n                <app-header-departments></app-header-departments>\r\n            </div>\r\n\r\n            <!-- .nav-links -->\r\n            <app-header-links class=\"nav-panel__nav-links nav-links\"></app-header-links>\r\n            <!-- .nav-links / end -->\r\n\r\n            <div class=\"nav-panel__indicators\">\r\n                <div *ngIf=\"search\" class=\"indicator indicator--trigger--click\" appDropdown=\"indicator--opened\" #search=\"appDropdown\">\r\n                    <button type=\"button\" class=\"indicator__button\" (click)=\"$event.preventDefault(); search.toggle(); search.isOpen ? searchField.focus() : '';\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon class=\"indicator__icon\" name=\"search-20\" size=\"20\"></app-icon>\r\n                            <app-icon class=\"indicator__icon indicator__icon--open\" name=\"cross-20\" size=\"20\"></app-icon>\r\n                        </span>\r\n                    </button>\r\n\r\n                    <div class=\"indicator__dropdown\">\r\n                        <div class=\"drop-search\">\r\n                            <form action=\"\" class=\"drop-search__form\">\r\n                                <input class=\"drop-search__input\" name=\"search\" (keydown.escape)=\"search.close()\" placeholder=\"Search over 10,000 products\" aria-label=\"Site search\" type=\"text\" autocomplete=\"off\" #searchField>\r\n                                <button class=\"drop-search__button drop-search__button--submit\" type=\"submit\">\r\n                                    <app-icon name=\"search-20\" size=\"20\"></app-icon>\r\n                                </button>\r\n                            </form>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"indicator\">\r\n                    <a [routerLink]=\"root.wishlist()\" class=\"indicator__button\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon name=\"heart-20\" size=\"20\"></app-icon>\r\n                            <span class=\"indicator__value\">{{ wishlist.count$|async }}</span>\r\n                        </span>\r\n                    </a>\r\n                </div>\r\n\r\n                <div class=\"indicator indicator--trigger--click\" appDropdown=\"indicator--opened\" #cartDropdown=\"appDropdown\">\r\n                    <a [href]=\"'./shop/cart'\" class=\"indicator__button\" (click)=\"$event.preventDefault(); cartDropdown.toggle()\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon name=\"cart-20\" size=\"20\"></app-icon>\r\n                            <span class=\"indicator__value\">{{ cart.quantity$|async }}</span>\r\n                        </span>\r\n                    </a>\r\n\r\n                    <div class=\"indicator__dropdown\">\r\n                        <app-header-dropcart></app-header-dropcart>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"nav-panel\">\r\n    <div class=\"nav-panel__container container\">\r\n        <div class=\"nav-panel__row\">\r\n            <div *ngIf=\"logo\" class=\"nav-panel__logo\">\r\n                <a [routerLink]=\"root.home()\">\r\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120px\" height=\"20px\">\r\n                        <path d=\"M118.5,20h-1.1c-0.6,0-1.2-0.4-1.4-1l-1.5-4h-6.1l-1.5,4c-0.2,0.6-0.8,1-1.4,1h-1.1c-1,0-1.8-1-1.4-2l1.1-3\r\n                                 l1.5-4l3.6-10c0.2-0.6,0.8-1,1.4-1h1.6c0.6,0,1.2,0.4,1.4,1l3.6,10l1.5,4l1.1,3C120.3,19,119.5,20,118.5,20z M111.5,6.6l-1.6,4.4\r\n                                 h3.2L111.5,6.6z M99.5,20h-1.4c-0.4,0-0.7-0.2-0.9-0.5L94,14l-2,3.5v1c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-17\r\n                                 C88,0.7,88.7,0,89.5,0h1C91.3,0,92,0.7,92,1.5v8L94,6l3.2-5.5C97.4,0.2,97.7,0,98.1,0h1.4c1.2,0,1.9,1.3,1.3,2.3L96.3,10l4.5,7.8\r\n                                 C101.4,18.8,100.7,20,99.5,20z M80.3,11.8L80,12.3v6.2c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-6.2l-0.3-0.5l-5.5-9.5\r\n                                 c-0.6-1,0.2-2.3,1.3-2.3h1.4c0.4,0,0.7,0.2,0.9,0.5L76,4.3l2,3.5l2-3.5l2.2-3.8C82.4,0.2,82.7,0,83.1,0h1.4c1.2,0,1.9,1.3,1.3,2.3\r\n                                 L80.3,11.8z M60,20c-5.5,0-10-4.5-10-10S54.5,0,60,0s10,4.5,10,10S65.5,20,60,20z M60,4c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6\r\n                                 S63.3,4,60,4z M47.8,17.8c0.6,1-0.2,2.3-1.3,2.3h-2L41,14h-4v4.5c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5v-17\r\n                                 C33,0.7,33.7,0,34.5,0H41c0.3,0,0.7,0,1,0.1c3.4,0.5,6,3.4,6,6.9c0,2.4-1.2,4.5-3.1,5.8L47.8,17.8z M42,4.2C41.7,4.1,41.3,4,41,4h-3\r\n                                 c-0.6,0-1,0.4-1,1v4c0,0.6,0.4,1,1,1h3c0.3,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.9-0.5C43.6,8.8,44,7.9,44,7C44,5.7,43.2,4.6,42,4.2z\r\n                                  M29.5,4H25v14.5c0,0.8-0.7,1.5-1.5,1.5h-1c-0.8,0-1.5-0.7-1.5-1.5V4h-4.5C15.7,4,15,3.3,15,2.5v-1C15,0.7,15.7,0,16.5,0h13\r\n                                 C30.3,0,31,0.7,31,1.5v1C31,3.3,30.3,4,29.5,4z M6.5,20c-2.8,0-5.5-1.7-6.4-4c-0.4-1,0.3-2,1.3-2h1c0.5,0,0.9,0.3,1.2,0.7\r\n                                 c0.2,0.3,0.4,0.6,0.8,0.8C4.9,15.8,5.8,16,6.5,16c1.5,0,2.8-0.9,2.8-2c0-0.7-0.5-1.3-1.2-1.6C7.4,12,7,11,7.4,10.3l0.4-0.9\r\n                                 c0.4-0.7,1.2-1,1.8-0.6c0.6,0.3,1.2,0.7,1.6,1.2c1,1.1,1.7,2.5,1.7,4C13,17.3,10.1,20,6.5,20z M11.6,6h-1c-0.5,0-0.9-0.3-1.2-0.7\r\n                                 C9.2,4.9,8.9,4.7,8.6,4.5C8.1,4.2,7.2,4,6.5,4C5,4,3.7,4.9,3.7,6c0,0.7,0.5,1.3,1.2,1.6C5.6,8,6,9,5.6,9.7l-0.4,0.9\r\n                                 c-0.4,0.7-1.2,1-1.8,0.6c-0.6-0.3-1.2-0.7-1.6-1.2C0.6,8.9,0,7.5,0,6c0-3.3,2.9-6,6.5-6c2.8,0,5.5,1.7,6.4,4C13.3,4.9,12.6,6,11.6,6\r\n                                 z\"></path>\r\n                    </svg>\r\n                </a>\r\n            </div>\r\n\r\n            <div *ngIf=\"departments\" class=\"nav-panel__departments\">\r\n                <app-header-departments></app-header-departments>\r\n            </div>\r\n\r\n            <!-- .nav-links -->\r\n            <app-header-links class=\"nav-panel__nav-links nav-links\"></app-header-links>\r\n            <!-- .nav-links / end -->\r\n            \r\n            <div class=\"nav-panel__indicators\">\r\n                <div *ngIf=\"search\" class=\"indicator indicator--trigger--click\" appDropdown=\"indicator--opened\" #search=\"appDropdown\">\r\n                    <button type=\"button\" class=\"indicator__button\" (click)=\"$event.preventDefault(); search.toggle(); search.isOpen ? searchField.focus() : '';\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon class=\"indicator__icon\" name=\"search-20\" size=\"20\"></app-icon>\r\n                            <app-icon class=\"indicator__icon indicator__icon--open\" name=\"cross-20\" size=\"20\"></app-icon>\r\n                        </span>\r\n                    </button>\r\n\r\n                    <div class=\"indicator__dropdown\">\r\n                        <div class=\"drop-search\">\r\n                            <form action=\"\" class=\"drop-search__form\">\r\n                                <input class=\"drop-search__input\" name=\"search\" (keydown.escape)=\"search.close()\" placeholder=\"Search over 10,000 products\" aria-label=\"Site search\" type=\"text\" autocomplete=\"off\" #searchField>\r\n                                <button class=\"drop-search__button drop-search__button--submit\" type=\"submit\">\r\n                                    <app-icon name=\"search-20\" size=\"20\"></app-icon>\r\n                                </button>\r\n                            </form>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"indicator\">\r\n                    <a [routerLink]=\"root.wishlist()\" class=\"indicator__button\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon name=\"heart-20\" size=\"20\"></app-icon>\r\n                            <span class=\"indicator__value\">{{ wishlist.count$|async }}</span>\r\n                        </span>\r\n                    </a>\r\n                </div>\r\n\r\n                <div class=\"indicator indicator--trigger--click\" appDropdown=\"indicator--opened\" #cartDropdown=\"appDropdown\">\r\n                    <a [href]=\"'./shop/cart'\" class=\"indicator__button\" (click)=\"$event.preventDefault(); cartDropdown.toggle()\">\r\n                        <span class=\"indicator__area\">\r\n                            <app-icon name=\"cart-20\" size=\"20\"></app-icon>\r\n                            <span class=\"indicator__value\">{{ cart.quantity$|async }}</span>\r\n                        </span>\r\n                    </a>\r\n\r\n                    <div class=\"indicator__dropdown\">\r\n                        <app-header-dropcart></app-header-dropcart>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -334,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- .topbar -->\r\n<div class=\"site-header__topbar topbar\">\r\n    <div class=\"topbar__container container\">\r\n        <div class=\"topbar__row\">\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/site/about-us\">About Us</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/site/contact-us\">Contacts</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"\">Store Location</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/shop/track-order\">Track Order</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/blog\">Blog</a>\r\n            </div>\r\n            <div class=\"topbar__spring\"></div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #accountDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"accountDropdown.toggle()\">\r\n                        My Account\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <div class=\"topbar-dropdown__body\">\r\n                        <app-header-menu layout=\"topbar\" (itemClick)=\"accountDropdown.close()\" [items]=\"[\r\n                            {label: 'Dashboard',     url: '/account/dashboard'},\r\n                            {label: 'Edit Profile',  url: '/account/profile'},\r\n                            {label: 'Order History', url: '/account/orders'},\r\n                            {label: 'Addresses',     url: '/account/addresses'},\r\n                            {label: 'Password',      url: '/account/password'},\r\n                            {label: 'Logout',        url: '/account/login'}\r\n                        ]\"></app-header-menu>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #currencyDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"currencyDropdown.toggle()\">\r\n                        Currency: <span class=\"topbar__item-value\">{{ currencyService.options.code }}</span>\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <div class=\"topbar-dropdown__body\">\r\n                        <ul class=\"menu menu--layout--topbar\">\r\n                            <li class=\"menu__item\" *ngFor=\"let currency of currencies\">\r\n                                <button type=\"button\" (click)=\"setCurrency(currency); currencyDropdown.close();\">\r\n                                    {{ currency.name }}\r\n                                </button>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #languageDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"languageDropdown.toggle()\">\r\n                        Language: <span class=\"topbar__item-value\">EN</span>\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <div class=\"topbar-dropdown__body\">\r\n                        <ul class=\"menu menu--layout--topbar menu--with-icons\">\r\n                            <li class=\"menu__item\" *ngFor=\"let language of languages\">\r\n                                <button type=\"button\">\r\n                                    <span class=\"menu__icon\">\r\n                                        <img [src]=\"'assets/images/languages/'+language.image+'.png'\"\r\n                                             [srcset]=\"'assets/images/languages/'+language.image+'.png 1x,' +\r\n                                                       'assets/images/languages/'+language.image+'@2x.png 2x'\" alt=\"\">\r\n                                    </span>\r\n                                    {{ language.name }}\r\n                                </button>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!-- .topbar / end -->\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- .topbar -->\r\n<div class=\"site-header__topbar topbar\">\r\n    <div class=\"topbar__container container\">\r\n        <div class=\"topbar__row\">\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/site/about-us\">About Us</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/site/contact-us\">Contacts</a>\r\n            </div>\r\n            <!-- <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"\">Store Location</a>\r\n            </div> -->\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/shop/track-order\">Track Order</a>\r\n            </div>\r\n            <div class=\"topbar__item topbar__item--link\">\r\n                <a class=\"topbar-link\" routerLink=\"/blog\">Blog</a>\r\n            </div>\r\n            <div class=\"topbar__spring\"></div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #accountDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"accountDropdown.toggle()\">\r\n                        My Account\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <!-- <div class=\"topbar-dropdown__body\">\r\n                        <app-header-menu layout=\"topbar\" (itemClick)=\"accountDropdown.close()\" [items]=\"[\r\n                            {label: 'Dashboard',     url: '/account/dashboard', enabled:true},\r\n                            {label: 'Edit Profile',  url: '/account/profile'},\r\n                            {label: 'Order History', url: '/account/orders'},\r\n                            {label: 'Addresses',     url: '/account/addresses'},\r\n                            {label: 'Password',      url: '/account/password'},\r\n                            {label: 'Logout',        url: '/account/login'}\r\n                        ]\"></app-header-menu>\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #currencyDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"currencyDropdown.toggle()\">\r\n                        Currency: <span class=\"topbar__item-value\">{{ currencyService.options.code }}</span>\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <div class=\"topbar-dropdown__body\">\r\n                        <ul class=\"menu menu--layout--topbar\">\r\n                            <li class=\"menu__item\" *ngFor=\"let currency of currencies\">\r\n                                <button type=\"button\" (click)=\"setCurrency(currency); currencyDropdown.close();\">\r\n                                    {{ currency.name }}\r\n                                </button>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"topbar__item\">\r\n                <div class=\"topbar-dropdown\" appDropdown=\"topbar-dropdown--opened\" #languageDropdown=\"appDropdown\">\r\n                    <button class=\"topbar-dropdown__btn\" type=\"button\" (click)=\"languageDropdown.toggle()\">\r\n                        Language: <span class=\"topbar__item-value\">EN</span>\r\n                        <app-icon name=\"arrow-rounded-down-7x5\" size=\"7x5\"></app-icon>\r\n                    </button>\r\n\r\n                    <div class=\"topbar-dropdown__body\">\r\n                        <ul class=\"menu menu--layout--topbar menu--with-icons\">\r\n                            <li class=\"menu__item\" *ngFor=\"let language of languages\">\r\n                                <button type=\"button\">\r\n                                    <span class=\"menu__icon\">\r\n                                        <img [src]=\"'assets/images/languages/'+language.image+'.png'\"\r\n                                             [srcset]=\"'assets/images/languages/'+language.image+'.png 1x,' +\r\n                                                       'assets/images/languages/'+language.image+'@2x.png 2x'\" alt=\"\">\r\n                                    </span>\r\n                                    {{ language.name }}\r\n                                </button>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!-- .topbar / end -->\r\n");
 
 /***/ }),
 
@@ -516,7 +516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-block-slideshow [withDepartments]=\"true\"></app-block-slideshow>\r\n\r\n<app-block-features></app-block-features>\r\n\r\n<app-block-products-carousel\r\n    header=\"Featured Products\"\r\n    layout=\"grid-4\"\r\n    [loading]=\"featuredProducts.loading\"\r\n    [products]=\"featuredProducts.products\"\r\n    [groups]=\"featuredProducts.groups\"\r\n    (groupChange)=\"groupChange(featuredProducts, $event)\"\r\n></app-block-products-carousel>\r\n\r\n<app-block-banner></app-block-banner>\r\n\r\n<app-block-products header=\"Bestsellers\" layout=\"large-first\" [products]=\"bestsellers$|async\"></app-block-products>\r\n\r\n<app-block-categories header=\"Popular Categories\" layout=\"classic\" [categories]=\"popularCategories$|async\"></app-block-categories>\r\n\r\n<app-block-products-carousel\r\n    header=\"New Arrivals\"\r\n    layout=\"grid-4\"\r\n    [loading]=\"latestProducts.loading\"\r\n    [products]=\"latestProducts.products\"\r\n    [groups]=\"latestProducts.groups\"\r\n    (groupChange)=\"groupChange(latestProducts, $event)\"\r\n></app-block-products-carousel>\r\n\r\n<app-block-posts header=\"Latest News\" layout=\"list-sm\" [posts]=\"posts\"></app-block-posts>\r\n\r\n<app-block-brands [brands]=\"brands$|async\"></app-block-brands>\r\n\r\n<app-block-product-columns>\r\n    <app-block-product-columns-item header=\"Top Rated Products\" [products]=\"columnTopRated$|async\"></app-block-product-columns-item>\r\n    <app-block-product-columns-item header=\"Special Offers\" [products]=\"columnSpecialOffers$|async\"></app-block-product-columns-item>\r\n    <app-block-product-columns-item header=\"Bestsellers\" [products]=\"columnBestsellers$|async\"></app-block-product-columns-item>\r\n</app-block-product-columns>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-block-slideshow [withDepartments]=\"true\"></app-block-slideshow>\n\n<app-block-features></app-block-features>\n\n<app-block-products-carousel\n    header=\"Featured Products\"\n    layout=\"grid-4\"\n    [loading]=\"featuredProducts.loading\"\n    [products]=\"featuredProducts.products\"\n    [groups]=\"featuredProducts.groups\"\n    (groupChange)=\"groupChange(featuredProducts, $event)\"\n></app-block-products-carousel>\n\n<app-block-banner></app-block-banner>\n\n<app-block-products header=\"Bestsellers\" layout=\"large-first\" [products]=\"bestsellers$|async\"></app-block-products>\n\n<!-- <app-block-categories header=\"Popular Categories\" layout=\"classic\" [categories]=\"popularCategories$|async\"></app-block-categories> -->\n\n<app-block-products-carousel\n    header=\"New Arrivals\"\n    layout=\"grid-4\"\n    [loading]=\"latestProducts.loading\"\n    [products]=\"latestProducts.products\"\n    [groups]=\"latestProducts.groups\"\n    (groupChange)=\"groupChange(latestProducts, $event)\"\n></app-block-products-carousel>\n\n<app-block-posts *ngIf=\"posts\" header=\"Latest News\" layout=\"list-sm\" [posts]=\"posts.news\"></app-block-posts>\n\n<!-- <app-block-brands [brands]=\"brands$|async\"></app-block-brands> -->\n\n<app-block-product-columns>\n    <app-block-product-columns-item header=\"Top Rated Products\" [products]=\"columnTopRated$|async\"></app-block-product-columns-item>\n    <app-block-product-columns-item header=\"Special Offers\" [products]=\"columnSpecialOffers$|async\"></app-block-product-columns-item>\n    <app-block-product-columns-item header=\"Bestsellers\" [products]=\"columnBestsellers$|async\"></app-block-product-columns-item>\n</app-block-product-columns>\n");
 
 /***/ }),
 
@@ -633,7 +633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"post-card\" [ngClass]=\"{\r\n    'post-card--layout--grid': ['grid-nl', 'grid-lg'].includes(layout),\r\n    'post-card--layout--list': ['list-nl', 'list-sm'].includes(layout),\r\n\r\n    'post-card--size--nl': ['grid-nl', 'list-nl'].includes(layout),\r\n    'post-card--size--lg': layout === 'grid-lg',\r\n    'post-card--size--sm': layout === 'list-sm'\r\n}\">\r\n    <div class=\"post-card__image\">\r\n        <a appClick [routerLink]=\"root.post()\">\r\n            <img [src]=\"post.image\" alt=\"\">\r\n        </a>\r\n    </div>\r\n    <div class=\"post-card__info\">\r\n        <div class=\"post-card__category\">\r\n            <a appClick [routerLink]=\"root.post()\" *ngFor=\"let category of post.categories\">{{ category }}</a>\r\n        </div>\r\n        <div class=\"post-card__name\">\r\n            <a appClick [routerLink]=\"root.post()\">{{ post.title }}</a>\r\n        </div>\r\n        <div class=\"post-card__date\">{{ post.date }}</div>\r\n        <div class=\"post-card__content\">\r\n            In one general sense, philosophy is associated with wisdom,\r\n            intellectual culture and a search for knowledge.\r\n            In that sense, all cultures...\r\n        </div>\r\n        <div class=\"post-card__read-more\">\r\n            <a appClick [routerLink]=\"root.post()\" class=\"btn btn-secondary btn-sm\">Read More</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"post-card\" [ngClass]=\"{\r\n    'post-card--layout--grid': ['grid-nl', 'grid-lg'].includes(layout),\r\n    'post-card--layout--list': ['list-nl', 'list-sm'].includes(layout),\r\n\r\n    'post-card--size--nl': ['grid-nl', 'list-nl'].includes(layout),\r\n    'post-card--size--lg': layout === 'grid-lg',\r\n    'post-card--size--sm': layout === 'list-sm'\r\n}\">\r\n    <div class=\"post-card__image\">\r\n        <a appClick [routerLink]=\"root.post()\">\r\n            <img [src]=\"post.image\" alt=\"\">\r\n        </a>\r\n    </div>\r\n    <div class=\"post-card__info\">\r\n        <div class=\"post-card__category\">\r\n            <a appClick [routerLink]=\"root.post()\" *ngFor=\"let category of post.categories\">{{ category }}</a>\r\n        </div>\r\n        <div class=\"post-card__name\">\r\n            <a appClick [routerLink]=\"[root.blog(), post.slug]\">{{ post.title }}</a>\r\n        </div>\r\n        <div class=\"post-card__date\">{{ post.date }}</div>\r\n        <div class=\"post-card__content\">\r\n            {{post.shot_desc}}\r\n        </div>\r\n        <div class=\"post-card__read-more\">\r\n            <a appClick [routerLink]=\"root.post()\" class=\"btn btn-secondary btn-sm\">Read More</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -659,7 +659,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"product product--layout--{{ layout }}\" *ngIf=\"product\">\r\n    <div class=\"product__content\">\r\n        <!-- .product__gallery -->\r\n        <div class=\"product__gallery\">\r\n            <div class=\"product-gallery\" *ngIf=\"showGallery\">\r\n                <div class=\"product-gallery__featured\">\r\n                    <owl-carousel-o [options]=\"carouselOptions\" (changed)=\"featuredCarouselTranslated($event)\" appOwlPreventClick #featuredCarousel>\r\n                        <ng-container *ngFor=\"let image of images\">\r\n                            <ng-template carouselSlide [id]=\"image.id\">\r\n                                <a appClick (click)=\"openPhotoSwipe($event, image);\" [href]=\"image.url\" target=\"_blank\">\r\n                                    <img [src]=\"image.url\" alt=\"\" #imageElement>\r\n                                </a>\r\n                            </ng-template>\r\n                        </ng-container>\r\n                    </owl-carousel-o>\r\n                </div>\r\n                <div class=\"product-gallery__carousel\">\r\n                    <owl-carousel-o [options]=\"thumbnailsCarouselOptions\" [appFakeSlides]=\"images.length\" #fakeSlides=\"appFakeSlides\" appOwlPreventClick #thumbnailsCarousel>\r\n                        <ng-container *ngFor=\"let image of images\">\r\n                            <ng-template carouselSlide [id]=\"image.id\">\r\n                                <span class=\"product-gallery__carousel-item\"\r\n                                   [ngClass]=\"{'product-gallery__carousel-item--active': image.active}\"\r\n                                   appClick (click)=\"featuredCarousel.to(image.id); setActiveImage(image)\">\r\n                                    <img class=\"product-gallery__carousel-image\" [src]=\"image.url\" alt=\"\">\r\n                                </span>\r\n                            </ng-template>\r\n                        </ng-container>\r\n                        <ng-container *ngFor=\"let i of fakeSlides.slides\">\r\n                            <ng-template carouselSlide [id]=\"'fake-slide-'+i\"></ng-template>\r\n                        </ng-container>\r\n                    </owl-carousel-o>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- .product__gallery / end -->\r\n        <!-- .product__info -->\r\n        <div class=\"product__info\">\r\n            <div class=\"product__wishlist-compare\">\r\n                <button type=\"button\" class=\"btn btn-sm btn-light btn-svg-icon\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Wishlist\"\r\n                        appClick (click)=\"addToWishlist()\"\r\n                        [ngClass]=\"{'btn-loading': addingToWishlist}\">\r\n                    <app-icon name=\"wishlist-16\" size=\"16\"></app-icon>\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-sm btn-light btn-svg-icon\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Compare\"\r\n                        appClick (click)=\"addToCompare()\"\r\n                        [ngClass]=\"{'btn-loading': addingToCompare}\">\r\n                    <app-icon name=\"compare-16\" size=\"16\"></app-icon>\r\n                </button>\r\n            </div>\r\n            <h1 class=\"product__name\">{{ product.name }}</h1>\r\n            <div class=\"product__rating\">\r\n                <div class=\"product__rating-stars\">\r\n                    <app-rating [value]=\"product.rating\"></app-rating>\r\n                </div>\r\n                <div class=\"product__rating-legend\">\r\n                    <a href=\"\" appClick>{{ product.reviews }} Reviews</a><span>/</span><a href=\"\" appClick>Write A Review</a>\r\n                </div>\r\n            </div>\r\n            <div class=\"product__description\">\r\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ornare, mi in ornare elementum, libero nibh\r\n                lacinia urna, quis convallis lorem erat at purus. Maecenas eu varius nisi.\r\n            </div>\r\n            <ul class=\"product__features\">\r\n                <li>Speed: 750 RPM</li>\r\n                <li>Power Source: Cordless-Electric</li>\r\n                <li>Battery Cell Type: Lithium</li>\r\n                <li>Voltage: 20 Volts</li>\r\n                <li>Battery Capacity: 2 Ah</li>\r\n            </ul>\r\n            <ul class=\"product__meta\">\r\n                <li class=\"product__meta-availability\">Availability: <span class=\"text-success\">In Stock</span></li>\r\n                <li>Brand: <a href=\"\" appClick>Wakita</a></li>\r\n                <li>SKU: 83690/32</li>\r\n            </ul>\r\n        </div>\r\n        <!-- .product__info / end -->\r\n        <!-- .product__sidebar -->\r\n        <div class=\"product__sidebar\">\r\n            <div class=\"product__availability\">\r\n                Availability: <span class=\"text-success\">In Stock</span>\r\n            </div>\r\n\r\n            <div class=\"product__prices\">\r\n                <ng-container *ngIf=\"product.compareAtPrice\">\r\n                    <span class=\"product__new-price\">{{ product.price|currencyFormat }}</span>{{ ' ' }}\r\n                    <span class=\"product__old-price\">{{ product.compareAtPrice|currencyFormat }}</span>\r\n                </ng-container>\r\n                <ng-container *ngIf=\"!product.compareAtPrice\">\r\n                    {{ product.price|currencyFormat }}\r\n                </ng-container>\r\n            </div>\r\n            <!-- .product__options -->\r\n            <form class=\"product__options\">\r\n                <div class=\"form-group product__option\">\r\n                    <label class=\"product__option-label\">Color</label>\r\n                    <div class=\"input-radio-color\">\r\n                        <div class=\"input-radio-color__list\">\r\n                            <label class=\"input-radio-color__item input-radio-color__item--white\" style=\"color: #fff;\" data-toggle=\"tooltip\" title=\"White\">\r\n                                <input type=\"radio\" name=\"color\">\r\n                                <span></span>\r\n                            </label>\r\n                            <label class=\"input-radio-color__item\" style=\"color: #ffd333;\" data-toggle=\"tooltip\" title=\"Yellow\">\r\n                                <input type=\"radio\" name=\"color\">\r\n                                <span></span>\r\n                            </label>\r\n                            <label class=\"input-radio-color__item\" style=\"color: #ff4040;\" data-toggle=\"tooltip\" title=\"Red\">\r\n                                <input type=\"radio\" name=\"color\">\r\n                                <span></span>\r\n                            </label>\r\n                            <label class=\"input-radio-color__item input-radio-color__item--disabled\" style=\"color: #4080ff;\" data-toggle=\"tooltip\" title=\"Blue\">\r\n                                <input type=\"radio\" name=\"color\" disabled>\r\n                                <span></span>\r\n                            </label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group product__option\">\r\n                    <label class=\"product__option-label\">Material</label>\r\n                    <div class=\"input-radio-label\">\r\n                        <div class=\"input-radio-label__list\">\r\n                            <label>\r\n                                <input type=\"radio\" name=\"material\">\r\n                                <span>Metal</span>\r\n                            </label>\r\n                            <label>\r\n                                <input type=\"radio\" name=\"material\">\r\n                                <span>Wood</span>\r\n                            </label>\r\n                            <label>\r\n                                <input type=\"radio\" name=\"material\" disabled>\r\n                                <span>Plastic</span>\r\n                            </label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group product__option\">\r\n                    <label class=\"product__option-label\">Quantity</label>\r\n                    <div class=\"product__actions\">\r\n                        <div class=\"product__actions-item\">\r\n                            <app-input-number aria-label=\"Quantity\" class=\"product__quantity\" size=\"lg\" [min]=\"1\" [formControl]=\"quantity\"></app-input-number>\r\n                        </div>\r\n                        <div class=\"product__actions-item product__actions-item--addtocart\">\r\n                            <button type=\"button\" class=\"btn btn-primary btn-lg\"\r\n                                    [ngClass]=\"{'btn-loading': addingToCart}\"\r\n                                    appClick (click)=\"addToCart()\">Add to cart</button>\r\n                        </div>\r\n                        <div class=\"product__actions-item product__actions-item--wishlist\">\r\n                            <button type=\"button\" class=\"btn btn-secondary btn-svg-icon btn-lg\" data-toggle=\"tooltip\" title=\"Wishlist\"\r\n                                    [ngClass]=\"{'btn-loading': addingToWishlist}\"\r\n                                    appClick (click)=\"addToWishlist()\">\r\n                                <app-icon name=\"wishlist-16\" size=\"16\"></app-icon>\r\n                            </button>\r\n                        </div>\r\n                        <div class=\"product__actions-item product__actions-item--compare\">\r\n                            <button type=\"button\" class=\"btn btn-secondary btn-svg-icon btn-lg\" data-toggle=\"tooltip\" title=\"Compare\"\r\n                                    [ngClass]=\"{'btn-loading': addingToCompare}\"\r\n                                    appClick (click)=\"addToCompare()\">\r\n                                <app-icon name=\"compare-16\" size=\"16\"></app-icon>\r\n                            </button>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n            <!-- .product__options / end -->\r\n        </div>\r\n        <!-- .product__end -->\r\n        <div class=\"product__footer\">\r\n            <div class=\"product__tags tags\">\r\n                <div class=\"tags__list\">\r\n                    <a href=\"\" appClick>Mounts</a>\r\n                    <a href=\"\" appClick>Electrodes</a>\r\n                    <a href=\"\" appClick>Chainsaws</a>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"product__share-links share-links\">\r\n                <ul class=\"share-links__list\">\r\n                    <li class=\"share-links__item share-links__item--type--like\"><a href=\"\" appClick>Like</a></li>\r\n                    <li class=\"share-links__item share-links__item--type--tweet\"><a href=\"\" appClick>Tweet</a></li>\r\n                    <li class=\"share-links__item share-links__item--type--pin\"><a href=\"\" appClick>Pin It</a></li>\r\n                    <li class=\"share-links__item share-links__item--type--counter\"><a href=\"\" appClick>4K</a></li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"product product--layout--{{ layout }}\" *ngIf=\"product\">\n    <div class=\"product__content\">\n        <!-- .product__gallery -->\n        <div class=\"product__gallery\">\n            <div class=\"product-gallery\" *ngIf=\"showGallery\">\n                <div class=\"product-gallery__featured\">\n                    <owl-carousel-o [options]=\"carouselOptions\" (changed)=\"featuredCarouselTranslated($event)\" appOwlPreventClick #featuredCarousel>\n                        <ng-container *ngFor=\"let image of images\">\n                            <ng-template carouselSlide [id]=\"image.id\">\n                                <a appClick (click)=\"openPhotoSwipe($event, image);\" [href]=\"image.url\" target=\"_blank\">\n                                    <img [src]=\"image.url\" alt=\"\" #imageElement>\n                                </a>\n                            </ng-template>\n                        </ng-container>\n                    </owl-carousel-o>\n                </div>\n                <div class=\"product-gallery__carousel\">\n                    <owl-carousel-o [options]=\"thumbnailsCarouselOptions\" [appFakeSlides]=\"images.length\" #fakeSlides=\"appFakeSlides\" appOwlPreventClick #thumbnailsCarousel>\n                        <ng-container *ngFor=\"let image of images\">\n                            <ng-template carouselSlide [id]=\"image.id\">\n                                <span class=\"product-gallery__carousel-item\"\n                                   [ngClass]=\"{'product-gallery__carousel-item--active': image.active}\"\n                                   appClick (click)=\"featuredCarousel.to(image.id); setActiveImage(image)\">\n                                    <img class=\"product-gallery__carousel-image\" [src]=\"image.url\" alt=\"\">\n                                </span>\n                            </ng-template>\n                        </ng-container>\n                        <ng-container *ngFor=\"let i of fakeSlides.slides\">\n                            <ng-template carouselSlide [id]=\"'fake-slide-'+i\"></ng-template>\n                        </ng-container>\n                    </owl-carousel-o>\n                </div>\n            </div>\n        </div>\n        <!-- .product__gallery / end -->\n        <!-- .product__info -->\n        <div class=\"product__info\">\n            <div class=\"product__wishlist-compare\">\n                <button type=\"button\" class=\"btn btn-sm btn-light btn-svg-icon\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Wishlist\"\n                        appClick (click)=\"addToWishlist()\"\n                        [ngClass]=\"{'btn-loading': addingToWishlist}\">\n                    <app-icon name=\"wishlist-16\" size=\"16\"></app-icon>\n                </button>\n                <button type=\"button\" class=\"btn btn-sm btn-light btn-svg-icon\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Compare\"\n                        appClick (click)=\"addToCompare()\"\n                        [ngClass]=\"{'btn-loading': addingToCompare}\">\n                    <app-icon name=\"compare-16\" size=\"16\"></app-icon>\n                </button>\n            </div>\n            <h1 class=\"product__name\">{{ product.name }}</h1>\n            <div class=\"product__rating\">\n                <div class=\"product__rating-stars\">\n                    <app-rating [value]=\"product.rating\"></app-rating>\n                </div>\n                <div class=\"product__rating-legend\">\n                    <a href=\"\" appClick>{{ product.reviews }} Reviews</a><span>/</span><a href=\"\" appClick>Write A Review</a>\n                </div>\n            </div>\n            <div class=\"product__description\">\n                {{ product.short_description }}\n            </div>\n            <ul class=\"product__features\">\n                <li>Speed: 750 RPM</li>\n                <li>Power Source: Cordless-Electric</li>\n                <li>Battery Cell Type: Lithium</li>\n                <li>Voltage: 20 Volts</li>\n                <li>Battery Capacity: 2 Ah</li>\n            </ul>\n            <ul class=\"product__meta\">\n                <li class=\"product__meta-availability\">Availability: <span class=\"text-success\">{{ product.availability }}</span></li>\n                <li>Brand: <a href=\"\" appClick>{{ product.brand }}</a></li>\n                <li>SKU: {{ product.sku }}</li>\n            </ul>\n        </div>\n        <!-- .product__info / end -->\n        <!-- .product__sidebar -->\n        <div class=\"product__sidebar\">\n            <div class=\"product__availability\">\n                Availability: <span class=\"text-success\">{{ product.availability }}</span>\n            </div>\n\n            <div class=\"product__prices\">\n                <ng-container *ngIf=\"product.compareAtPrice\">\n                    <span class=\"product__new-price\">{{ product.price|currencyFormat }}</span>{{ ' ' }}\n                    <span class=\"product__old-price\">{{ product.compareAtPrice|currencyFormat }}</span>\n                </ng-container>\n                <ng-container *ngIf=\"!product.compareAtPrice\">\n                    {{ product.price|currencyFormat }}\n                </ng-container>\n            </div>\n            <!-- .product__options -->\n            <form class=\"product__options\">\n                <!-- <div class=\"form-group product__option\">\n                    <label class=\"product__option-label\">Color</label>\n                    <div class=\"input-radio-color\">\n                        <div class=\"input-radio-color__list\">\n                            <label class=\"input-radio-color__item input-radio-color__item--white\" style=\"color: #fff;\" data-toggle=\"tooltip\" title=\"White\">\n                                <input type=\"radio\" name=\"color\">\n                                <span></span>\n                            </label>\n                            <label class=\"input-radio-color__item\" style=\"color: #ffd333;\" data-toggle=\"tooltip\" title=\"Yellow\">\n                                <input type=\"radio\" name=\"color\">\n                                <span></span>\n                            </label>\n                            <label class=\"input-radio-color__item\" style=\"color: #ff4040;\" data-toggle=\"tooltip\" title=\"Red\">\n                                <input type=\"radio\" name=\"color\">\n                                <span></span>\n                            </label>\n                            <label class=\"input-radio-color__item input-radio-color__item--disabled\" style=\"color: #4080ff;\" data-toggle=\"tooltip\" title=\"Blue\">\n                                <input type=\"radio\" name=\"color\" disabled>\n                                <span></span>\n                            </label>\n                        </div>\n                    </div>\n                </div> -->\n                <!-- <div class=\"form-group product__option\">\n                    <label class=\"product__option-label\">Material</label>\n                    <div class=\"input-radio-label\">\n                        <div class=\"input-radio-label__list\">\n                            <label>\n                                <input type=\"radio\" name=\"material\">\n                                <span>Metal</span>\n                            </label>\n                            <label>\n                                <input type=\"radio\" name=\"material\">\n                                <span>Wood</span>\n                            </label>\n                            <label>\n                                <input type=\"radio\" name=\"material\" disabled>\n                                <span>Plastic</span>\n                            </label>\n                        </div>\n                    </div>\n                </div> -->\n                <div class=\"form-group product__option\">\n                    <label class=\"product__option-label\">Quantity</label>\n                    <div class=\"product__actions\">\n                        <div class=\"product__actions-item\">\n                            <app-input-number aria-label=\"Quantity\" class=\"product__quantity\" size=\"lg\" [min]=\"1\" [formControl]=\"quantity\"></app-input-number>\n                        </div>\n                        <div class=\"product__actions-item product__actions-item--addtocart\">\n                            <button type=\"button\" class=\"btn btn-primary btn-lg\"\n                                    [ngClass]=\"{'btn-loading': addingToCart}\"\n                                    appClick (click)=\"addToCart()\">Add to cart</button>\n                        </div>\n                        <div class=\"product__actions-item product__actions-item--wishlist\">\n                            <button type=\"button\" class=\"btn btn-secondary btn-svg-icon btn-lg\" data-toggle=\"tooltip\" title=\"Wishlist\"\n                                    [ngClass]=\"{'btn-loading': addingToWishlist}\"\n                                    appClick (click)=\"addToWishlist()\">\n                                <app-icon name=\"wishlist-16\" size=\"16\"></app-icon>\n                            </button>\n                        </div>\n                        <div class=\"product__actions-item product__actions-item--compare\">\n                            <button type=\"button\" class=\"btn btn-secondary btn-svg-icon btn-lg\" data-toggle=\"tooltip\" title=\"Compare\"\n                                    [ngClass]=\"{'btn-loading': addingToCompare}\"\n                                    appClick (click)=\"addToCompare()\">\n                                <app-icon name=\"compare-16\" size=\"16\"></app-icon>\n                            </button>\n                        </div>\n                    </div>\n                </div>\n            </form>\n            <!-- .product__options / end -->\n        </div>\n        <!-- .product__end \n        <div class=\"product__footer\">\n            <div class=\"product__tags tags\">\n                <div class=\"tags__list\">\n                    <a href=\"\" appClick>Mounts</a>\n                    <a href=\"\" appClick>Electrodes</a>\n                    <a href=\"\" appClick>Chainsaws</a>\n                </div>\n            </div>\n\n            <div class=\"product__share-links share-links\">\n                <ul class=\"share-links__list\">\n                    <li class=\"share-links__item share-links__item--type--like\"><a href=\"\" appClick>Like</a></li>\n                    <li class=\"share-links__item share-links__item--type--tweet\"><a href=\"\" appClick>Tweet</a></li>\n                    <li class=\"share-links__item share-links__item--type--pin\"><a href=\"\" appClick>Pin It</a></li>\n                    <li class=\"share-links__item share-links__item--type--counter\"><a href=\"\" appClick>4K</a></li>\n                </ul>\n            </div>\n        </div> -->\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -1106,7 +1106,7 @@ let AppComponent = class AppComponent {
         // with the arguments of the built-in pipe "currency"
         // https://angular.io/api/common/CurrencyPipe
         this.currency.options = {
-            code: 'USD',
+            code: 'INR',
         };
         this.router.events.subscribe((event) => {
             if ((event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationEnd"])) {
@@ -2039,7 +2039,8 @@ let BlockSlideshowComponent = class BlockSlideshowComponent {
         this.http = http;
         this.direction = direction;
         this.withDepartments = false;
-        this.APIURL = 'http://localhost:8765/api/webservice/';
+        // APIURL = 'http://localhost:8765/api/webservice/';
+        this.APIURL = 'http://jenix.in/api/webservice/';
         this.options = {
             nav: false,
             dots: true,
@@ -2567,10 +2568,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _data_header_departments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../data/header-departments */ "./src/data/header-departments.ts");
-/* harmony import */ var _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../shared/services/departments.service */ "./src/app/shared/services/departments.service.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-
+/* harmony import */ var _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../shared/services/departments.service */ "./src/app/shared/services/departments.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 
 
 
@@ -2584,7 +2583,6 @@ let DepartmentsComponent = class DepartmentsComponent {
         this.el = el;
         this.service = service;
         this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.items = _data_header_departments__WEBPACK_IMPORTED_MODULE_4__["departments"];
         this.hoveredItem = null;
         this.isOpen = false;
         this.fixed = false;
@@ -2593,13 +2591,17 @@ let DepartmentsComponent = class DepartmentsComponent {
         return this.el.nativeElement;
     }
     ngOnInit() {
+        this.service.getNavigation().subscribe((data) => {
+            this.items = data;
+        });
+        console.log(this.items);
         const root = this.element.querySelector('.departments');
         const content = this.element.querySelector('.departments__links-wrapper');
         this.service.areaElement$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["takeUntil"])(this.destroy$)).subscribe(areaElement => {
             if (areaElement) {
                 this.fixed = true;
                 this.isOpen = true;
-                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_6__["isPlatformBrowser"])(this.platformId)) {
+                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_5__["isPlatformBrowser"])(this.platformId)) {
                     const areaRect = areaElement.getBoundingClientRect();
                     const areaBottom = areaRect.top + areaRect.height + window.scrollY;
                     root.classList.remove('departments--transition');
@@ -2616,7 +2618,7 @@ let DepartmentsComponent = class DepartmentsComponent {
             else {
                 this.fixed = false;
                 this.isOpen = false;
-                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_6__["isPlatformBrowser"])(this.platformId)) {
+                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_5__["isPlatformBrowser"])(this.platformId)) {
                     root.classList.remove('departments--opened', 'departments--fixed');
                     content.style.height = '';
                 }
@@ -2626,7 +2628,7 @@ let DepartmentsComponent = class DepartmentsComponent {
                 }
             }
         });
-        if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_6__["isPlatformBrowser"])(this.platformId)) {
+        if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_5__["isPlatformBrowser"])(this.platformId)) {
             Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["fromEvent"])(document, 'mousedown').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["takeUntil"])(this.destroy$)).subscribe((event) => {
                 if (event.target instanceof HTMLElement && !this.element.contains(event.target)) {
                     this.close();
@@ -2692,7 +2694,7 @@ DepartmentsComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["PLATFORM_ID"],] }] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] },
-    { type: _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_5__["DepartmentsService"] }
+    { type: _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_4__["DepartmentsService"] }
 ];
 DepartmentsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2703,7 +2705,7 @@ DepartmentsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_core__WEBPACK_IMPORTED_MODULE_1__["PLATFORM_ID"])),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"],
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
-        _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_5__["DepartmentsService"]])
+        _shared_services_departments_service__WEBPACK_IMPORTED_MODULE_4__["DepartmentsService"]])
 ], DepartmentsComponent);
 
 
@@ -2799,16 +2801,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _data_header_navigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../data/header-navigation */ "./src/data/header-navigation.ts");
-/* harmony import */ var _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../shared/services/direction.service */ "./src/app/shared/services/direction.service.ts");
+/* harmony import */ var _data_menu_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../data/menu-navigation */ "./src/data/menu-navigation.ts");
+/* harmony import */ var _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../shared/services/direction.service */ "./src/app/shared/services/direction.service.ts");
+/* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
+
+
 
 
 
 
 let LinksComponent = class LinksComponent {
-    constructor(direction) {
+    constructor(direction, ShopService) {
         this.direction = direction;
-        this.items = _data_header_navigation__WEBPACK_IMPORTED_MODULE_2__["navigation"];
+        this.ShopService = ShopService;
         this.hoveredItem = null;
+    }
+    ngOnInit() {
+        this.isLoggedIn$ = this.ShopService.isLoggedIn; // {2}
+        this.isLoggedIn$.subscribe(value => this.loginValue = value);
+        // console.log(this.latestValue);
+        if (localStorage.hasOwnProperty('USERINFO')) {
+            this.loginValue = true;
+        }
+        this.items = _data_header_navigation__WEBPACK_IMPORTED_MODULE_2__["navigation"];
+        this.menuitems = _data_menu_navigation__WEBPACK_IMPORTED_MODULE_3__["manunavigation"];
     }
     onItemMouseEnter(item, event) {
         this.hoveredItem = item;
@@ -2844,7 +2860,8 @@ let LinksComponent = class LinksComponent {
     }
 };
 LinksComponent.ctorParameters = () => [
-    { type: _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_3__["DirectionService"] }
+    { type: _shared_services_direction_service__WEBPACK_IMPORTED_MODULE_4__["DirectionService"] },
+    { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_5__["ShopService"] }
 ];
 LinksComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2852,7 +2869,8 @@ LinksComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./links.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/header/components/links/links.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./links.component.scss */ "./src/app/modules/header/components/links/links.component.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_direction_service__WEBPACK_IMPORTED_MODULE_3__["DirectionService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_direction_service__WEBPACK_IMPORTED_MODULE_4__["DirectionService"],
+        _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_5__["ShopService"]])
 ], LinksComponent);
 
 
@@ -2972,6 +2990,10 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
 ], MenuComponent.prototype, "items", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], MenuComponent.prototype, "islogin", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])
@@ -3141,16 +3163,9 @@ let TopbarComponent = class TopbarComponent {
         this.currencyService = currencyService;
         this.languages = [
             { name: 'English', image: 'language-1' },
-            { name: 'French', image: 'language-2' },
-            { name: 'German', image: 'language-3' },
-            { name: 'Russian', image: 'language-4' },
-            { name: 'Italian', image: 'language-5' }
         ];
         this.currencies = [
-            { name: '€ Euro', url: '', code: 'EUR', symbol: '€' },
-            { name: '£ Pound Sterling', url: '', code: 'GBP', symbol: '£' },
-            { name: '$ US Dollar', url: '', code: 'USD', symbol: '$' },
-            { name: '₽ Russian Ruble', url: '', code: 'RUB', symbol: '₽' }
+            { name: '₹ Rupee', url: '', code: 'INR', symbol: '₹' },
         ];
     }
     setCurrency(currency) {
@@ -4379,11 +4394,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageHomeOneComponent", function() { return PageHomeOneComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _data_blog_posts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../data/blog-posts */ "./src/data/blog-posts.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
 
 
@@ -4392,25 +4405,25 @@ __webpack_require__.r(__webpack_exports__);
 let PageHomeOneComponent = class PageHomeOneComponent {
     constructor(shop) {
         this.shop = shop;
-        this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
-        this.posts = _data_blog_posts__WEBPACK_IMPORTED_MODULE_2__["posts"];
+        this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
     ngOnInit() {
+        // this.categoryList = this.shop.getCategories();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
-        this.popularCategories$ = this.shop.getCategoriesBySlug([
-            'power-tools',
-            'hand-tools',
-            'machine-tools',
-            'power-machinery',
-            'measurement',
-            'clothes-and-ppe',
-        ], 1);
+        // this.popularCategories$ = this.shop.getCategoriesBySlug([
+        //     'power-tools',
+        //     'hand-tools',
+        //     'machine-tools',
+        //     'power-machinery',
+        //     'measurement',
+        //     'clothes-and-ppe',
+        // ], 2);
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
         this.featuredProducts = {
-            abort$: new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"](),
+            abort$: new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"](),
             loading: false,
             products: [],
             groups: [
@@ -4420,25 +4433,20 @@ let PageHomeOneComponent = class PageHomeOneComponent {
                     products$: this.shop.getFeaturedProducts(null, 8),
                 },
                 {
-                    name: 'Power Tools',
+                    name: 'Fan Blades',
                     current: false,
-                    products$: this.shop.getFeaturedProducts('power-tools', 8),
+                    products$: this.shop.getFeaturedProducts('fan-blades', 8),
                 },
                 {
-                    name: 'Hand Tools',
+                    name: 'Farrata Pipe',
                     current: false,
-                    products$: this.shop.getFeaturedProducts('hand-tools', 8),
-                },
-                {
-                    name: 'Plumbing',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('plumbing', 8),
+                    products$: this.shop.getFeaturedProducts('farrata-pipe', 8),
                 },
             ],
         };
         this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
         this.latestProducts = {
-            abort$: new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"](),
+            abort$: new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"](),
             loading: false,
             products: [],
             groups: [
@@ -4447,23 +4455,11 @@ let PageHomeOneComponent = class PageHomeOneComponent {
                     current: true,
                     products$: this.shop.getLatestProducts(null, 8),
                 },
-                {
-                    name: 'Power Tools',
-                    current: false,
-                    products$: this.shop.getLatestProducts('power-tools', 8),
-                },
-                {
-                    name: 'Hand Tools',
-                    current: false,
-                    products$: this.shop.getLatestProducts('hand-tools', 8),
-                },
-                {
-                    name: 'Plumbing',
-                    current: false,
-                    products$: this.shop.getLatestProducts('plumbing', 8),
-                },
             ],
         };
+        this.shop.getIndex().subscribe((data) => {
+            this.posts = data;
+        });
         this.groupChange(this.latestProducts, this.latestProducts.groups[0]);
     }
     ngOnDestroy() {
@@ -4473,11 +4469,11 @@ let PageHomeOneComponent = class PageHomeOneComponent {
     groupChange(carousel, group) {
         carousel.loading = true;
         carousel.abort$.next();
-        group.products$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(() => carousel.loading = false), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.destroy$, carousel.abort$))).subscribe(x => carousel.products = x);
+        group.products$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(() => carousel.loading = false), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["takeUntil"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["merge"])(this.destroy$, carousel.abort$))).subscribe(x => carousel.products = x);
     }
 };
 PageHomeOneComponent.ctorParameters = () => [
-    { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_4__["ShopService"] }
+    { type: _shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"] }
 ];
 PageHomeOneComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -4485,7 +4481,7 @@ PageHomeOneComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-home-one.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/page-home-one/page-home-one.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-home-one.component.scss */ "./src/app/pages/page-home-one/page-home-one.component.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_4__["ShopService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"]])
 ], PageHomeOneComponent);
 
 
@@ -4685,17 +4681,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShopService", function() { return ShopService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _fake_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../fake-server */ "./src/fake-server/index.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _fake_server__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../fake-server */ "./src/fake-server/index.ts");
+
+
 
 
 
 
 
 let ShopService = class ShopService {
-    constructor(http) {
+    constructor(http, router) {
         this.http = http;
+        this.router = router;
+        // APIURL = 'http://localhost:8765/api/webservice/';
+        this.APIURL = 'http://jenix.in/api/webservice/';
+        this.loggedIn = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+    }
+    get isLoggedIn() {
+        return this.loggedIn.asObservable(); // {2}
     }
     /**
      * Returns category object by slug.
@@ -4712,8 +4719,11 @@ let ShopService = class ShopService {
          * - power-tools = slug
          */
         // return this.http.get<Category>(`https://example.com/api/shop/categories/${slug}.json`);
+        // return this.http.post<Product[]>(this.APIURL+'getcategory',{
+        //     slug
+        // }).pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getShopCategory"])(slug);
+        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_6__["getShopCategory"])(slug);
     }
     /**
      * Returns a category tree.
@@ -4731,14 +4741,18 @@ let ShopService = class ShopService {
          * - parent = parent.slug
          * - depth  = depth
          */
-        // const params: {[param: string]: string} = {
-        //     parent: parent.slug,
-        //     depth: depth.toString(),
-        // };
+        const params = {
+            parent: parent.slug,
+            depth: depth.toString(),
+        };
         //
         // return this.http.get<Category[]>('https://example.com/api/shop/categories.json', {params});
+        // return this.http.get<Category[]>('http://localhost:8765/api/webservice/getcategories')
+        // .pipe(map((response: any) => response.data));
+        // return this.http.get<Product[]>(this.APIURL+'getcategories', {params})
+        // .pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getShopCategoriesTree"])(parent ? parent.slug : null, depth);
+        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_6__["getShopCategoriesTree"])(parent ? parent.slug : null, depth);
     }
     /**
      * Returns an array of the specified categories.
@@ -4762,10 +4776,10 @@ let ShopService = class ShopService {
         // };
         //
         // return this.http.get<Category[]>('https://example.com/api/shop/categories.json', {params});
-        // return this.http.get<Category[]>('http://phpdev.co.in/ajayco/api/webservice/getcategories')
+        // return this.http.get<Category[]>('http://localhost:8765/api/webservice/getcategories')
         // .pipe(map((response: any) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getShopCategoriesBySlugs"])(slugs, depth);
+        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_6__["getShopCategoriesBySlugs"])(slugs, depth);
     }
     /**
      * Returns paginated products list.
@@ -4809,8 +4823,13 @@ let ShopService = class ShopService {
         // Object.keys(options.filters).forEach(slug => params[`filter_${slug}`] = options.filters[slug]);
         //
         // return this.http.get<ProductsList>('https://example.com/api/products.json', {params});
+        console.log(options);
+        return this.http.post(this.APIURL + 'getproductlist', {
+            options
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getProductsList"])(categorySlug, options);
+        // console.log(options);  
+        // return getProductsList(categorySlug, options);
     }
     getProduct(productSlug) {
         /**
@@ -4821,9 +4840,16 @@ let ShopService = class ShopService {
          * where:
          * - electric-planer-brandix-kl370090g-300-watts = productSlug
          */
+        const params = {};
+        //
+        if (productSlug) {
+            params.slug = productSlug.toString();
+        }
         // return this.http.get<Product>(`https://example.com/api/products/${productSlug}.json`);
+        return this.http.get(this.APIURL + 'productdetails', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getProduct"])(productSlug);
+        // return getProduct(productSlug);
     }
     /**
      * Returns popular brands.
@@ -4836,7 +4862,7 @@ let ShopService = class ShopService {
          */
         // return this.http.get<Brand[]>('https://example.com/api/shop/brands/popular.json');
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getBrands"])();
+        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_6__["getBrands"])();
     }
     getBestsellers(limit = null) {
         /**
@@ -4852,10 +4878,10 @@ let ShopService = class ShopService {
         if (limit) {
             params.limit = limit.toString();
         }
-        //
+        params.bestselling = '1';
         // return this.http.get<Product[]>('https://example.com/api/shop/products/bestsellers.json', {params});
-        return this.http.get('http://phpdev.co.in/ajayco/api/webservice/getproducts', { params })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((response) => response.data));
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getBestsellers(limit);
     }
@@ -4875,8 +4901,8 @@ let ShopService = class ShopService {
         }
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/top-rated.json', {params});
-        return this.http.get('http://phpdev.co.in/ajayco/api/webservice/getproducts', { params })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((response) => response.data));
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getTopRated(limit);
     }
@@ -4896,8 +4922,8 @@ let ShopService = class ShopService {
         }
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/special-offers.json', {params});
-        return this.http.get('http://phpdev.co.in/ajayco/api/webservice/getproducts', { params })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((response) => response.data));
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getSpecialOffers(limit);
     }
@@ -4913,15 +4939,16 @@ let ShopService = class ShopService {
          */
         const params = {};
         //
-        // if (category) {
-        //     params.category = category;
-        // }
+        if (categorySlug) {
+            params.category = categorySlug;
+        }
         if (limit) {
             params.limit = limit.toString();
         }
+        params.is_featured = '1';
         //
-        return this.http.get('http://phpdev.co.in/ajayco/api/webservice/getproducts', { params })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((response) => response.data));
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getFeatured(categorySlug, limit);
     }
@@ -4945,8 +4972,8 @@ let ShopService = class ShopService {
         }
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/latest.json', {params});
-        return this.http.get('http://phpdev.co.in/ajayco/api/webservice/getproducts', { params })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((response) => response.data));
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getLatestProducts(categorySlug, limit);
     }
@@ -4959,23 +4986,70 @@ let ShopService = class ShopService {
          * where:
          * - for = product.slug
          */
-        // const params: {[param: string]: string} = {
-        //     for: product.slug,
-        // };
+        const params = {
+            for: product.slug,
+        };
         //
         // return this.http.get<Product[]>('https://example.com/api/shop/products/related.json', {params});
+        return this.http.get(this.APIURL + 'getproducts', { params })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
         // This is for demonstration purposes only. Remove it and use the code above.
-        return Object(_fake_server__WEBPACK_IMPORTED_MODULE_4__["getRelatedProducts"])(product);
+        // return getRelatedProducts(product);
+    }
+    getStatic(slug) {
+        return this.http.get(this.APIURL + 'staticpage?name=' + slug)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
+    }
+    getContact() {
+        return this.http.get(this.APIURL + 'getcontact')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
+    }
+    getIndex() {
+        return this.http.get(this.APIURL + 'index')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
+    }
+    getLogin(detail) {
+        this.http.post(this.APIURL + 'login', {
+            detail: detail
+        }).subscribe((data) => {
+            this.result = data;
+            if (this.result.status == true) {
+                this.loggedIn.next(true);
+                localStorage.setItem('USERINFO', JSON.stringify(this.result.data));
+                this.router.navigate(['/']);
+            }
+            else {
+                alert(this.result.message);
+            }
+            return this.result;
+        });
+    }
+    getLogout() {
+        this.loggedIn.next(false);
+        localStorage.removeItem("USERINFO");
+        this.router.navigate(['/account/login']);
+    }
+    signup(detail) {
+        return this.http.post(this.APIURL + 'signup', {
+            detail
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
+    }
+    update(detail) {
+        return this.http.post(this.APIURL + 'update', {
+            detail
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
     }
 };
 ShopService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
 ];
 ShopService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
 ], ShopService);
 
 
@@ -7013,6 +7087,7 @@ let CartService = class CartService {
         this.subtotalSubject$.next(this.data.subtotal);
         this.totalsSubject$.next(this.data.totals);
         this.totalSubject$.next(this.data.total);
+        localStorage.setItem('cartTotal', JSON.stringify(this.data.total));
     }
     save() {
         localStorage.setItem('cartItems', JSON.stringify(this.data.items));
@@ -7182,23 +7257,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
 
 
 
 let DepartmentsService = class DepartmentsService {
-    constructor() {
+    constructor(http) {
+        this.http = http;
         this.areaElementSubject$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        // APIURL = 'http://localhost:8765/api/webservice/';
+        this.APIURL = 'http://jenix.in/api/webservice/';
         this.areaElement$ = this.areaElementSubject$.asObservable();
     }
     setAreaElement(value) {
         this.areaElementSubject$.next(value);
     }
+    getNavigation() {
+        return this.http.get(this.APIURL + 'getnavigation')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response.data));
+    }
 };
+DepartmentsService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }
+];
 DepartmentsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
 ], DepartmentsService);
 
 
@@ -8019,197 +8108,6 @@ const posts = [
 
 /***/ }),
 
-/***/ "./src/data/header-departments.ts":
-/*!****************************************!*\
-  !*** ./src/data/header-departments.ts ***!
-  \****************************************/
-/*! exports provided: departments */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "departments", function() { return departments; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-const departments = [
-    { label: 'Power Tools', url: '/shop/catalog', menu: {
-            type: 'megamenu',
-            size: 'xl',
-            image: 'assets/images/megamenu/megamenu-1.jpg',
-            columns: [
-                { size: 3, items: [
-                        { label: 'Power Tools', url: '/shop/catalog', items: [
-                                { label: 'Engravers', url: '/shop/catalog' },
-                                { label: 'Drills', url: '/shop/catalog' },
-                                { label: 'Wrenches', url: '/shop/catalog' },
-                                { label: 'Plumbing', url: '/shop/catalog' },
-                                { label: 'Wall Chaser', url: '/shop/catalog' },
-                                { label: 'Pneumatic Tools', url: '/shop/catalog' },
-                                { label: 'Milling Cutters', url: '/shop/catalog' }
-                            ] },
-                        { label: 'Workbenches', url: '/shop/catalog' },
-                        { label: 'Presses', url: '/shop/catalog' },
-                        { label: 'Spray Guns', url: '/shop/catalog' },
-                        { label: 'Riveters', url: '/shop/catalog' }
-                    ] },
-                { size: 3, items: [
-                        { label: 'Hand Tools', url: '/shop/catalog', items: [
-                                { label: 'Screwdrivers', url: '/shop/catalog' },
-                                { label: 'Handsaws', url: '/shop/catalog' },
-                                { label: 'Knives', url: '/shop/catalog' },
-                                { label: 'Axes', url: '/shop/catalog' },
-                                { label: 'Multitools', url: '/shop/catalog' },
-                                { label: 'Paint Tools', url: '/shop/catalog' }
-                            ] },
-                        { label: 'Garden Equipment', url: '/shop/catalog', items: [
-                                { label: 'Motor Pumps', url: '/shop/catalog' },
-                                { label: 'Chainsaws', url: '/shop/catalog' },
-                                { label: 'Electric Saws', url: '/shop/catalog' },
-                                { label: 'Brush Cutters', url: '/shop/catalog' }
-                            ] }
-                    ] },
-                { size: 3, items: [
-                        { label: 'Machine Tools', url: '/shop/catalog', items: [
-                                { label: 'Thread Cutting', url: '/shop/catalog' },
-                                { label: 'Chip Blowers', url: '/shop/catalog' },
-                                { label: 'Sharpening Machines', url: '/shop/catalog' },
-                                { label: 'Pipe Cutters', url: '/shop/catalog' },
-                                { label: 'Slotting machines', url: '/shop/catalog' },
-                                { label: 'Lathes', url: '/shop/catalog' }
-                            ] }
-                    ] },
-                { size: 3, items: [
-                        { label: 'Instruments', url: '/shop/catalog', items: [
-                                { label: 'Welding Equipment', url: '/shop/catalog' },
-                                { label: 'Power Tools', url: '/shop/catalog' },
-                                { label: 'Hand Tools', url: '/shop/catalog' },
-                                { label: 'Measuring Tool', url: '/shop/catalog' }
-                            ] }
-                    ] }
-            ]
-        } },
-    { label: 'Hand Tools', url: '/shop/catalog', menu: {
-            type: 'megamenu',
-            size: 'lg',
-            image: 'assets/images/megamenu/megamenu-2.jpg',
-            columns: [
-                { size: 4, items: [
-                        { label: 'Hand Tools', url: '/shop/catalog', items: [
-                                { label: 'Screwdrivers', url: '/shop/catalog' },
-                                { label: 'Handsaws', url: '/shop/catalog' },
-                                { label: 'Knives', url: '/shop/catalog' },
-                                { label: 'Axes', url: '/shop/catalog' },
-                                { label: 'Multitools', url: '/shop/catalog' },
-                                { label: 'Paint Tools', url: '/shop/catalog' }
-                            ] },
-                        { label: 'Garden Equipment', url: '/shop/catalog', items: [
-                                { label: 'Motor Pumps', url: '/shop/catalog' },
-                                { label: 'Chainsaws', url: '/shop/catalog' },
-                                { label: 'Electric Saws', url: '/shop/catalog' },
-                                { label: 'Brush Cutters', url: '/shop/catalog' }
-                            ] }
-                    ] },
-                { size: 4, items: [
-                        { label: 'Machine Tools', url: '/shop/catalog', items: [
-                                { label: 'Thread Cutting', url: '/shop/catalog' },
-                                { label: 'Chip Blowers', url: '/shop/catalog' },
-                                { label: 'Sharpening Machines', url: '/shop/catalog' },
-                                { label: 'Pipe Cutters', url: '/shop/catalog' },
-                                { label: 'Slotting machines', url: '/shop/catalog' },
-                                { label: 'Lathes', url: '/shop/catalog' }
-                            ] }
-                    ] },
-                { size: 4, items: [
-                        { label: 'Instruments', url: '/shop/catalog', items: [
-                                { label: 'Welding Equipment', url: '/shop/catalog' },
-                                { label: 'Power Tools', url: '/shop/catalog' },
-                                { label: 'Hand Tools', url: '/shop/catalog' },
-                                { label: 'Measuring Tool', url: '/shop/catalog' }
-                            ] }
-                    ] }
-            ]
-        } },
-    { label: 'Machine Tools', url: '/shop/catalog', menu: {
-            type: 'megamenu',
-            size: 'nl',
-            image: 'assets/images/megamenu/megamenu-3.jpg',
-            columns: [
-                { size: 6, items: [
-                        { label: 'Hand Tools', url: '/shop/catalog', items: [
-                                { label: 'Screwdrivers', url: '/shop/catalog' },
-                                { label: 'Handsaws', url: '/shop/catalog' },
-                                { label: 'Knives', url: '/shop/catalog' },
-                                { label: 'Axes', url: '/shop/catalog' },
-                                { label: 'Multitools', url: '/shop/catalog' },
-                                { label: 'Paint Tools', url: '/shop/catalog' }
-                            ] },
-                        { label: 'Garden Equipment', url: '/shop/catalog', items: [
-                                { label: 'Motor Pumps', url: '/shop/catalog' },
-                                { label: 'Chainsaws', url: '/shop/catalog' },
-                                { label: 'Electric Saws', url: '/shop/catalog' },
-                                { label: 'Brush Cutters', url: '/shop/catalog' }
-                            ] }
-                    ] },
-                { size: 6, items: [
-                        { label: 'Instruments', url: '/shop/catalog', items: [
-                                { label: 'Welding Equipment', url: '/shop/catalog' },
-                                { label: 'Power Tools', url: '/shop/catalog' },
-                                { label: 'Hand Tools', url: '/shop/catalog' },
-                                { label: 'Measuring Tool', url: '/shop/catalog' }
-                            ] }
-                    ] }
-            ]
-        } },
-    { label: 'Building Supplies', url: '/shop/catalog', menu: {
-            type: 'megamenu',
-            size: 'sm',
-            columns: [
-                { size: 12, items: [
-                        { label: 'Hand Tools', url: '/shop/catalog', items: [
-                                { label: 'Screwdrivers', url: '/shop/catalog' },
-                                { label: 'Handsaws', url: '/shop/catalog' },
-                                { label: 'Knives', url: '/shop/catalog' },
-                                { label: 'Axes', url: '/shop/catalog' },
-                                { label: 'Multitools', url: '/shop/catalog' },
-                                { label: 'Paint Tools', url: '/shop/catalog' }
-                            ] },
-                        { label: 'Garden Equipment', url: '/shop/catalog', items: [
-                                { label: 'Motor Pumps', url: '/shop/catalog' },
-                                { label: 'Chainsaws', url: '/shop/catalog' },
-                                { label: 'Electric Saws', url: '/shop/catalog' },
-                                { label: 'Brush Cutters', url: '/shop/catalog' }
-                            ] }
-                    ] }
-            ]
-        } },
-    { label: 'Electrical', url: '/shop/catalog', menu: {
-            type: 'menu',
-            items: [
-                { label: 'Soldering Equipment', url: '/shop/catalog', items: [
-                        { label: 'Soldering Station', url: '/shop/catalog' },
-                        { label: 'Soldering Dryers', url: '/shop/catalog' },
-                        { label: 'Gas Soldering Iron', url: '/shop/catalog' },
-                        { label: 'Electric Soldering Iron', url: '/shop/catalog' }
-                    ] },
-                { label: 'Light Bulbs', url: '/shop/catalog' },
-                { label: 'Batteries', url: '/shop/catalog' },
-                { label: 'Light Fixtures', url: '/shop/catalog' },
-                { label: 'Warm Floor', url: '/shop/catalog' },
-                { label: 'Generators', url: '/shop/catalog' },
-                { label: 'UPS', url: '/shop/catalog' }
-            ]
-        } },
-    { label: 'Power Machinery', url: '/shop/catalog' },
-    { label: 'Measurement', url: '/shop/catalog' },
-    { label: 'Clothes & PPE', url: '/shop/catalog' },
-    { label: 'Plumbing', url: '/shop/catalog' },
-    { label: 'Storage & Organization', url: '/shop/catalog' },
-    { label: 'Welding & Soldering', url: '/shop/catalog' }
-];
-
-
-/***/ }),
-
 /***/ "./src/data/header-navigation.ts":
 /*!***************************************!*\
   !*** ./src/data/header-navigation.ts ***!
@@ -8222,13 +8120,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return navigation; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
+let flag = false;
+let enabled = true;
+if (localStorage.hasOwnProperty('USERINFO')) {
+    flag = true;
+}
 const navigation = [
     { label: 'Home', url: '/', menu: {
             type: 'menu',
             items: [
-                { label: 'Home 1', url: '/' },
+                { label: 'Home', url: '/', enabled: enabled },
             ]
         } },
+    // {label: 'Megamenu', url: '/shop/catalog', menu: {
+    //     type: 'megamenu',
+    //     size: 'nl',
+    //     columns: [
+    //         {size: 6, items: [
+    //             {label: 'Power Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Engravers', url: '/shop/catalog'},
+    //                 {label: 'Wrenches', url: '/shop/catalog'},
+    //                 {label: 'Wall Chaser', url: '/shop/catalog'},
+    //                 {label: 'Pneumatic Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Machine Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Thread Cutting', url: '/shop/catalog'},
+    //                 {label: 'Chip Blowers', url: '/shop/catalog'},
+    //                 {label: 'Sharpening Machines', url: '/shop/catalog'},
+    //                 {label: 'Pipe Cutters', url: '/shop/catalog'},
+    //                 {label: 'Slotting machines', url: '/shop/catalog'},
+    //                 {label: 'Lathes', url: '/shop/catalog'}
+    //             ]}
+    //         ]},
+    //         {size: 6, items: [
+    //             {label: 'Hand Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Screwdrivers', url: '/shop/catalog'},
+    //                 {label: 'Handsaws', url: '/shop/catalog'},
+    //                 {label: 'Knives', url: '/shop/catalog'},
+    //                 {label: 'Axes', url: '/shop/catalog'},
+    //                 {label: 'Multitools', url: '/shop/catalog'},
+    //                 {label: 'Paint Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Garden Equipment', url: '/shop/catalog', items: [
+    //                 {label: 'Motor Pumps', url: '/shop/catalog'},
+    //                 {label: 'Chainsaws', url: '/shop/catalog'},
+    //                 {label: 'Electric Saws', url: '/shop/catalog'},
+    //                 {label: 'Brush Cutters', url: '/shop/catalog'}
+    //             ]}
+    //         ]}
+    //     ]
+    // }},
     // {label: 'Megamenu', url: '/shop/catalog', menu: {
     //     type: 'megamenu',
     //     size: 'nl',
@@ -8270,61 +8211,206 @@ const navigation = [
     { label: 'Shop', url: '/shop/catalog/power-tools', menu: {
             type: 'menu',
             items: [
-                { label: 'Shop Grid', url: '/shop/catalog/power-tools', items: [
-                        { label: '3 Columns Sidebar', url: '/shop/catalog/power-tools' },
-                        { label: '4 Columns Full', url: '/shop/category-grid-4-columns-full' },
-                        { label: '5 Columns Full', url: '/shop/category-grid-5-columns-full' }
-                    ] },
-                { label: 'Shop List', url: '/shop/category-list' },
-                { label: 'Shop Right Sidebar', url: '/shop/category-right-sidebar' },
-                { label: 'Product', url: '/shop/product-standard', items: [
-                        { label: 'Product', url: '/shop/product-standard' },
-                        { label: 'Product Alt', url: '/shop/product-columnar' },
-                        { label: 'Product Sidebar', url: '/shop/product-sidebar' }
-                    ] },
-                { label: 'Cart', url: '/shop/cart' },
-                { label: 'Checkout', url: '/shop/cart/checkout' },
-                { label: 'Wishlist', url: '/shop/wishlist' },
-                { label: 'Compare', url: '/shop/compare' },
-                { label: 'Track Order', url: '/shop/track-order' },
+                // {label: 'Shop Grid', url: '/shop/catalog/power-tools', items: [
+                //     {label: '3 Columns Sidebar', url: '/shop/catalog/power-tools'},
+                //     {label: '4 Columns Full',    url: '/shop/category-grid-4-columns-full'},
+                //     {label: '5 Columns Full',    url: '/shop/category-grid-5-columns-full'}
+                // ]},
+                // {label: 'Shop List', url: '/shop/category-list'},
+                // {label: 'Shop Right Sidebar', url: '/shop/category-right-sidebar'},
+                // {label: 'Product', url: '/shop/product-standard', items: [
+                //     {label: 'Product', url: '/shop/product-standard'},
+                //     {label: 'Product Alt', url: '/shop/product-columnar'},
+                //     {label: 'Product Sidebar', url: '/shop/product-sidebar'}
+                // ]},
+                { label: 'Cart', url: '/shop/cart', enabled: enabled },
+                { label: 'Checkout', url: '/shop/cart/checkout', enabled: enabled },
+                { label: 'Wishlist', url: '/shop/wishlist', enabled: enabled },
+                // {label: 'Compare', url: '/shop/compare'},
+                { label: 'Track Order', url: '/shop/track-order', enabled: enabled },
             ]
         } },
     { label: 'Account', url: '/account', menu: {
             type: 'menu',
             items: [
-                { label: 'Login', url: '/account/login' },
-                { label: 'Dashboard', url: '/account/dashboard' },
-                { label: 'Edit Profile', url: '/account/profile' },
-                { label: 'Order History', url: '/account/orders' },
-                { label: 'Address Book', url: '/account/addresses' },
-                { label: 'Change Password', url: '/account/password' }
+                { label: 'Dashboard', url: '/account/dashboard', enabled: enabled },
+                { label: 'Edit Profile', url: '/account/profile', enabled: enabled },
+                { label: 'Order History', url: '/account/orders', enabled: enabled },
+                { label: 'Address Book', url: '/account/addresses', enabled: enabled },
+                { label: 'Change Password', url: '/account/password', enabled: enabled },
+                { label: 'Logout', url: '/account/logout', enabled: enabled }
             ]
         } },
-    { label: 'Blog', url: '/blog', menu: {
-            type: 'menu',
-            items: [
-                { label: 'Blog Classic', url: '/blog/category-classic' },
-                { label: 'Blog Grid', url: '/blog/category-grid' },
-                { label: 'Blog List', url: '/blog/category-list' },
-                { label: 'Blog Left Sidebar', url: '/blog/category-left-sidebar' },
-                { label: 'Post Page', url: '/blog/post-classic' },
-                { label: 'Post Without Sidebar', url: '/blog/post-full' }
-            ]
-        } },
+    // {label: 'Blog', url: '/blog', menu: {
+    //     type: 'menu',
+    //     items: [
+    //         {label: 'Blog Classic',         url: '/blog/category-classic'},
+    //         {label: 'Blog Grid',            url: '/blog/category-grid'},
+    //         {label: 'Blog List',            url: '/blog/category-list'},
+    //         {label: 'Blog Left Sidebar',    url: '/blog/category-left-sidebar'},
+    //         {label: 'Post Page',            url: '/blog/post-classic'},
+    //         {label: 'Post Without Sidebar', url: '/blog/post-full'}
+    //     ]
+    // }},
     { label: 'Pages', url: '/site', menu: {
             type: 'menu',
             items: [
-                { label: 'About Us', url: '/site/about-us' },
-                { label: 'Contact Us', url: '/site/contact-us' },
-                { label: 'Contact Us Alt', url: '/site/contact-us-alt' },
-                { label: '404', url: '/site/not-found' },
-                { label: 'Terms And Conditions', url: '/site/terms' },
-                { label: 'FAQ', url: '/site/faq' },
-                { label: 'Components', url: '/site/components' },
-                { label: 'Typography', url: '/site/typography' }
+                { label: 'About Us', url: '/site/about-us', enabled: enabled },
+                { label: 'Contact Us', url: '/site/contact-us', enabled: enabled },
+                // {label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
+                // {label: '404',                  url: '/site/not-found'},
+                { label: 'Terms And Conditions', url: '/site/terms', enabled: enabled },
             ]
         } },
-    { label: 'Buy Theme', url: 'https://themeforest.net/item/stroyka-tools-store-angular-7-template/23523630', external: true }
+];
+
+
+/***/ }),
+
+/***/ "./src/data/menu-navigation.ts":
+/*!*************************************!*\
+  !*** ./src/data/menu-navigation.ts ***!
+  \*************************************/
+/*! exports provided: manunavigation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "manunavigation", function() { return manunavigation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+let flag = false;
+let enabled = true;
+if (localStorage.hasOwnProperty('USERINFO')) {
+    flag = true;
+}
+const manunavigation = [
+    { label: 'Home', url: '/', menu: {
+            type: 'menu',
+            items: [
+                { label: 'Home', url: '/', enabled: enabled },
+            ]
+        } },
+    // {label: 'Megamenu', url: '/shop/catalog', menu: {
+    //     type: 'megamenu',
+    //     size: 'nl',
+    //     columns: [
+    //         {size: 6, items: [
+    //             {label: 'Power Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Engravers', url: '/shop/catalog'},
+    //                 {label: 'Wrenches', url: '/shop/catalog'},
+    //                 {label: 'Wall Chaser', url: '/shop/catalog'},
+    //                 {label: 'Pneumatic Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Machine Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Thread Cutting', url: '/shop/catalog'},
+    //                 {label: 'Chip Blowers', url: '/shop/catalog'},
+    //                 {label: 'Sharpening Machines', url: '/shop/catalog'},
+    //                 {label: 'Pipe Cutters', url: '/shop/catalog'},
+    //                 {label: 'Slotting machines', url: '/shop/catalog'},
+    //                 {label: 'Lathes', url: '/shop/catalog'}
+    //             ]}
+    //         ]},
+    //         {size: 6, items: [
+    //             {label: 'Hand Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Screwdrivers', url: '/shop/catalog'},
+    //                 {label: 'Handsaws', url: '/shop/catalog'},
+    //                 {label: 'Knives', url: '/shop/catalog'},
+    //                 {label: 'Axes', url: '/shop/catalog'},
+    //                 {label: 'Multitools', url: '/shop/catalog'},
+    //                 {label: 'Paint Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Garden Equipment', url: '/shop/catalog', items: [
+    //                 {label: 'Motor Pumps', url: '/shop/catalog'},
+    //                 {label: 'Chainsaws', url: '/shop/catalog'},
+    //                 {label: 'Electric Saws', url: '/shop/catalog'},
+    //                 {label: 'Brush Cutters', url: '/shop/catalog'}
+    //             ]}
+    //         ]}
+    //     ]
+    // }},
+    // {label: 'Megamenu', url: '/shop/catalog', menu: {
+    //     type: 'megamenu',
+    //     size: 'nl',
+    //     columns: [
+    //         {size: 6, items: [
+    //             {label: 'Power Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Engravers', url: '/shop/catalog'},
+    //                 {label: 'Wrenches', url: '/shop/catalog'},
+    //                 {label: 'Wall Chaser', url: '/shop/catalog'},
+    //                 {label: 'Pneumatic Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Machine Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Thread Cutting', url: '/shop/catalog'},
+    //                 {label: 'Chip Blowers', url: '/shop/catalog'},
+    //                 {label: 'Sharpening Machines', url: '/shop/catalog'},
+    //                 {label: 'Pipe Cutters', url: '/shop/catalog'},
+    //                 {label: 'Slotting machines', url: '/shop/catalog'},
+    //                 {label: 'Lathes', url: '/shop/catalog'}
+    //             ]}
+    //         ]},
+    //         {size: 6, items: [
+    //             {label: 'Hand Tools', url: '/shop/catalog', items: [
+    //                 {label: 'Screwdrivers', url: '/shop/catalog'},
+    //                 {label: 'Handsaws', url: '/shop/catalog'},
+    //                 {label: 'Knives', url: '/shop/catalog'},
+    //                 {label: 'Axes', url: '/shop/catalog'},
+    //                 {label: 'Multitools', url: '/shop/catalog'},
+    //                 {label: 'Paint Tools', url: '/shop/catalog'}
+    //             ]},
+    //             {label: 'Garden Equipment', url: '/shop/catalog', items: [
+    //                 {label: 'Motor Pumps', url: '/shop/catalog'},
+    //                 {label: 'Chainsaws', url: '/shop/catalog'},
+    //                 {label: 'Electric Saws', url: '/shop/catalog'},
+    //                 {label: 'Brush Cutters', url: '/shop/catalog'}
+    //             ]}
+    //         ]}
+    //     ]
+    // }},
+    { label: 'Shop', url: '/shop/catalog/power-tools', menu: {
+            type: 'menu',
+            items: [
+                // {label: 'Shop Grid', url: '/shop/catalog/power-tools', items: [
+                //     {label: '3 Columns Sidebar', url: '/shop/catalog/power-tools'},
+                //     {label: '4 Columns Full',    url: '/shop/category-grid-4-columns-full'},
+                //     {label: '5 Columns Full',    url: '/shop/category-grid-5-columns-full'}
+                // ]},
+                // {label: 'Shop List', url: '/shop/category-list'},
+                // {label: 'Shop Right Sidebar', url: '/shop/category-right-sidebar'},
+                // {label: 'Product', url: '/shop/product-standard', items: [
+                //     {label: 'Product', url: '/shop/product-standard'},
+                //     {label: 'Product Alt', url: '/shop/product-columnar'},
+                //     {label: 'Product Sidebar', url: '/shop/product-sidebar'}
+                // ]},
+                { label: 'Cart', url: '/shop/cart', enabled: enabled },
+                { label: 'Checkout', url: '/shop/cart/checkout', enabled: enabled },
+                { label: 'Wishlist', url: '/shop/wishlist', enabled: enabled },
+                // {label: 'Compare', url: '/shop/compare'},
+                { label: 'Track Order', url: '/shop/track-order', enabled: enabled },
+            ]
+        } },
+    { label: 'Login', url: '/account/login' },
+    // {label: 'Blog', url: '/blog', menu: {
+    //     type: 'menu',
+    //     items: [
+    //         {label: 'Blog Classic',         url: '/blog/category-classic'},
+    //         {label: 'Blog Grid',            url: '/blog/category-grid'},
+    //         {label: 'Blog List',            url: '/blog/category-list'},
+    //         {label: 'Blog Left Sidebar',    url: '/blog/category-left-sidebar'},
+    //         {label: 'Post Page',            url: '/blog/post-classic'},
+    //         {label: 'Post Without Sidebar', url: '/blog/post-full'}
+    //     ]
+    // }},
+    { label: 'Pages', url: '/site', menu: {
+            type: 'menu',
+            items: [
+                { label: 'About Us', url: '/site/about-us', enabled: enabled },
+                { label: 'Contact Us', url: '/site/contact-us', enabled: enabled },
+                // {label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
+                // {label: '404',                  url: '/site/not-found'},
+                { label: 'Terms And Conditions', url: '/site/terms', enabled: enabled },
+            ]
+        } },
 ];
 
 
@@ -8884,6 +8970,8 @@ function getCategoriesTree(categoriesType, parentSlug = null, depth = 0) {
         }
         categories = parent.children.slice();
     }
+    console.log('list of category');
+    console.log(categories);
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(limitDepth(categories, depth));
 }
 function getShopCategoriesTree(parentSlug = null, depth = 0) {
@@ -8898,8 +8986,10 @@ function getShopCategoriesBySlugs(slugs, depth = 0) {
 function getShopCategory(slug) {
     const category = shopCategoriesList.find(x => x.slug === slug);
     if (!category) {
+        console.log(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpErrorResponse"]({ status: 404, statusText: 'Page Not Found' }));
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["throwError"])(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpErrorResponse"]({ status: 404, statusText: 'Page Not Found' }));
     }
+    console.log(JSON.parse(JSON.stringify(Object.assign({}, category, { parents: limitDepth(category.parents, 0), children: limitDepth(category.children, 0) }))));
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(JSON.parse(JSON.stringify(Object.assign({}, category, { parents: limitDepth(category.parents, 0), children: limitDepth(category.children, 0) }))));
 }
 
@@ -8929,8 +9019,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./categories */ "./src/fake-server/database/categories.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-
 
 
 
@@ -9452,7 +9540,7 @@ function getRelatedProducts(product) {
 function getProduct(productSlug) {
     const product = products.find(x => x.slug === productSlug);
     if (!product) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["throwError"])(new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpErrorResponse"]({ status: 404, statusText: 'Page Not Found' }));
+        // return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
     }
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(JSON.parse(JSON.stringify(product)));
 }
@@ -9635,6 +9723,7 @@ function getProductsList(categorySlug, options) {
         filters,
         filterValues,
     };
+    console.log(response);
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["timer"])(350).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(() => JSON.parse(JSON.stringify(response))));
 }
 function getFilterValue(type, slug, product, defaultValue = null) {

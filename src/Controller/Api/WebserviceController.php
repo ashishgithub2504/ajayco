@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Core\Configure;
 use CatalogManager\Model\Entity\Product;
+use Cake\Utility\Text;
 
 class WebserviceController extends AppController {
 
@@ -154,6 +155,7 @@ class WebserviceController extends AppController {
         
         $categories = $this->Category->find()
             ->where(['status'=>1,'parent_id' => 0])
+            // ->limit(8)
             ->contain(['Products' => function($q) {
                 return $q->select(['id','title','slug']);
             }])
@@ -163,7 +165,7 @@ class WebserviceController extends AppController {
         foreach($categories as $key=>$val) {
             $category[$key]['label'] = $val['title'];
             $category[$key]['url'] = $val['slug'];
-            
+            $cat = [];
             if(!empty($val['products'])) {
                 foreach($val['products'] as $k => $v) {
                     $cat[$k]['label'] = $v['title'];
@@ -177,6 +179,8 @@ class WebserviceController extends AppController {
                 'items' => $cat
             ];
         }
+        // echo '<pre>';
+        // print_r($category);die;
         
         $response = [
             'status' => true,
@@ -286,6 +290,7 @@ class WebserviceController extends AppController {
     }
 
     public function getcategories() {
+        $response = [];
         $categories = $this->Category->find('all', [
             //'spacer' => '_', 
             'conditions' => ['status' => 1,'parent_id' => 0],
@@ -385,14 +390,14 @@ class WebserviceController extends AppController {
                     $list[$key]['name'] = $value['title'];
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
+                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     if(!empty($value['product_images'])) {
                         foreach ($value['product_images'] as $k => $val) {
-                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$val['image'].'&w=700&h=700';    
+                            $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/'.$value['id'].'/', true).$val['image'].'&w=700&h=700';    
                         }                        
                     } else {
                         $list[$key]['images'] = [];
                     }
-                    $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
                     $list[$key]['compareAtPrice'] = null;
                     $list[$key]['badges'] = ['new'];
                     $list[$key]['rating'] = 4;
@@ -673,7 +678,7 @@ class WebserviceController extends AppController {
         $response = curl_exec($ch);
         curl_close($ch);
         // Process your response here
-        echo $response;
+        //echo $response;
     }
 
     public function createorder() {
@@ -687,9 +692,11 @@ class WebserviceController extends AppController {
             $this->orderdetail = TableRegistry::get('OrderDetails');
 
             $entity = $this->order->newEntity();
-            $entity->order_no = '1001';
+            $entity->order_no = rand(1000,9999);
             $entity->order_amount = isset($this->request->data['price'])?$this->request->data['price']:'';
             $entity->status = '2';
+            $entity->created = date('Y-m-d');
+            $entity->modified = date('Y-m-d');
             if($this->order->save($entity)) {
                 foreach($this->request->data['detail'] as $k=>$v) {
                     $details = $this->orderdetail->newEntity();
@@ -699,9 +706,13 @@ class WebserviceController extends AppController {
                     $details->qty = $v['qty'];
                     $details->price = $v['price'];
                     $details->status = '1';
+                    $details->created = date('Y-m-d');
+                    $details->modified = date('Y-m-d');
                     $this->orderdetail->save($details);            
                 }
-                $response = ['status'=>true,'code' => 200 ,'message'=>'You order has been successfully saved.','data' => $entity];
+                $hash=hash('sha512', 'Tgjxsf1A|'.$this->request->data['txnid'].'|'.$this->request->data['price'].'|jenix|'.$this->request->data['userInfo']['first_name'].'|'.$this->request->data['userInfo']['email'].'|||||BOLT_KIT_PHP7||||||l4BBd6pDnc');
+
+                $response = ['status'=>true,'code' => 200 ,'message'=>'You order has been successfully saved.','data' => $entity,'hash' => $hash];
             } else {
                 pr($entity); die;
             }

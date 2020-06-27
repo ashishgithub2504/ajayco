@@ -28,6 +28,12 @@
   });
 
   $(document).ready(function(){
+
+  $(".shadow").click(function() {
+      $('#navigation').toggleClass('shadow');
+      $('#responsive-nav').toggleClass('open');
+      $('#responsive-nav .menu-nav .menu-list').toggleClass('open');  
+  });
   
   $(".nav-toggle-btn").click(function() {
     $('#navigation').toggleClass('shadow');
@@ -49,9 +55,9 @@
     $('#responsive-nav .category-nav .category-list').removeClass('open');
     $('#responsive-nav .menu-nav .menu-list').toggleClass('open');
   });
-  $('#navigation.shadow').click(function(){
-      $(this).removeClass('shadow');
-  });
+  // $('#navigation.shadow').click(function(){
+  //     $(this).removeClass('shadow');
+  // });
 
   // HOME SLICK
   $('#home-slick').slick({
@@ -61,6 +67,10 @@
     arrows: true,
   });
 
+  $('h3 .aside-title').click(function(){
+      alert('call');
+      $(".list-links").slideToggle();
+  });
   // PRODUCTS SLICK
   $('.product-slick-news').slick({
     slidesToShow: 2,

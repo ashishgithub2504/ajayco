@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard\">\r\n    <div class=\"dashboard__profile card profile-card\">\r\n        <div class=\"card-body profile-card__body\">\r\n            <div class=\"profile-card__avatar\">\r\n                <img src=\"./assets/images/avatars/avatar-3.jpg\" alt=\"\">\r\n            </div>\r\n            <div class=\"profile-card__name\">Helena Garcia</div>\r\n            <div class=\"profile-card__email\">stroyka@example.com</div>\r\n            <div class=\"profile-card__edit\">\r\n                <a routerLink=\"../profile\" class=\"btn btn-secondary btn-sm\">Edit Profile</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"dashboard__address card address-card address-card--featured\">\r\n        <div class=\"address-card__badge\" *ngIf=\"address.default\">Default Address</div>\r\n        <div class=\"address-card__body\">\r\n            <div class=\"address-card__name\">{{ address.firstName + ' ' + address.lastName}}</div>\r\n            <div class=\"address-card__row\">\r\n                {{ address.country }}<br>\r\n                {{ address.postcode }}, {{ address.city }}<br>\r\n                {{ address.address }}\r\n            </div>\r\n            <div class=\"address-card__row\">\r\n                <div class=\"address-card__row-title\">Phone Number</div>\r\n                <div class=\"address-card__row-content\">{{ address.phone }}</div>\r\n            </div>\r\n            <div class=\"address-card__row\">\r\n                <div class=\"address-card__row-title\">Email Address</div>\r\n                <div class=\"address-card__row-content\">{{ address.email }}</div>\r\n            </div>\r\n            <div class=\"address-card__footer\">\r\n                <a routerLink=\"./\">Edit Address</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"dashboard__orders card\">\r\n        <div class=\"card-header\">\r\n            <h5>Recent Orders</h5>\r\n        </div>\r\n        <div class=\"card-divider\"></div>\r\n        <div class=\"card-table\">\r\n            <div class=\"table-responsive-sm\">\r\n                <table>\r\n                    <thead>\r\n                    <tr>\r\n                        <th>Order</th>\r\n                        <th>Date</th>\r\n                        <th>Status</th>\r\n                        <th>Total</th>\r\n                    </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                    <tr *ngFor=\"let order of orders\">\r\n                        <td><a href=\"\">#{{ order.id }}</a></td>\r\n                        <td>{{ order.date }}</td>\r\n                        <td>{{ order.status }}</td>\r\n                        <td>{{ order.total }}</td>\r\n                    </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"dashboard\">\r\n    <div class=\"dashboard__profile card profile-card\">\r\n        <div class=\"card-body profile-card__body\">\r\n            <div class=\"profile-card__avatar\">\r\n                <img src=\"{{userInfo.profile_pic}}\" alt=\"\">\r\n            </div>\r\n            <div class=\"profile-card__name\">{{userInfo.first_name}}</div>\r\n            <div class=\"profile-card__email\">{{userInfo.email}}</div>\r\n            <div class=\"profile-card__edit\">\r\n                <a routerLink=\"../profile\" class=\"btn btn-secondary btn-sm\">Edit Profile</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"dashboard__address card address-card address-card--featured\">\r\n        <div class=\"address-card__badge\" *ngIf=\"address.default\">Default Address</div>\r\n        <div class=\"address-card__body\">\r\n            <div class=\"address-card__name\">{{ userInfo.first_name + ' ' + userInfo.first_name}}</div>\r\n            <div class=\"address-card__row\">\r\n                {{ address.country }}<br>\r\n                {{ address.postcode }}, {{ address.city }}<br>\r\n                {{ address.address }}\r\n            </div>\r\n            <div class=\"address-card__row\">\r\n                <div class=\"address-card__row-title\">Phone Number</div>\r\n                <div class=\"address-card__row-content\">{{ userInfo.mobile }}</div>\r\n            </div>\r\n            <div class=\"address-card__row\">\r\n                <div class=\"address-card__row-title\">Email Address</div>\r\n                <div class=\"address-card__row-content\">{{ userInfo.email }}</div>\r\n            </div>\r\n            <div class=\"address-card__footer\">\r\n                <a routerLink=\"./\">Edit Address</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"dashboard__orders card\">\r\n        <div class=\"card-header\">\r\n            <h5>Recent Orders</h5>\r\n        </div>\r\n        <div class=\"card-divider\"></div>\r\n        <div class=\"card-table\">\r\n            <div class=\"table-responsive-sm\">\r\n                <table>\r\n                    <thead>\r\n                    <tr>\r\n                        <th>Order</th>\r\n                        <th>Date</th>\r\n                        <th>Status</th>\r\n                        <th>Total</th>\r\n                    </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                    <tr *ngFor=\"let order of orders\">\r\n                        <td><a href=\"\">#{{ order.id }}</a></td>\r\n                        <td>{{ order.date }}</td>\r\n                        <td>{{ order.status }}</td>\r\n                        <td>{{ order.total }}</td>\r\n                    </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -48,7 +48,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-page-header [header]=\"'My Account'\" [breadcrumbs]=\"[\r\n    {label: 'Home',       url: '/'},\r\n    {label: 'My Account', url: ''}\r\n]\"></app-page-header>\r\n\r\n<div class=\"block\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6 d-flex\">\r\n                <div class=\"card flex-grow-1 mb-md-0\">\r\n                    <div class=\"card-body\">\r\n                        <h3 class=\"card-title\">Login</h3>\r\n                        <form>\r\n                            <div class=\"form-group\">\r\n                                <label>Email address</label>\r\n                                <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Password</label>\r\n                                <input type=\"password\" class=\"form-control\" placeholder=\"Password\">\r\n                                <small class=\"form-text text-muted\">\r\n                                    <a href=\"\">Forgotten Password</a>\r\n                                </small>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <div class=\"form-check\">\r\n                                    <span class=\"form-check-input input-check\">\r\n                                        <span class=\"input-check__body\">\r\n                                            <input class=\"input-check__input\" type=\"checkbox\" id=\"login-remember\">\r\n                                            <span class=\"input-check__box\"></span>\r\n                                            <app-icon class=\"input-check__icon\" name=\"check-9x7\" size=\"9x7\"></app-icon>\r\n                                        </span>\r\n                                    </span>\r\n                                    <label class=\"form-check-label\" for=\"login-remember\">Remember Me</label>\r\n                                </div>\r\n                            </div>\r\n                            <button type=\"submit\" class=\"btn btn-primary mt-2 mt-md-3 mt-lg-4\">Login</button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6 d-flex mt-4 mt-md-0\">\r\n                <div class=\"card flex-grow-1 mb-0\">\r\n                    <div class=\"card-body\">\r\n                        <h3 class=\"card-title\">Register</h3>\r\n                        <form>\r\n                            <div class=\"form-group\">\r\n                                <label>Email address</label>\r\n                                <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Password</label>\r\n                                <input type=\"password\" class=\"form-control\" placeholder=\"Password\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Repeat Password</label>\r\n                                <input type=\"password\" class=\"form-control\" placeholder=\"Password\">\r\n                            </div>\r\n                            <button type=\"submit\" class=\"btn btn-primary mt-2 mt-md-3 mt-lg-4\">Register</button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-page-header [header]=\"'My Account'\" [breadcrumbs]=\"[\r\n    {label: 'Home',       url: '/'},\r\n    {label: 'My Account', url: ''}\r\n]\"></app-page-header>\r\n\r\n<div class=\"block\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6 d-flex\">\r\n                <div class=\"card flex-grow-1 mb-md-0\">\r\n                    <div class=\"card-body\">\r\n                        <h3 class=\"card-title\">Login</h3>\r\n                        <form [formGroup]=\"loginForm\"  (ngSubmit)=\"onSubmit()\">\r\n                            <div class=\"form-group\">\r\n                                <label>Email address</label>\r\n                                <input type=\"email\" formControlName=\"email\" class=\"form-control\" placeholder=\"Enter email\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Password</label>\r\n                                <input type=\"password\" class=\"form-control\" formControlName=\"password\" placeholder=\"Password\">\r\n                                <small class=\"form-text text-muted\">\r\n                                    <a href=\"\">Forgotten Password</a>\r\n                                </small>\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <div class=\"form-check\">\r\n                                    <span class=\"form-check-input input-check\">\r\n                                        <span class=\"input-check__body\">\r\n                                            <input class=\"input-check__input\" type=\"checkbox\" id=\"login-remember\">\r\n                                            <span class=\"input-check__box\"></span>\r\n                                            <app-icon class=\"input-check__icon\" name=\"check-9x7\" size=\"9x7\"></app-icon>\r\n                                        </span>\r\n                                    </span>\r\n                                    <label class=\"form-check-label\" for=\"login-remember\">Remember Me</label>\r\n                                </div>\r\n                            </div>\r\n                            <button type=\"submit\" [disabled]=\"!loginForm.valid\" class=\"btn btn-primary mt-2 mt-md-3 mt-lg-4\">Login</button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-6 d-flex mt-4 mt-md-0\">\r\n                <div class=\"card flex-grow-1 mb-0\">\r\n                    <div class=\"card-body\">\r\n                        <h3 class=\"card-title\">Register</h3>\r\n                        <form [formGroup]=\"registerForm\"  (ngSubmit)=\"onRegister()\">\r\n                            <div class=\"form-group\">\r\n                                <label>First Name</label>\r\n                                <input type=\"email\" formControlName=\"first_name\" class=\"form-control\" placeholder=\"First name\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Email address</label>\r\n                                <input type=\"email\" formControlName=\"email\" class=\"form-control\" placeholder=\"Enter email\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Password</label>\r\n                                <input type=\"password\" formControlName=\"password\" class=\"form-control\" placeholder=\"Password\">\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label>Repeat Password</label>\r\n                                <input type=\"password\" formControlName=\"cpassword\" class=\"form-control\" placeholder=\"Password\">\r\n                            </div>\r\n                            <button type=\"submit\" [disabled]=\"!registerForm.valid\" class=\"btn btn-primary mt-2 mt-md-3 mt-lg-4\">Register</button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/account/pages/page-logout/page-logout.component.html":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/account/pages/page-logout/page-logout.component.html ***!
+  \********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("");
 
 /***/ }),
 
@@ -87,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <div class=\"card-header\">\r\n        <h5>Edit Profile</h5>\r\n    </div>\r\n    <div class=\"card-divider\"></div>\r\n    <div class=\"card-body\">\r\n        <div class=\"row no-gutters\">\r\n            <div class=\"col-12 col-lg-7 col-xl-6\">\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-first-name\">First Name</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"profile-first-name\" placeholder=\"First Name\">\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-last-name\">Last Name</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"profile-last-name\" placeholder=\"Last Name\">\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-email\">Email Address</label>\r\n                    <input type=\"email\" class=\"form-control\" id=\"profile-email\" placeholder=\"Email Address\">\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-phone\">Phone Number</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"profile-phone\" placeholder=\"Phone Number\">\r\n                </div>\r\n\r\n                <div class=\"form-group mt-5 mb-0\">\r\n                    <button class=\"btn btn-primary\">Save</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <div class=\"card-header\">\r\n        <h5>Edit Profile</h5>\r\n    </div>\r\n    <div class=\"card-divider\"></div>\r\n    <div class=\"card-body\">\r\n        <div class=\"row no-gutters\">\r\n            <div class=\"col-12 col-lg-7 col-xl-6\">                \r\n                <form [formGroup]=\"profileForm\"  (ngSubmit)=\"update()\">\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-first-name\">First Name</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"first_name\" id=\"profile-first-name\" placeholder=\"First Name\">\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-last-name\">Last Name</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"last_name\" id=\"profile-last-name\" placeholder=\"Last Name\">\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-email\">Email Address</label>\r\n                    <input type=\"email\" class=\"form-control\" id=\"profile-email\"  formControlName=\"email\" placeholder=\"Email Address\" disabled>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"profile-phone\">Phone Number</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"profile-phone\"  formControlName=\"phone\" placeholder=\"Phone Number\">\r\n                </div>\r\n                <div class=\"form-group mt-5 mb-0\">\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\r\n                </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -104,13 +117,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/page-login/page-login.component */ "./src/app/modules/account/pages/page-login/page-login.component.ts");
-/* harmony import */ var _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/layout/layout.component */ "./src/app/modules/account/components/layout/layout.component.ts");
-/* harmony import */ var _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/page-dashboard/page-dashboard.component */ "./src/app/modules/account/pages/page-dashboard/page-dashboard.component.ts");
-/* harmony import */ var _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/page-orders-list/page-orders-list.component */ "./src/app/modules/account/pages/page-orders-list/page-orders-list.component.ts");
-/* harmony import */ var _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/page-addresses-list/page-addresses-list.component */ "./src/app/modules/account/pages/page-addresses-list/page-addresses-list.component.ts");
-/* harmony import */ var _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/page-profile/page-profile.component */ "./src/app/modules/account/pages/page-profile/page-profile.component.ts");
-/* harmony import */ var _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/page-password/page-password.component */ "./src/app/modules/account/pages/page-password/page-password.component.ts");
+/* harmony import */ var _pages_page_logout_page_logout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/page-logout/page-logout.component */ "./src/app/modules/account/pages/page-logout/page-logout.component.ts");
+/* harmony import */ var _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/page-login/page-login.component */ "./src/app/modules/account/pages/page-login/page-login.component.ts");
+/* harmony import */ var _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/layout/layout.component */ "./src/app/modules/account/components/layout/layout.component.ts");
+/* harmony import */ var _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/page-dashboard/page-dashboard.component */ "./src/app/modules/account/pages/page-dashboard/page-dashboard.component.ts");
+/* harmony import */ var _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/page-orders-list/page-orders-list.component */ "./src/app/modules/account/pages/page-orders-list/page-orders-list.component.ts");
+/* harmony import */ var _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/page-addresses-list/page-addresses-list.component */ "./src/app/modules/account/pages/page-addresses-list/page-addresses-list.component.ts");
+/* harmony import */ var _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/page-profile/page-profile.component */ "./src/app/modules/account/pages/page-profile/page-profile.component.ts");
+/* harmony import */ var _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/page-password/page-password.component */ "./src/app/modules/account/pages/page-password/page-password.component.ts");
+
 
 
 
@@ -124,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        component: _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_4__["LayoutComponent"],
+        component: _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_5__["LayoutComponent"],
         children: [
             {
                 path: '',
@@ -133,29 +148,33 @@ const routes = [
             },
             {
                 path: 'dashboard',
-                component: _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["PageDashboardComponent"]
+                component: _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_6__["PageDashboardComponent"]
             },
             {
                 path: 'profile',
-                component: _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_8__["PageProfileComponent"]
+                component: _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_9__["PageProfileComponent"]
             },
             {
                 path: 'addresses',
-                component: _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_7__["PageAddressesListComponent"]
+                component: _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_8__["PageAddressesListComponent"]
             },
             {
                 path: 'orders',
-                component: _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_6__["PageOrdersListComponent"]
+                component: _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_7__["PageOrdersListComponent"]
             },
             {
                 path: 'password',
-                component: _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_9__["PagePasswordComponent"]
-            }
+                component: _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_10__["PagePasswordComponent"]
+            },
         ]
     },
     {
         path: 'login',
-        component: _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_3__["PageLoginComponent"]
+        component: _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_4__["PageLoginComponent"]
+    },
+    {
+        path: 'logout',
+        component: _pages_page_logout_page_logout_component__WEBPACK_IMPORTED_MODULE_3__["PageLogoutComponent"]
     }
 ];
 let AccountRoutingModule = class AccountRoutingModule {
@@ -187,12 +206,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./account-routing.module */ "./src/app/modules/account/account-routing.module.ts");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/layout/layout.component */ "./src/app/modules/account/components/layout/layout.component.ts");
-/* harmony import */ var _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/page-addresses-list/page-addresses-list.component */ "./src/app/modules/account/pages/page-addresses-list/page-addresses-list.component.ts");
-/* harmony import */ var _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/page-dashboard/page-dashboard.component */ "./src/app/modules/account/pages/page-dashboard/page-dashboard.component.ts");
-/* harmony import */ var _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/page-login/page-login.component */ "./src/app/modules/account/pages/page-login/page-login.component.ts");
-/* harmony import */ var _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/page-orders-list/page-orders-list.component */ "./src/app/modules/account/pages/page-orders-list/page-orders-list.component.ts");
-/* harmony import */ var _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/page-password/page-password.component */ "./src/app/modules/account/pages/page-password/page-password.component.ts");
-/* harmony import */ var _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/page-profile/page-profile.component */ "./src/app/modules/account/pages/page-profile/page-profile.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/page-addresses-list/page-addresses-list.component */ "./src/app/modules/account/pages/page-addresses-list/page-addresses-list.component.ts");
+/* harmony import */ var _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/page-dashboard/page-dashboard.component */ "./src/app/modules/account/pages/page-dashboard/page-dashboard.component.ts");
+/* harmony import */ var _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/page-login/page-login.component */ "./src/app/modules/account/pages/page-login/page-login.component.ts");
+/* harmony import */ var _pages_page_logout_page_logout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/page-logout/page-logout.component */ "./src/app/modules/account/pages/page-logout/page-logout.component.ts");
+/* harmony import */ var _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/page-orders-list/page-orders-list.component */ "./src/app/modules/account/pages/page-orders-list/page-orders-list.component.ts");
+/* harmony import */ var _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/page-password/page-password.component */ "./src/app/modules/account/pages/page-password/page-password.component.ts");
+/* harmony import */ var _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/page-profile/page-profile.component */ "./src/app/modules/account/pages/page-profile/page-profile.component.ts");
 
 
 // modules (angular)
@@ -202,7 +223,9 @@ __webpack_require__.r(__webpack_exports__);
 
 // components
 
+
 // pages
+
 
 
 
@@ -217,16 +240,19 @@ AccountModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             // components
             _components_layout_layout_component__WEBPACK_IMPORTED_MODULE_5__["LayoutComponent"],
             // pages
-            _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_6__["PageAddressesListComponent"],
-            _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_7__["PageDashboardComponent"],
-            _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_8__["PageLoginComponent"],
-            _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_9__["PageOrdersListComponent"],
-            _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_10__["PagePasswordComponent"],
-            _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_11__["PageProfileComponent"]
+            _pages_page_addresses_list_page_addresses_list_component__WEBPACK_IMPORTED_MODULE_7__["PageAddressesListComponent"],
+            _pages_page_dashboard_page_dashboard_component__WEBPACK_IMPORTED_MODULE_8__["PageDashboardComponent"],
+            _pages_page_login_page_login_component__WEBPACK_IMPORTED_MODULE_9__["PageLoginComponent"],
+            _pages_page_logout_page_logout_component__WEBPACK_IMPORTED_MODULE_10__["PageLogoutComponent"],
+            _pages_page_orders_list_page_orders_list_component__WEBPACK_IMPORTED_MODULE_11__["PageOrdersListComponent"],
+            _pages_page_password_page_password_component__WEBPACK_IMPORTED_MODULE_12__["PagePasswordComponent"],
+            _pages_page_profile_page_profile_component__WEBPACK_IMPORTED_MODULE_13__["PageProfileComponent"]
         ],
         imports: [
             // modules (angular)
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
             // modules
             _account_routing_module__WEBPACK_IMPORTED_MODULE_3__["AccountRoutingModule"],
             _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"]
@@ -273,7 +299,7 @@ let LayoutComponent = class LayoutComponent {
             { label: 'Order History', url: './orders' },
             { label: 'Addresses', url: './addresses' },
             { label: 'Password', url: './password' },
-            { label: 'Logout', url: './login' }
+            { label: 'Logout', url: './logout' }
         ];
     }
 };
@@ -372,6 +398,8 @@ let PageDashboardComponent = class PageDashboardComponent {
     constructor() {
         this.address = _data_account_addresses__WEBPACK_IMPORTED_MODULE_3__["addresses"][0];
         this.orders = _data_account_orders__WEBPACK_IMPORTED_MODULE_2__["orders"].slice(0, 3);
+        this.userInfo = JSON.parse(localStorage.getItem("USERINFO"));
+        console.log(this.userInfo);
     }
 };
 PageDashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -412,19 +440,111 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageLoginComponent", function() { return PageLoginComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../app/shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
+
+
 
 
 let PageLoginComponent = class PageLoginComponent {
-    constructor() { }
+    constructor(ShopService) {
+        this.ShopService = ShopService;
+        this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+        });
+        this.registerForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            first_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            cpassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+        });
+    }
+    onSubmit() {
+        this.ShopService.getLogin(this.loginForm.value);
+    }
+    onRegister() {
+        this.ShopService.signup(this.registerForm.value)
+            .subscribe((data) => {
+            this.info = data;
+            if (this.info.status == true) {
+                alert(this.info.message);
+            }
+            else {
+                alert(this.info.message);
+            }
+        });
+    }
 };
+PageLoginComponent.ctorParameters = () => [
+    { type: _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"] }
+];
 PageLoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-login',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-login.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/account/pages/page-login/page-login.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-login.component.scss */ "./src/app/modules/account/pages/page-login/page-login.component.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"]])
 ], PageLoginComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/account/pages/page-logout/page-logout.component.scss":
+/*!******************************************************************************!*\
+  !*** ./src/app/modules/account/pages/page-logout/page-logout.component.scss ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYWNjb3VudC9wYWdlcy9wYWdlLWxvZ291dC9wYWdlLWxvZ291dC5jb21wb25lbnQuc2NzcyJ9 */");
+
+/***/ }),
+
+/***/ "./src/app/modules/account/pages/page-logout/page-logout.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/modules/account/pages/page-logout/page-logout.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: PageLogoutComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageLogoutComponent", function() { return PageLogoutComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../app/shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+let PageLogoutComponent = class PageLogoutComponent {
+    constructor(ShopService, router) {
+        this.ShopService = ShopService;
+        this.router = router;
+    }
+    ngOnInit() {
+        this.ShopService.getLogout();
+    }
+};
+PageLogoutComponent.ctorParameters = () => [
+    { type: _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+PageLogoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-logout',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-logout.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/account/pages/page-logout/page-logout.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-logout.component.scss */ "./src/app/modules/account/pages/page-logout/page-logout.component.scss")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_2__["ShopService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+], PageLogoutComponent);
 
 
 
@@ -545,18 +665,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageProfileComponent", function() { return PageProfileComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../app/shared/api/shop.service */ "./src/app/shared/api/shop.service.ts");
+
+
 
 
 let PageProfileComponent = class PageProfileComponent {
-    constructor() { }
+    constructor(ShopService) {
+        this.ShopService = ShopService;
+        this.item = JSON.parse(localStorage.getItem('USERINFO'));
+        this.profileForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            first_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.item.first_name, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.item.email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            last_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.item.last_name, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.item.mobile, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+        });
+    }
+    update() {
+        this.ShopService.update(this.profileForm.value);
+    }
 };
+PageProfileComponent.ctorParameters = () => [
+    { type: _app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"] }
+];
 PageProfileComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-page-profile',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./page-profile.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/account/pages/page-profile/page-profile.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./page-profile.component.sass */ "./src/app/modules/account/pages/page-profile/page-profile.component.sass")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_app_shared_api_shop_service__WEBPACK_IMPORTED_MODULE_3__["ShopService"]])
 ], PageProfileComponent);
 
 

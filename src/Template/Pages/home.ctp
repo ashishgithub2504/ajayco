@@ -59,7 +59,7 @@ hr {
     font-family: sans-serif;
     color: lightcoral;
     text-shadow: 2px 2px;
-    font-size: 55px;">Ajay & Co. <br/> COMING SOON</h1>
+    font-size: 55px;">Jenix.in <br/> COMING SOON</h1>
     <hr>
     <p>Few days left</p>
   </div>
