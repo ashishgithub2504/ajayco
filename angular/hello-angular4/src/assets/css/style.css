@@ -118,7 +118,7 @@ hr {
 
 .main-btn, .primary-btn {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 12px;
   text-transform: uppercase;
   font-weight: 700;
   border: none;
@@ -131,8 +131,12 @@ hr {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  padding: 0px;
+  padding: 3px;
   border: none;
+  font-size: 29px;
+  background-color: #f00000 !important;
+  color: #FFFFFF;
+  box-shadow: none;
 }
 
 .main-btn {
@@ -215,7 +219,7 @@ textarea.input {
   position: relative;
   display: inline-block;
   text-transform: uppercase;
-  padding: 12px 0px;
+  padding: 0px 0px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -1666,7 +1670,7 @@ textarea.input {
 .footer .footer-header {
   font-size: 18px;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .footer-logo {
@@ -1709,7 +1713,7 @@ textarea.input {
 .slick-prev, .slick-next {
   width: 40px;
   height: 40px;
-  background: #30323A;
+  background: #f00000;
   z-index: 22;
 }
 
@@ -1719,6 +1723,8 @@ textarea.input {
 
 .slick-prev:before, .slick-next:before {
   color: #FFF;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .slick-prev {
@@ -1806,6 +1812,16 @@ textarea.input {
   [class*='col-xs'] {
     width: 100%;
   }
+  
+  .header-fixed {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999999;
+    background: #f00000;
+    padding: 3px;
+  }
+
   .blog_post {
     width: 100% !important;
   }
@@ -1921,8 +1937,23 @@ textarea.input {
   line-height: 18px;
   float: right;
   margin-right: 8px;
-  width: 84%;
+  width: 98%;
   text-overflow: ellipsis;
+}
+.outer-search{ position:relative;width: 85%;float: right; }
+.outer-search ul {
+    position: absolute;
+    text-align: justify;
+    top: 43px;
+    z-index: 99999;
+    background: #f00000;
+    width: 99%;
+    max-height: 250px;
+    overflow: scroll;
+}
+.outer-search ul li a {
+  color: #fff;
+  font-size: 20px;
 }
 .search-btn {
   display: inline-block;
@@ -2125,9 +2156,53 @@ textarea.input {
 .mtop15 {
   margin-top: 15px;
 }
-
-
+.modal{
+  top: 15%;
+}
+.quantity label {
+  font-size: 19px;
+  margin-right: 10px;
+}
+.quantity .minus, .quantity .add {
+  position: absolute;
+  top: 41px;
+  background: #f00;
+  font-size: 20px;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.cart_quantity_input {
+  width: 50px;
+  margin-left: 33px;
+  border: 1px solid #f00;
+  margin-right: 2px;
+  height: 29px;
+  margin-bottom: 10px;
+}
+.enquiry-social {
+  background: #f00;
+  color: #fff;
+  float: left;
+  padding: 2%;
+  width: 100%;
+}
+.enquiry-social a {
+  color: #fff;
+  float: left;
+  padding: 6%;
+}
+.enquiry-social .menu-text {
+  font-size: 10px;
+}
 @media only screen and (min-width: 500px) {
+  #footer-static {
+    display: none;
+  }
   .pull-right {
     width: 22%;
   }

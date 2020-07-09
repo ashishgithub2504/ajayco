@@ -105,6 +105,12 @@ class WebserviceController extends AppController {
                 'external_link' => $value['external_link'],
             ];
         }
+        
+        $pages = TableRegistry::get('pages')
+                    ->find()
+                    ->select(['title','slug'])
+                    ->where(['status' => '1'])
+                    ->all();    
         // print_r($banners); die;
         $footer = [
             'sec1' => [
@@ -112,7 +118,8 @@ class WebserviceController extends AppController {
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
             ],
             'sec2' => [
-                'text' => 'Menu',
+                'text' => 'Information',
+                'data' => $pages
             ]
             
         ];
@@ -787,6 +794,29 @@ class WebserviceController extends AppController {
             }
         }
 
+        $this->response($response);
+    }
+
+    public function searchproducts() {
+        $response = [
+            'status' => false,
+            'message' => 'Product not found',
+            'code' => 404
+        ];
+        // pr($this->request->data['keyword']);die;
+        if(!empty($this->request->data) ) {
+            $products = $this->Products->find()
+            ->where(['title LIKE' => $this->request->data['keyword'].'%'])
+            ->toArray();
+            if(!empty($products)) {
+                $response = [
+                    'status' => true,
+                    'data' => $products,
+                    'message' => 'Product list found',
+                    'code' => 200
+                ];    
+            }            
+        }
         $this->response($response);
     }
     

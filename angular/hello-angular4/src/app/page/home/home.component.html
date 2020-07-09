@@ -74,7 +74,7 @@
                                 </div>
                                 <h2 class="product-name"><a routerLink="/product/{{product.slug}}">{{product.title | slice:0:40}}</a></h2>
                                 <div class="product-btns">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+                                    <!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button> -->
                                     <button class="primary-btn enqury-now"
                                         *ngIf="product.enquirystatus; else addcart"
                                         data-toggle="modal"
@@ -147,7 +147,7 @@
                                     data-toggle="modal"
                                     data-id="{{lproduct.id}}"
                                     data-target="#enquiry"
-                                    (click)="openModel(lproduct.id)">
+                                    (click)="openModel('product/'+lproduct.slug)">
                                     <i class="fa fa-ioxhost"></i> Enquiry Now
                                 </button>
                                 <ng-template #addcart>
@@ -292,25 +292,55 @@
           <h3 class="modal-title"><img src="assets/img/JENIX logo color 600x213.png" style="width:250px;"/></h3>
         </div>
         <div class="modal-body">
-            <span class="details">Please provide us details:</span>
+            <!-- <span class="details">Please provide us details:</span> -->
           <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
-              <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
-            <div class="form-group">
+            <input type="text" disabled style="width:100%" formControlName="product_id" name="product_id" id="product_id">
+            <!-- <div class="form-group">
                 <input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
-            </div>
-            <div class="form-group">
-                <input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                     <input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+            </div> -->
+            <div class="quantity">
+                <label>Tell us quantity</label>
+                <span class="action-qty minus">-</span>
+                    <input type="text" value="1" class="cart_quantity_input text inline-block mar-lr-10 h-30 no-border pad-lr-5 text-center mar-l-xs-0 mar-r-xs-10 w-80 mar-r-xs-10" />
+                <span class="action-qty add">+</span>
+            </div>
+            <div class="form-group" style="position:relative;">
+                <textarea class="form-control" name="message" placeholder="Type your query" formControlName="message" ></textarea>
+                <sup style="
+                    position: absolute;
+                    bottom: -36px;
+                    right: 0;
+                ">300 limit</sup>
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="message" placeholder="Tell us about the product quantity" formControlName="message" ></textarea>
-            </div>    
-            <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Submit">
+                    <input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+            </div>
+            <div class="enquiry-social">
+                <a (click)="socialshare('//api.whatsapp.com/send?phone=917240226566&text=')">
+                    <span class="fa fa-whatsapp fa-2x"></span>
+                    <span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Whatsapp</span>
+                </a>
+                <a (click)="socialtelegram('https://telegram.me/share/url')">
+                    <span class="fa fa-telegram fa-2x"></span>
+                    <span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Telegram</span>
+                </a>
+                <a (click)="socialsms('sms://+917240226566?body=')">
+                    <span class="fa fa-comments fa-2x"></span>
+                    <span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">SMS</span>
+                </a>
+                <a href="//api.whatsapp.com/send?phone=917240226566&text=Hello Jenix">
+                    <span class="fa fa-envelope fa-2x"></span>
+                    <span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Email</span>
+                </a>
+            </div>
+            
+            <!-- <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Submit"> -->
           </form>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button
             type="button"
             data-dismiss="modal"
@@ -318,7 +348,7 @@
           >
             Close
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

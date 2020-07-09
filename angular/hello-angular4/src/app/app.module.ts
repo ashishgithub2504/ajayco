@@ -23,6 +23,7 @@ import { CartComponent } from './page/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
 import { ModelComponent } from './page/model/model.component';
 import { NewsComponent } from './page/news/news.component'
+import { AutoCompleteModule } from 'ng4-auto-complete';
 
 const appRoutes: Routes = [
   { path : '', component: HomeComponent, pathMatch: 'full' },
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AutoCompleteModule,
     RouterModule.forRoot(
       appRoutes
     ),

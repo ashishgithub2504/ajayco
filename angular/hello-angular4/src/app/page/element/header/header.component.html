@@ -65,13 +65,27 @@
                     <li class="nav-toggle">
                             <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
                     </li>
-                    <form>
-                        <input class="input search-input" type="text" placeholder="Search">
+                    
+                    <div class="outer-search">
+                        
+                        <input (keyup)="searchproduct($event.target.value);" class="input search-input" type="text" placeholder="Search product">
+                        <ul *ngIf="this.searchResult">
+                            <li *ngFor="let sresult of this.searchResult.data" style="padding: 5px;color: #fff;">
+                                <a routerLink="/product/{{sresult.slug}}">{{sresult.title}}</a>
+                            </li>
+                        </ul>
+                        <ng-template #noproduct>
+                            <ul>
+                                <li style="padding: 10px;color: #fff;">
+                                    {{this.searchResult.message}}
+                                </li>
+                            </ul>
+                        </ng-template>
                         <!-- <select class="input search-categories" *ngIf="this.categories">
                             <option *ngFor="let cat of this.categories" value="{{cat.id}}">{{cat.title}}</option>
                         </select> -->
                         <!-- <button class="search-btn"><i class="fa fa-search"></i></button> -->
-                    </form>
+                    </div>
                 </div>
                 <!-- /Search -->
             </div>

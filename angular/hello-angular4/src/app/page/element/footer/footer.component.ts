@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { WebserviceService } from '../../../services/webservice.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   
-  constructor() { }
-
+  constructor(private WebserviceService : WebserviceService) { }
+  footer :any;
   ngOnInit() {
+    this.WebserviceService.home().subscribe((data) => {
+      this.footer = data;
+      console.log(this.footer.footer);
+    });
   }
 
 }

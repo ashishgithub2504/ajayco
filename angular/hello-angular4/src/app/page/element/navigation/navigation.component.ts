@@ -28,6 +28,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn$ = this.WebserviceService.isLoggedIn;
     this.navigation = JSON.parse(localStorage.getItem('NAVIGATION')) || '';
+    console.log(this.navigation.data);
     if(this.navigation.length < 1 ) {
       this.WebserviceService.getnavigation().subscribe((data) => {
         this.navigation = data;

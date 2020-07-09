@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   categories:any;
   cartItem : [];
   userinfo : any;
+  searchResult : any;
   status: boolean = false;
   ngOnInit() {
     this.isLoggedIn$ = this.WebserviceService.isLoggedIn; // {2}
@@ -57,5 +58,14 @@ export class HeaderComponent implements OnInit {
       sum += this.cartItem[i][index];
     }
     return sum;
+  }
+
+  searchproduct(keyword){
+    this.WebserviceService.searchproduct(keyword)
+    .subscribe((data) => {
+      this.searchResult = data;
+      console.log(this.searchResult.status);
+    });
+    // this.WebserviceService.searchproduct(keyword);
   }
 }

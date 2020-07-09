@@ -29,7 +29,7 @@
                       <span [ngClass]="'success'" *ngIf="this.result.status">{{this.result.message}}</span>
                   </p>
                   <form [formGroup]="signupForm"  (ngSubmit)="onSubmit()">
-                    <input type="text" id="first_name" formControlName="first_name" class="fadeIn second" name="first_name" placeholder="first name">
+                    <input type="text" id="first_name" formControlName="first_name" class="fadeIn second" name="first_name" placeholder="Full Name">
                     <input type="text" id="mobile" formControlName="mobile" class="fadeIn second" name="mobile" placeholder="Mobile">
                     <input type="text" id="login" formControlName="email" class="fadeIn second" name="login" placeholder="Email">
                     <input type="password" id="password" formControlName="password" class="fadeIn third" name="login" placeholder="Password">

@@ -52,16 +52,13 @@
             <div class="clearfix visible-sm visible-xs"></div>
 
             <!-- footer widget -->
-            <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="col-md-4 col-sm-6 col-xs-6" *ngIf="this.footer">
                 <div class="footer">
-                    <h3 class="footer-header">Customer Service</h3>
+                    <h3 class="footer-header">{{this.footer.footer.sec2.text}}</h3>
                     <ul class="list-links">
-                        <li><a routerLink="/pages/about-us" routerLinkActive="active">About us</a></li>
-                        <li><a routerLink="/pages/why-us" routerLinkActive="active">Why Us?</a></li>
-                        <li><a routerLink="/pages/product-range" routerLinkActive="active">Our Product Range</a></li>
-                        <li><a routerLink="/pages/industry-caters" routerLinkActive="active">Industry Caters To</a></li>
-                        <li><a routerLink="/pages/terms-conditions" routerLinkActive="active">Terms Conditions</a></li>
-                        
+                        <li *ngFor="let footerlink of this.footer.footer.sec2.data">
+                            <a routerLink="/pages/{{footerlink.slug}}" routerLinkActive="active">{{footerlink.title}}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

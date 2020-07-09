@@ -2,6 +2,7 @@ import { Component, OnInit,Renderer,ElementRef } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from '../../services/webservice.service';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { $ } from 'protractor';
 // import { $ } from 'protractor';
 
 @Component({
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
   result: any = [];
   profile : any;
+  formdata : any;
   public name:any = 'Add to cart';
   ngOnInit() {
     this.WebserviceService.home().subscribe((data) => {
@@ -76,7 +78,22 @@ export class HomeComponent implements OnInit {
   }
 
   openModel(pid) {
-    this.enquiryForm.controls['product_id'].setValue(pid);
+    console.log(this.enquiryForm.value);
+    this.formdata = 'www.jenix.in/'+pid;
+    // $('.enquiry-social a').attr('href',url);
+    this.enquiryForm.controls['product_id'].setValue(this.formdata);
+  }
+
+  socialshare(surl) {
+    window.location.href = surl+this.formdata+'&'+this.enquiryForm.value.message;
+  }
+
+  socialtelegram(surl) {
+    window.location.href = surl+'?url='+this.formdata+'&text='+this.enquiryForm.value.message;
+  }
+
+  socialsms(surl){
+    window.location.href = surl+this.formdata+this.enquiryForm.value.message;
   }
 
 }

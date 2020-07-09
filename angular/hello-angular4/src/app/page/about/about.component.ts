@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from '../../services/webservice.service';
 import {ActivatedRoute} from "@angular/router";
-
+import { DomSanitizer } from '@angular/platform-browser'
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -9,9 +9,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AboutComponent implements OnInit {
 
-  constructor( private WebserviceService : WebserviceService , 
+  constructor( private WebserviceService : WebserviceService ,
+    private sanitized: DomSanitizer, 
     private activeRoute: ActivatedRoute) {
-    }
+  }
+  transform(value) {
+    console.log(this.sanitized.bypassSecurityTrustHtml(value))
+    return this.sanitized.bypassSecurityTrustHtml(value);
+  }
   
   result : any;
   value:any;
@@ -19,10 +24,15 @@ export class AboutComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.staticPage(routeParams.id).subscribe((data) => {
         this.result = data;
-        console.log(this.result); 
-        this.onActivate(this);      
+        console.log(this.result.description);
+        this.result.description = this.assembleHTMLItem()
+        //this.onActivate(this);      
       });
     });
+  }
+
+  assembleHTMLItem() {
+    return this.sanitized.bypassSecurityTrustHtml(this.result.description);
   }
 
   onActivate(event) {

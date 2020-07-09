@@ -131,4 +131,10 @@ APIURL = 'http://admin.jenix.in/api/webservice/';
       payment_id:payment_id, order_id:order_id
     }).pipe(map((response:any) => response));
   }
+
+  searchproduct(keyword) : Observable<Object> {
+    return this.http.post(this.APIURL+'searchproducts', {
+      keyword
+    }).pipe(map((response:any) => response));
+  }
 }
