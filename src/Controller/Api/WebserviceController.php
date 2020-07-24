@@ -47,6 +47,37 @@ class WebserviceController extends AppController {
             ]],['order' => ['sort_order','desc']]
         )
         ->toArray();
+
+        if(!empty($products)){
+                foreach ($products as $key => $value) {
+                    $products[$key]['id'] = $value['id'];
+                    $products[$key]['title'] = $value['title'];
+                    $products[$key]['slug'] = $value['slug'];
+                    $products[$key]['price'] = $value['price'];
+                    $products[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
+                    if(!empty($value['product_images'])) {
+                        foreach ($value['product_images'] as $k => $val) {
+                            $products[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/'.$value['id'].'/', true).$val['image'].'&w=700&h=700';    
+                        }                        
+                    } else {
+                        $products[$key]['images'] = [];
+                    }
+                    $products[$key]['compareAtPrice'] = null;
+                    $products[$key]['badges'] = ['new'];
+                    $products[$key]['rating'] = 4;
+                    $products[$key]['reviews'] = 12;
+                    $products[$key]['availability'] = ($value['stock_status_id'] == '1') ? 'in-stock':'Out Of Stock';
+                    $products[$key]['brand'] = 'jenix';
+                    $products[$key]['enquirystatus'] = $value['enquirystatus'];
+                    if(!empty($value['categories'])) {
+                        foreach($value['categories'] as $kk=>$vv) {
+                            $products[$key]['categories'][] = $vv['title'];
+                        }
+                    }
+                    // $products[$key]['categories'] = [];
+                    $products[$key]['attributes'] = [];
+                }      
+        }
         // print_r($products); die;
         $latest_products = $this->Products->find('all',[
             'conditions' => ['status' => 1],
@@ -143,6 +174,7 @@ class WebserviceController extends AppController {
             'message' => 'List found',
             'code' => 200,
             'data' => [
+                        'metatag' => Configure::read('Setting.HOME_META_TAG'),
                         'logo' => Router::url('/img/', true).Configure::read('Setting.MAIN_LOGO'),
                         'products' => $products,
                         'latest_products' => $latest_products,
@@ -155,6 +187,9 @@ class WebserviceController extends AppController {
                         'product_path' => Router::url('/img/uploads/products/', true)
                     ]
         ];
+        if(!empty($news)) {
+            $response['data']['news'] = $news;
+        }
         $this->response($response);
     }
 
@@ -239,7 +274,7 @@ class WebserviceController extends AppController {
 
         $this->request->data = $this->request->getData('detail');
         $this->request->data['login_count'] = 0;
-        $this->request->data['is_verified'] = 0;
+        $this->request->data['is_verified'] = 1;
         $this->request->data['status'] = '1';
         $this->Users = TableRegistry::get('UserManager.Users');
         $user = $this->Users->newEntity();
@@ -363,13 +398,13 @@ class WebserviceController extends AppController {
         $query = $this->Products->find()->where(['Products.status' => 1]);
         
         if(!empty($this->request->data) && !empty($this->request->data['category_id'])) {
-            $query->matching('Categories',function($q){
-                return $q->where(['Categories.slug' => $this->request->data['category_id']]);
-            }); 
-        } else {
-            $query->contain(['Categories','ProductImages']);
+            $query->where(['title LIKE' => '%'.$this->request->data['category_id'].'%']);
+            
+            // $query->matching('Categories',function($q){
+            //     return $q->where(['Categories.slug' => $this->request->data['category_id']]);
+            // }); 
         }
-
+        $query->contain(['Categories','ProductImages']);
         if(!empty($this->request->query('is_featured'))) {
             $query->andWhere(['is_featured' => '1']);
         }
@@ -394,7 +429,8 @@ class WebserviceController extends AppController {
         if(!empty($products)){
                 foreach ($products as $key => $value) {
                     $list[$key]['id'] = $value['id'];
-                    $list[$key]['name'] = $value['title'];
+                    $list[$key]['title'] = $value['title'];
+                    $list[$key]['link'] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true);
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
                     $list[$key]['images'][] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$value['image'].'&w=700&h=700';
@@ -405,6 +441,7 @@ class WebserviceController extends AppController {
                     } else {
                         $list[$key]['images'] = [];
                     }
+                    $list[$key]['image'] = $value['image'];
                     $list[$key]['compareAtPrice'] = null;
                     $list[$key]['badges'] = ['new'];
                     $list[$key]['rating'] = 4;
@@ -504,7 +541,7 @@ class WebserviceController extends AppController {
                 $status = true;
                 foreach ($products as $key => $value) {
                     $list[$key]['id'] = $value['id'];
-                    $list[$key]['name'] = $value['title'];
+                    $list[$key]['title'] = $value['title'];
                     $list[$key]['slug'] = $value['slug'];
                     $list[$key]['price'] = $value['price'];
                     if(!empty($value['product_images'])) {
@@ -586,13 +623,14 @@ class WebserviceController extends AppController {
     public function productdetails() {
         $response = ['status'=>false,'code' => 404 ,'message'=>'List Not Found'];
         $detail = $this->Products->find()
+        ->contain(['ProductImages'])
         ->select([
             // 'full_name' => "CONCAT(title, ' ', slug)",
                // "link" => "status",
                 //"timthumb" => "status",
                 // 'linkwrite' => $article->get('full_name'),
                 'id',
-                'name' => 'title',
+                'title',
                 'slug',
                 'sku',
                 'model',
@@ -613,13 +651,22 @@ class WebserviceController extends AppController {
         ])->first();
         // pr($detail); die;
         if(!empty($detail)){
+                $images = [];
+                if(!empty($detail['product_images'])) {
+                    $images[] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$detail['images'].'&w=700&h=700';
+                    foreach($detail['product_images'] as $key=>$val) {
+                        $images[] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$val['image'].'&w=700&h=700';
+                    }
+                } else {
+                    $images[] = Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$detail['images'].'&w=700&h=700';
+                }
                 $response = [
                         'status'=>true,
                         'code' => 200 ,
                         'message'=>'List Found',
                         'data' => [
                             'id' => $detail['id'],
-                            'name' => $detail['name'],
+                            'title' => $detail['title'],
                             'slug'=> $detail['slug'],
                             'sku'=> $detail['sku'],
                             'price'=> $detail['price'],
@@ -627,9 +674,8 @@ class WebserviceController extends AppController {
                             'description' => $detail['description'],
                             'short_description' => $detail['short_description'],
                             'compareAtPrice'=> null,
-                            'images'=> [
-                                Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$detail['images'].'&w=700&h=700',
-                            ],
+                            'image' => Router::url('/timthumb.php?src=',true).Router::url('/img/uploads/products/', true).$detail['images'].'&w=700&h=700',
+                            'images'=> $images,
                             'badges'=> '',
                             'rating'=> '4',
                             'reviews'=> '20',
@@ -695,6 +741,7 @@ class WebserviceController extends AppController {
             'code' => 404
         ];
         if(!empty($this->request->data) ) {
+            // print_r($this->request->data); die;
             $this->order = TableRegistry::get('Orders');
             $this->orderdetail = TableRegistry::get('OrderDetails');
 
@@ -704,12 +751,13 @@ class WebserviceController extends AppController {
             $entity->status = '2';
             $entity->created = date('Y-m-d');
             $entity->modified = date('Y-m-d');
+            // print_r($entity); die;
             if($this->order->save($entity)) {
                 foreach($this->request->data['detail'] as $k=>$v) {
                     $details = $this->orderdetail->newEntity();
                     $details->order_id = $entity->id;
                     $details->product_name = $v['title'];
-                    $details->product_image = $v['image'];
+                    // $details->product_image = $v['image'];
                     $details->qty = $v['qty'];
                     $details->price = $v['price'];
                     $details->status = '1';
@@ -806,7 +854,7 @@ class WebserviceController extends AppController {
         // pr($this->request->data['keyword']);die;
         if(!empty($this->request->data) ) {
             $products = $this->Products->find()
-            ->where(['title LIKE' => $this->request->data['keyword'].'%'])
+            ->where(['title LIKE' => '%'.$this->request->data['keyword'].'%'])
             ->toArray();
             if(!empty($products)) {
                 $response = [

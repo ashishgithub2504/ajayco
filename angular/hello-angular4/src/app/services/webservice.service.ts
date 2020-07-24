@@ -9,14 +9,20 @@ import { Router } from '@angular/router';
 })
 
 export class WebserviceService {
+  private items = JSON.parse(localStorage.getItem('CART')) || [];
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
   private loading = new BehaviorSubject<boolean>(false); // {1}
+  private totalItems = new BehaviorSubject<number>(this.items.length);
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
   }
   get isLoading() {
     return this.loading.asObservable();
   }
+  get getCartItems() {
+    return this.totalItems.asObservable();
+  }
+
 // APIURL = 'http://localhost:8765/api/webservice/';
 APIURL = 'http://admin.jenix.in/api/webservice/';
   constructor(private http:HttpClient,private router: Router) { }
@@ -86,6 +92,10 @@ APIURL = 'http://admin.jenix.in/api/webservice/';
   hideLoading() : boolean {
     this.loading.next(false);
     return true;
+  }
+
+  updateCartItems(items: number) {
+    this.totalItems.next(items);
   }
 
   signup(detail:string) : Observable<object> {    

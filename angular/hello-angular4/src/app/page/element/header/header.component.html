@@ -27,9 +27,9 @@
                     <!-- <li class="nav-toggle">
                             <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
                     </li> -->
-                    <div class="header-btns-icon mtop15">
+                    <div class="header-btns-icon mtop15" id="carticon">
                         <a  routerLink="/cart" routerLinkActive="active">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa fa-shopping-cart"><sup>{{getCartItems | async}}</sup></i>
                         </a>
                     </div>
                     <li class="header-account dropdown default-dropdown">
@@ -68,7 +68,15 @@
                     
                     <div class="outer-search">
                         
-                        <input (keyup)="searchproduct($event.target.value);" class="input search-input" type="text" placeholder="Search product">
+                        <input [(ngModel)]="playerName" class="input search-input" type="text" placeholder="Search product">
+                        <i (click)="searchproduct();" class="fa fa-search" style="
+                            position: absolute;
+                            top: 2px;
+                            right: 10px;
+                            background: #f00;
+                            padding: 11px;
+                            color: #fff;
+                        "></i>
                         <ul *ngIf="this.searchResult">
                             <li *ngFor="let sresult of this.searchResult.data" style="padding: 5px;color: #fff;">
                                 <a routerLink="/product/{{sresult.slug}}">{{sresult.title}}</a>
@@ -98,7 +106,7 @@
 
                     <div class="header-btns-icon mtop15">
                         <a  routerLink="/cart" routerLinkActive="active">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa fa-shopping-cart"><sup>0</sup></i>
                         </a>
                     </div>
                     

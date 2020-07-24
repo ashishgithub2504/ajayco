@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { WebserviceService } from '../../services/webservice.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private WebserviceService : WebserviceService) { }
   cartItem : [];
+  cartItems : number;
   ngOnInit() {
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];
     console.log( this.cartItem);
@@ -21,6 +22,8 @@ export class CartComponent implements OnInit {
             items.splice(i, 1);
         }
     }
+    this.cartItems = items.length;
+    this.WebserviceService.updateCartItems(this.cartItems);
     items = JSON.stringify(items);    
     localStorage.setItem("CART", items);
     this.cartItem = JSON.parse(localStorage.getItem('CART')) || [];

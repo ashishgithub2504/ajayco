@@ -5,7 +5,7 @@
 				<li><a routerLink="/">Home</a></li>
 				<li><a routerLink="/shop">Products</a></li>
 				<!-- <li><a href="#">{{this.result.data.model}}</a></li> -->
-				<li class="active">{{this.result.data.name}}</li>
+				<li class="active">{{this.result.data.title}}</li>
 			</ul>
 		</div>
 	</div>
@@ -19,14 +19,14 @@
 			<div class="row">
 				<!--  Product Details -->
 				<div class="product product-details clearfix">
-					<div class="col-md-6" *ngIf="this.result.data.name">
+					<div class="col-md-6" *ngIf="this.result.data.title">
 						<div id="product-main-view">
 							<div class="product-view" *ngFor="let image of this.result.data.images; index as i;">
 								 <img src="{{image}}" alt=""> 
 							</div>
 						</div>
-						<div id="product-view" *ngFor="let image of this.result.data.images; index as i;">
-							<div class="product-view">
+						<div id="product-view">
+							<div class="product-view" *ngFor="let image of this.result.data.images; index as i;">
 								<img src="{{image}}" alt="">
 							</div>
 						</div>
@@ -34,8 +34,8 @@
 					<div class="col-md-6">
 						<div class="product-body">
 							
-							<h2 class="product-name">{{this.result.data.name}}</h2>
-							<!-- <h3 class="product-price">₹ {{this.result.data.price}} </h3> -->
+							<h2 class="product-name">{{this.result.data.title}}</h2>
+							<h3 class="product-price" *ngIf="this.result.data.enquirystatus == 0;">₹ {{this.result.data.price}} </h3>
 							<div>
 								<!-- <div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -57,7 +57,7 @@
 									<input [(ngModel)]="qty" class="input" type="number">
 								</div>
 								<button class="primary-btn enqury-now"
-									*ngIf="this.result.data.enquirystatus; else addcart"
+									*ngIf="this.result.data.enquirystatus == 1; else addcart"
 									data-toggle="modal"
 									data-id="{{this.result.data.id}}"
 									data-target="#enquiry"
@@ -65,7 +65,7 @@
 									<i class="fa fa-ioxhost"></i> Enquiry Now
 								</button>
 								<ng-template #addcart>
-									<button *ngIf="this.result.data.stock_status_id == 1" (click)="addtocart(this.result.data)" class="primary-btn add-to-cart">
+									<button (click)="addtocart(this.result.data)" class="primary-btn add-to-cart">
 										<i class="fa fa-shopping-cart"></i> {{this.name}}
 									</button>
 								</ng-template>
@@ -213,39 +213,69 @@
 
 <!-- Enquiry form here -->
 <div class="modal" tabindex="-1" role="dialog" id="enquiry">
-		<div class="modal-dialog modal-sm" role="document">
-		  <div class="modal-content flex-grow-1">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content flex-grow-1">
 			<div class="modal-header">
-			  <h3 class="modal-title"><img src="assets/img/JENIX logo color 600x213.png" style="width:250px;"/></h3>
+				<h3 class="modal-title"><img src="assets/img/JENIX logo color 600x213.png" style="width:250px;"/></h3>
 			</div>
 			<div class="modal-body">
-					<span class="details">Please provide us details:</span>
-			  <form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
-				  <input type="hidden" formControlName="product_id" name="product_id" id="product_id">
-				<div class="form-group">
-					<input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
-				</div>
-				<div class="form-group">
-					<input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
-				</div>
-				<div class="form-group">
-						<input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
-				</div>
-				<div class="form-group">
-					<textarea class="form-control" name="message" placeholder="Tell us about the product quantity" formControlName="message" ></textarea>
-				</div>    
-				<input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Submit">
-			  </form>
+					<!-- <span class="details">Please provide us details:</span> -->
+				<form [formGroup]="enquiryForm"  (ngSubmit)="onSubmit()">
+					<input type="text" disabled style="width:100%" formControlName="product_id" name="product_id" id="product_id">
+					<!-- <div class="form-group">
+							<input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name" placeholder="first name">
+					</div> -->
+					<!-- <div class="form-group">
+									<input type="text" id="login" formControlName="email" class="form-control" name="login" placeholder="Email">
+					</div> -->
+					<div class="quantity">
+							<label>Tell us quantity</label>
+							<span class="action-qty minus">-</span>
+									<input type="text" value="1" class="cart_quantity_input text inline-block mar-lr-10 h-30 no-border pad-lr-5 text-center mar-l-xs-0 mar-r-xs-10 w-80 mar-r-xs-10" />
+							<span class="action-qty add">+</span>
+					</div>
+					<div class="form-group" style="position:relative;">
+							<textarea class="form-control" name="message" placeholder="Type your query" formControlName="message" ></textarea>
+							<sup style="
+									position: absolute;
+									bottom: -36px;
+									right: 0;
+							">300 limit</sup>
+					</div>
+					<div class="form-group">
+									<input type="text" id="mobile" formControlName="mobile" class="form-control" name="mobile" placeholder="Mobile">
+					</div>
+					<div class="enquiry-social">
+							<a (click)="socialshare('//api.whatsapp.com/send?phone=917240226566&text=')">
+									<span class="fa fa-whatsapp fa-2x"></span>
+									<span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Whatsapp</span>
+							</a>
+							<a (click)="socialtelegram('https://telegram.me/share/url')">
+									<span class="fa fa-telegram fa-2x"></span>
+									<span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Telegram</span>
+							</a>
+							<a (click)="socialsms('sms://+917240226566?body=')">
+									<span class="fa fa-comments fa-2x"></span>
+									<span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">SMS</span>
+							</a>
+							<a (click)="socialemail('mailto:jenixindia@gmail.com');">
+									<span class="fa fa-envelope fa-2x"></span>
+									<span _ngcontent-tgt-c3="" class="menu-text" style="color: #ffffff !important"><br _ngcontent-tgt-c3="">Email</span>
+							</a>
+					</div>
+					
+					<!-- <input type="submit" [disabled]="!enquiryForm.valid" class="btn btn-primary" value="Submit"> -->
+				</form>
 			</div>
-			<div class="modal-footer">
-			  <button
-				type="button"
-				data-dismiss="modal"
-				class="mx-auto btn btn-secondary"
-			  >
-				Close
-			  </button>
-			</div>
-		  </div>
+			<!-- <div class="modal-footer">
+				<button
+					type="button"
+					data-dismiss="modal"
+					class="mx-auto btn btn-secondary"
+				>
+					Close
+				</button>
+			</div> -->
 		</div>
-	  </div>
+	</div>
+</div>

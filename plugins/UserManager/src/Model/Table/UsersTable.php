@@ -130,7 +130,7 @@ class UsersTable extends Table
             ->email('email')
             ->requirePresence('email', 'create', 'Email is required field.')
             ->notEmpty('email', 'Email is required field.')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table','message'=>'Email already exits']);
 
         $validator
             ->integer('status')

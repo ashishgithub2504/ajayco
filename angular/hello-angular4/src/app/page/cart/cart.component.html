@@ -19,7 +19,7 @@
                         <tr *ngFor="let item of this.cartItem">
                             <td class="thumb"><img src="{{item.link}}{{item.image}}" alt=""></td>
                             <td class="details">
-                                <a href="#">{{item.title}}</a>
+                                <a href="#">{{item.title | slice:0:50}}</a>
                                 <!-- <ul>
                                     <li><span>Size: XL</span></li>
                                     <li><span>Color: Camelot</span></li>
@@ -34,9 +34,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="empty" colspan="3"></th>
                             <th>SUBTOTAL</th>
-                            <th colspan="2" class="sub-total">₹ {{ getSum('price','qty') }}</th>
+                            <th colspan="4"></th>
+                            <th class="sub-total">₹ {{ getSum('price','qty') }}</th>
                         </tr>
                         <!-- <tr>
                             <th class="empty" colspan="3"></th>
@@ -44,9 +44,9 @@
                             <td colspan="2">Free Shipping</td>
                         </tr> -->
                         <tr>
-                            <th class="empty" colspan="3"></th>
                             <th>TOTAL</th>
-                            <th colspan="2" class="total">₹ {{ getSum('price','qty') }}</th>
+                            <th colspan="4"></th>
+                            <th class="total">₹ {{ getSum('price','qty') }}</th>
                         </tr>
                     </tfoot>
                 </table>

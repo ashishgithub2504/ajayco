@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
     // your options
     }
     if(this.checkoutForm.value.first_name.length == '0'){
-      this.checkoutForm.value.first_name.addClass('error');
+      alert('Please fill first name');
     }
     //this.WebserviceService.showLoading(); this.signupForm.value
     this.WebserviceService.createOrder(this.cartItem,price,this.txnid,this.checkoutForm.value).subscribe((data) => {

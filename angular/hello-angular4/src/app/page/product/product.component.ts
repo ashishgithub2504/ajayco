@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from 'src/app/services/webservice.service';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -17,21 +18,29 @@ export class ProductComponent implements OnInit {
     email: new FormControl('',Validators.required),
     message: new FormControl('',Validators.required),
   });
-  constructor(public activeRoute: ActivatedRoute, 
+  constructor(private meta: Meta,public activeRoute: ActivatedRoute, 
     private dynamicScriptLoader: DynamicScriptLoaderService,
     public WebserviceService: WebserviceService) { }
   result : any;
+  formdata : any;
   public name:any = 'Add to cart';
   public qty:number = 1;
   ngOnInit() {
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.productDetails(routeParams.id).subscribe((data) => {
         this.result = data;
+        this.meta.removeTag('name="description"'); 
+        this.meta.removeTag('name="keywords"'); 
+        this.meta.addTags([
+          {name: 'description', content: this.result.data.title},
+          {name: 'keywords', content: this.result.data.title}
+        ]);
         if(this.result.status == false) {
             alert(this.result.message);
         }
         this.loadScript();
-        console.log(this.result);      
+        console.log(this.result);
+        console.log(this.name);   
       });
     });
   }
@@ -52,10 +61,11 @@ export class ProductComponent implements OnInit {
     localStorage.setItem("CART", items);
     setTimeout(()=> {
       this.name = 'Add to cart';
-    }, 1000);
+    }, 500);
   }
 
   openModel(pid) {
+    this.formdata = 'www.jenix.in/'+pid;
     this.enquiryForm.controls['product_id'].setValue(pid);
   }
 
@@ -79,4 +89,22 @@ export class ProductComponent implements OnInit {
       // Script Loaded Successfully
     }).catch(error => console.log(error));   
 }
+
+socialshare(surl) {
+  // alert(this.formdata+' '+this.enquiryForm.value.message);
+  window.location.href = surl+this.formdata+'?text='+this.enquiryForm.value.message+" Phone : "+this.enquiryForm.value.mobile;
+}
+
+socialtelegram(surl) {
+  window.location.href = surl+'?url='+this.formdata+'&text='+this.enquiryForm.value.message+"Phone: "+this.enquiryForm.value.mobile;
+}
+
+socialsms(surl){
+  window.location.href = surl+this.formdata+this.enquiryForm.value.message;
+}
+
+socialemail(surl) {
+  window.location.href = surl+"?Subject="+this.enquiryForm.value.message+"&body="+this.formdata+"<br/> <br/> Message : "+this.enquiryForm.value.message+" <br/> <br/> Phone : "+this.enquiryForm.value.mobile;
+}
+
 }

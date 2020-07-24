@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from 'src/app/services/webservice.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
+  getCartItems: Observable<number>;
   constructor(private router: Router,private WebserviceService : WebserviceService,
      public config: NgbModalConfig, public modalService: NgbModal) { 
       // config.backdrop = 'static';
@@ -20,9 +22,11 @@ export class HeaderComponent implements OnInit {
   cartItem : [];
   userinfo : any;
   searchResult : any;
+  playerName: string;
   status: boolean = false;
   ngOnInit() {
     this.isLoggedIn$ = this.WebserviceService.isLoggedIn; // {2}
+    this.getCartItems = this.WebserviceService.getCartItems;
     console.log(this.isLoggedIn$);
     this.userinfo = JSON.parse(localStorage.getItem('USERINFO'));
     this.categories = JSON.parse(localStorage.getItem('CATEGORIES')) || [];
@@ -59,13 +63,15 @@ export class HeaderComponent implements OnInit {
     }
     return sum;
   }
-
-  searchproduct(keyword){
-    this.WebserviceService.searchproduct(keyword)
-    .subscribe((data) => {
-      this.searchResult = data;
-      console.log(this.searchResult.status);
-    });
+  
+  searchproduct(keyword) {
+    this.router.navigate(['shop/'+this.playerName]);
+    // alert(this.playerName); 
+    // this.WebserviceService.searchproduct(keyword)
+    // .subscribe((data) => {
+    //   this.searchResult = data;
+    //   console.log(this.searchResult.status);
+    // });
     // this.WebserviceService.searchproduct(keyword);
   }
 }

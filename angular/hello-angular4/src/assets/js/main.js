@@ -53,32 +53,39 @@
 
   $(document).ready(function(){
 
-  $(".shadow").click(function() {
-      $('#navigation').toggleClass('shadow');
-      $('#responsive-nav').toggleClass('open');
-      $('#responsive-nav .menu-nav .menu-list').toggleClass('open');  
-  });
+  // $(".shadow").click(function() { alert('shadow')
+  //     $('#navigation').toggleClass('shadow');
+  //     $('#responsive-nav').toggleClass('open');
+  //     $('#responsive-nav .menu-nav .menu-list').toggleClass('open');  
+  // });
   
   $(".nav-toggle-btn").click(function() {
-    $('#navigation').toggleClass('shadow');
-    $('#responsive-nav').addClass('open');
-    $('#responsive-nav .menu-nav .menu-list').addClass('open');
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+    document.getElementsByClassName("w3-overlay")[0].style.display = "block";
+    // $('#navigation').toggleClass('shadow');
+    // $('#responsive-nav').addClass('open');
+    // $('#responsive-nav .menu-nav .menu-list').addClass('open');
   });
 
-  $('#responsive-nav .menu-nav li').on('click', function() {
-      $('#navigation').removeClass('shadow');
-      $('#responsive-nav').removeClass('open');
+  $(".w3-animate-opacity").click(function() {
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+    document.getElementsByClassName("w3-overlay")[0].style.display = "none";
   });
 
-  $('#responsive-nav .category-nav').on('click', function() {
-    $('#responsive-nav .menu-nav .menu-list').removeClass('open');
-    $('#responsive-nav .category-nav .category-list').toggleClass('open');
-  });
+  // $('#responsive-nav .menu-nav li').on('click', function() {
+  //     $('#navigation').removeClass('shadow');
+  //     $('#responsive-nav').removeClass('open');
+  // });
 
-  $('#responsive-nav .menu-nav .menu-header').on('click', function() {
-    $('#responsive-nav .category-nav .category-list').removeClass('open');
-    $('#responsive-nav .menu-nav .menu-list').toggleClass('open');
-  });
+  // $('#responsive-nav .category-nav').on('click', function() {
+  //   $('#responsive-nav .menu-nav .menu-list').removeClass('open');
+  //   $('#responsive-nav .category-nav .category-list').toggleClass('open');
+  // });
+
+  // $('#responsive-nav .menu-nav .menu-header').on('click', function() {
+  //   $('#responsive-nav .category-nav .category-list').removeClass('open');
+  //   $('#responsive-nav .menu-nav .menu-list').toggleClass('open');
+  // });
   // $('#navigation.shadow').click(function(){
   //     $(this).removeClass('shadow');
   // });
@@ -206,7 +213,14 @@
     asNavFor: '#product-main-view',
   });
 
-
+function w3_open() {
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+    document.getElementsByClassName("w3-overlay")[0].style.display = "block";
+}
+$(".w3-closenav").click(function(){
+  document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+  document.getElementsByClassName("w3-overlay")[0].style.display = "none";
+});
 
   // $(document).on("click", ".enqury-now", function () {
   //   var myBookId = $(this).attr('id');

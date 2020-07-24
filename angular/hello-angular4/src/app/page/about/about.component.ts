@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WebserviceService } from '../../services/webservice.service';
 import {ActivatedRoute} from "@angular/router";
-import { DomSanitizer } from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -9,9 +11,10 @@ import { DomSanitizer } from '@angular/platform-browser'
 })
 export class AboutComponent implements OnInit {
 
-  constructor( private WebserviceService : WebserviceService ,
+  constructor( private meta: Meta ,private WebserviceService : WebserviceService ,
     private sanitized: DomSanitizer, 
     private activeRoute: ActivatedRoute) {
+      
   }
   transform(value) {
     console.log(this.sanitized.bypassSecurityTrustHtml(value))
@@ -24,6 +27,12 @@ export class AboutComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.WebserviceService.staticPage(routeParams.id).subscribe((data) => {
         this.result = data;
+        this.meta.removeTag('name="description"'); 
+        this.meta.removeTag('name="keywords"'); 
+        this.meta.addTags([
+          {name: 'description', content: this.result.meta_description},
+          {name: 'keywords', content: this.result.meta_keyword}
+        ]);
         console.log(this.result.description);
         this.result.description = this.assembleHTMLItem()
         //this.onActivate(this);      

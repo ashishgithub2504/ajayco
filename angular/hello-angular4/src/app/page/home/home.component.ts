@@ -2,6 +2,7 @@ import { Component, OnInit,Renderer,ElementRef } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/dynamic-script-loader.service';
 import { WebserviceService } from '../../services/webservice.service';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 import { $ } from 'protractor';
 // import { $ } from 'protractor';
 
@@ -12,6 +13,7 @@ import { $ } from 'protractor';
 })
 export class HomeComponent implements OnInit {
   product_id : number = 0;
+  cartItems : number;
   display: string = 'none';
 
   enquiryForm = new FormGroup({
@@ -22,9 +24,15 @@ export class HomeComponent implements OnInit {
     message: new FormControl('',Validators.required),
   });
   private element: any;
-  constructor(private renderer:Renderer,private el: ElementRef, private dynamicScriptLoader: DynamicScriptLoaderService,
+  constructor(private renderer:Renderer,private el: ElementRef, private meta: Meta, private dynamicScriptLoader: DynamicScriptLoaderService,
               private WebserviceService : WebserviceService) { 
-     this.element = el.nativeElement;
+      this.meta.removeTag('name="description"'); 
+      this.meta.removeTag('name="keywords"'); 
+      this.meta.addTags([
+        {name: 'description', content: 'Jenix.in: Online Shopping India - Buy GPS Navigation System, CCTV Surveillance,WiFI Camera,HD Camera, IP cameras, DVR,NVR,PABX System, Sensor Module,Relay Module,Components,Controller Module,Power Supply,wire,Security System, Alarm Panel & Sensor, Electronic Lock,DIY KIT - Make your Self,Home Automation.'},
+        {name: 'keywords', content: 'Jenix.in: Online Shopping India - Buy GPS Navigation System, CCTV Surveillance,WiFI Camera,HD Camera, IP cameras, DVR,NVR,PABX System, Sensor Module,Relay Module,Components,Controller Module,Power Supply,wire,Security System, Alarm Panel & Sensor, Electronic Lock,DIY KIT - Make your Self,Home Automation.'}
+      ]);
+      this.element = el.nativeElement;
   }
   result: any = [];
   profile : any;
@@ -33,7 +41,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.WebserviceService.home().subscribe((data) => {
       this.profile = data;
-      console.log(this.profile);
+      //console.log(this.profile);
       this.loadScript();
     });
     
@@ -56,9 +64,11 @@ export class HomeComponent implements OnInit {
         }
     }
     items.push(pid);
+    this.cartItems = items.length;
     items = JSON.stringify(items);    
     localStorage.setItem("CART", items);
     setTimeout(()=> {
+      this.WebserviceService.updateCartItems(this.cartItems);
       this.name = 'Add to cart';
     }, 1500);
   }
@@ -85,15 +95,20 @@ export class HomeComponent implements OnInit {
   }
 
   socialshare(surl) {
-    window.location.href = surl+this.formdata+'&'+this.enquiryForm.value.message;
+    // alert(this.formdata+' '+this.enquiryForm.value.message);
+    window.location.href = surl+this.formdata+'?text='+this.enquiryForm.value.message+" Phone : "+this.enquiryForm.value.mobile;
   }
 
   socialtelegram(surl) {
-    window.location.href = surl+'?url='+this.formdata+'&text='+this.enquiryForm.value.message;
+    window.location.href = surl+'?url='+this.formdata+'&text='+this.enquiryForm.value.message+"Phone: "+this.enquiryForm.value.mobile;
   }
 
   socialsms(surl){
     window.location.href = surl+this.formdata+this.enquiryForm.value.message;
+  }
+
+  socialemail(surl) {
+    window.location.href = surl+"?Subject="+this.enquiryForm.value.message+"&body="+this.formdata+"<br/> <br/> Message : "+this.enquiryForm.value.message+" <br/> <br/> Phone : "+this.enquiryForm.value.mobile;
   }
 
 }

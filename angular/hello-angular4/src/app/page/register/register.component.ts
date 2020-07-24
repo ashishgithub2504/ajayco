@@ -26,6 +26,9 @@ export class RegisterComponent implements OnInit {
     .subscribe((data) => {
       this.result = data;
       console.log(this.result);
+      localStorage.setItem('USERINFO', JSON.stringify(this.result));
+      //this.loggedIn.next(true);
+      this.router.navigate(['/']);
       if(this.result.status == true) {
         this.router.navigate(['/']);
       } else {

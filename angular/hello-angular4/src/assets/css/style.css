@@ -364,7 +364,7 @@ textarea.input {
   float: right;
   display: inline-block;
   /* padding: 15px 0px; */
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 .dynamicheader {
@@ -698,7 +698,8 @@ textarea.input {
   transform: translate(0px, 0px);
 }
 .submenu {
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 2px solid #f00000;
+  margin: 5px;
 }
 /*----------------------------*\
 	Mobile nav
@@ -793,7 +794,7 @@ textarea.input {
     transform: translate(0px, 0px);
   }
   .category-nav .category-list, .menu-nav .menu-list {
-    display: none;
+    display: block;
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: calc(100vh - 100px);
@@ -960,8 +961,8 @@ textarea.input {
 }
 
 .product.product-single:hover {
-  -webkit-box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.175);
-  box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.175);
+  /* -webkit-box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.175); */
   -webkit-transform: translateY(-4px);
   -ms-transform: translateY(-4px);
   transform: translateY(-4px);
@@ -2189,16 +2190,22 @@ textarea.input {
   color: #fff;
   float: left;
   padding: 2%;
+  border-radius: 5px;
   width: 100%;
 }
 .enquiry-social a {
   color: #fff;
   float: left;
-  padding: 6%;
+  padding: 1%;
+  margin-right: 6%;
+  margin-left: 6%;
 }
 .enquiry-social .menu-text {
   font-size: 10px;
 }
+
+#carticon sup { font-size: 100%; }
+
 @media only screen and (min-width: 500px) {
   #footer-static {
     display: none;

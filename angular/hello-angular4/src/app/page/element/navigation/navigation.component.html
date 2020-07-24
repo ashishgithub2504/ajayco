@@ -1,5 +1,33 @@
 <!-- NAVIGATION -->
 <div id="navigation">
+
+<nav class="w3-sidenav w3-white w3-animate-left" style="top:0px;display:none;z-index:999999">
+        <div class="menu-nav">
+            <a href="javascript:void(0)" onclick="w3_close()" 
+                class="w3-closenav w3-large">Close &times;</a>            
+            <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <ul class="menu-list">
+                <li><a routerLink="/" class="w3-closenav" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/pages/about-us" class="w3-closenav" routerLinkActive="active">About Us</a></li>
+                <li><a routerLink="/shop" class="w3-closenav" routerLinkActive="active">Shop</a></li>
+                <li><a routerLink="/cart" class="w3-closenav" routerLinkActive="active">Cart</a></li>
+                <li *ngIf="isLoggedIn$ | async; else logintag">
+                    <a (click)="logout();" routerLink="" routerLinkActive="active">Logout</a>
+                </li>
+                <ng-template #logintag>
+                    <li><a routerLink="/login" class="w3-closenav" routerLinkActive="active">Login</a></li>
+                </ng-template>
+            </ul>
+        </div>
+        <!-- <a href="tryit.asp-filename=tryw3css_sidenav_overlay.html#">Link 1</a>		
+        <a href="tryit.asp-filename=tryw3css_sidenav_overlay.html#">Link 2</a>		
+        <a href="tryit.asp-filename=tryw3css_sidenav_overlay.html#">Link 3</a>		
+        <a href="tryit.asp-filename=tryw3css_sidenav_overlay.html#">Link 4</a>		
+        <a href="tryit.asp-filename=tryw3css_sidenav_overlay.html#">Link 5</a>		 -->
+      </nav>
+      
+      <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer">
+      </div>      
     <!-- container -->
     <div class="container">
         <div id="responsive-nav">
